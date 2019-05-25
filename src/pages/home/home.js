@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withStyles, Typography, Divider, Button, Fab } from "@material-ui/core";
+import { withStyles, Typography, Divider, Button } from "@material-ui/core";
 import Style from "./css.js";
 import ItemList from "../../components/itemList/itemList";
 import EuroIcon from "@material-ui/icons/EuroSymbol";
@@ -12,6 +12,20 @@ const tileData = [
     title: "Crzy",
     price: 299.99,
     info: [["Manufacturer", "Supreme"], ["Material", "100% Cotton"]]
+  },
+  {
+    imgUrl:
+      "https://ae01.alicdn.com/kf/HTB1CLt4b79WBuNjSspeq6yz5VXav/Aolamegs-t-shirt-hommes-dr-le-photo-impression-hommes-t-shirts-col-rond-t-shirt-coton.jpg_640x640.jpg",
+    title: "Crdedzy",
+    price: 0,
+    info: "histo"
+  },
+  {
+    imgUrl:
+      "https://ae01.alicdn.com/kf/HTB1CLt4b79WBuNjSspeq6yz5VXav/Aolamegs-t-shirt-hommes-dr-le-photo-impression-hommes-t-shirts-col-rond-t-shirt-coton.jpg_640x640.jpg",
+    title: "Crdedzy",
+    price: 0,
+    info: "histo"
   },
   {
     imgUrl:
@@ -61,20 +75,20 @@ class Home extends Component {
               {this.state.currentItem.title}
             </Typography>
             <Divider />
-            <Typography className={classes.showcaseInfoPrice}>
+            <div className={classes.showcaseInfoPrice}>
               <div className={classes.showcaseInfoPricePrice}>{this.state.currentItem.price}</div>
               <EuroIcon className={classes.showcaseInfoPriceLogo} />
-            </Typography>
+            </div>
             <Typography className={classes.showcaseInfoInfoTitle}>Information:</Typography>
-            <Typography className={classes.showcaseInfoInfoContent}>
-              {this.state.currentItem.info.map(info => (
-                <div>
+            <div className={classes.showcaseInfoInfoContent}>
+              {this.state.currentItem.info.map((info, index) => (
+                <div key={index}>
                   <span style={{ fontWeight: "bold" }}>{info[0]}</span>
                   <span>: </span>
                   <span>{info[0]}</span>
                 </div>
               ))}
-            </Typography>
+            </div>
             <Button variant="contained" className={classes.addToCart}>
               <AddCart />
               Add To Cart

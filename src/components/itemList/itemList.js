@@ -18,6 +18,7 @@ class ItemList extends Component {
         {this.props.items.map((tile, index) => (
           <Grid key={index} item xs={12} sm={6} md={3}>
             <Item
+              key={index}
               handleFunction={this.props.handleFunction}
               delay={(index - 1) * 200}
               title={tile.title}

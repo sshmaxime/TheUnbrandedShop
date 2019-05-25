@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withStyles, AppBar, Toolbar, Typography, IconButton, Button } from "@material-ui/core";
 import Style from "./css.js";
 import ShoppingBasketLogo from "@material-ui/icons/ShoppingBasket";
+import { BrowserRouter as Link } from "react-router-dom";
 
 class Navbar extends Component {
   render() {
@@ -14,9 +15,11 @@ class Navbar extends Component {
             <IconButton className={classes.cart} color="inherit">
               <ShoppingBasketLogo className={classes.cartLogo} />
             </IconButton>
-            <Button className={classes.info} color="inherit">
-              <Typography className={classes.infoText}>ABOUT US</Typography>
-            </Button>
+            <Link to="/aboutus">
+              <Button className={classes.info} color="inherit">
+                <Typography className={classes.infoText}>ABOUT US</Typography>
+              </Button>
+            </Link>
           </Toolbar>
         </AppBar>
       </div>
