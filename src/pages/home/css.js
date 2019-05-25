@@ -67,6 +67,12 @@ const Style = theme => ({
   addToCart: {
     backgroundColor: "#f50023",
     color: "white",
+    paddingTop: "2px",
+    paddingBottom: "2px",
+    paddingRight: "5px",
+    paddingLeft: "5px",
+    fontSize: "1.2em",
+    fontFamily: "monospace",
     "&:hover": {
       backgroundColor: "#f50023",
       boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.5)"

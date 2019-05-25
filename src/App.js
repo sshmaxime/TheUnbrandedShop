@@ -11,8 +11,8 @@ class App extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <Navbar title="(The Unbranded Shop)" />
         <Router>
+          <Navbar title="(The Unbranded Shop)" />
           <div className={classes.app}>
             <Route path="/" exact component={Home} />
             <Route path="/aboutus" component={AboutUs} />

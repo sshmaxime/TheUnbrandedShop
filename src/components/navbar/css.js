@@ -13,13 +13,19 @@ const Style = theme => ({
   },
   title: {
     position: "absolute",
-    color: "black",
     fontFamily: "takasih",
     fontSize: "3em",
     fontWeight: 900,
     textAlign: "center",
     left: "50%",
-    transform: "translate(-50%, 0)"
+    transform: "translate(-50%, 0)",
+    "& > a": {
+      textDecoration: "none",
+      color: "black"
+    },
+    "& a:focus": {
+      outline: "none"
+    }
   },
   cart: {
     position: "absolute",
@@ -30,18 +36,25 @@ const Style = theme => ({
     "&:hover": {
       backgroundColor: "#FFF",
       transform: "scale(1.2)"
+    },
+    "& a": {
+      textDecoration: "none",
+      color: "black"
+    },
+    "& a:focus": {
+      outline: "none"
     }
   },
   cartLogo: {
     fontSize: "1.5em"
   },
-  info: {
+  aboutUs: {
     position: "absolute",
     color: "black",
     left: 0,
     padding: 0
   },
-  infoText: {
+  aboutUsText: {
     fontFamily: "fullpack",
     fontSize: "1.5em",
     backgroundColor: "#FFF",
@@ -49,6 +62,13 @@ const Style = theme => ({
     "&:hover": {
       backgroundColor: "#FFF",
       transform: "scale(1.2)"
+    },
+    "& > a": {
+      textDecoration: "none",
+      color: "black"
+    },
+    "& a:focus": {
+      outline: "none"
     }
   }
 });

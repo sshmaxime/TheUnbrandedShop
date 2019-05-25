@@ -45,7 +45,6 @@ class Home extends Component {
   componentDidMount() {
     document.addEventListener("keydown", this.escFunction, false);
   }
-
   closeShowcase = () => {
     this.setState(_ => ({
       showcaseItem: false
@@ -56,7 +55,6 @@ class Home extends Component {
       this.closeShowcase();
     }
   };
-
   handleClickOnItem = event => {
     this.setState(state => ({
       showcaseItem: !state.showcaseItem
