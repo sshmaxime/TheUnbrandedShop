@@ -1,12 +1,21 @@
-import React from "react";
-import Navbar from "./components/navbar";
+import React, { Component } from "react";
+import Navbar from "./components/navbar/navbar";
+import Home from "./pages/home/home.js";
+import Style from "./css.js";
+import { withStyles } from "@material-ui/core";
 
-function App() {
-  return (
-    <div className="App">
-      <Navbar title="The Unbranded Shop" />
-    </div>
-  );
+class App extends Component {
+  render() {
+    const { classes } = this.props;
+    return (
+      <div className={classes.root}>
+        <Navbar title="(The Unbranded Shop)" />
+        <div className={classes.app}>
+          <Home />
+        </div>
+      </div>
+    );
+  }
 }
 
-export default App;
+export default withStyles(Style)(App);

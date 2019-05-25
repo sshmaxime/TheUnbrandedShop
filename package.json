@@ -6,7 +6,9 @@
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
     "react": "^16.8.6",
+    "react-anime": "^2.2.0",
     "react-dom": "^16.8.6",
+    "react-pose": "^4.0.8",
     "react-scripts": "3.0.1"
   },
   "scripts": {
