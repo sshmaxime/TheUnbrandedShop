@@ -11,6 +11,14 @@
   font-family: fullpack;
   src: url(fonts/FULLPACK.ttf);
 }
+@font-face {
+  font-family: blader;
+  src: url(fonts/BLADER.ttf);
+}
+@font-face {
+  font-family: bar;
+  src: url(fonts/BAR.ttf);
+}
 
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0-modified | 20110126

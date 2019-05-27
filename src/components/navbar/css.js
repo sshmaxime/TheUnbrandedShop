@@ -1,6 +1,7 @@
 const Style = theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    marginBottom: theme.spacing.unit * 5
   },
   navbar: {
     backgroundColor: "white",
@@ -13,9 +14,9 @@ const Style = theme => ({
   },
   title: {
     position: "absolute",
-    fontFamily: "takasih",
-    fontSize: "3em",
-    fontWeight: 900,
+    fontFamily: "bar",
+    letterSpacing: "5px",
+    fontSize: "3.5em",
     textAlign: "center",
     left: "50%",
     transform: "translate(-50%, 0)",
@@ -70,6 +71,14 @@ const Style = theme => ({
     "& a:focus": {
       outline: "none"
     }
+  },
+  cartMenu: {
+    width: "200px"
+  },
+  cartItem: {
+    width: "100%",
+    height: "200px",
+    backgroundColor: "#FBFCFC"
   }
 });
 

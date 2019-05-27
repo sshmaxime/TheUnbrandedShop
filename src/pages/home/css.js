@@ -1,7 +1,5 @@
 const Style = theme => ({
-  root: {
-    marginTop: theme.spacing.unit * 2
-  },
+  root: {},
   showcaseItem: {
     backgroundColor: "#E5E7E9",
     height: "500px",
