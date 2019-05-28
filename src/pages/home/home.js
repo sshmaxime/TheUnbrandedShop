@@ -18,21 +18,21 @@ const tileData = [
       "https://ae01.alicdn.com/kf/HTB1CLt4b79WBuNjSspeq6yz5VXav/Aolamegs-t-shirt-hommes-dr-le-photo-impression-hommes-t-shirts-col-rond-t-shirt-coton.jpg_640x640.jpg",
     title: "Crdedzy",
     price: 0,
-    info: "histo"
+    info: [["Manufacturer", "Supreme"], ["Material", "100% Cotton"]]
   },
   {
     imgUrl:
       "https://ae01.alicdn.com/kf/HTB1CLt4b79WBuNjSspeq6yz5VXav/Aolamegs-t-shirt-hommes-dr-le-photo-impression-hommes-t-shirts-col-rond-t-shirt-coton.jpg_640x640.jpg",
     title: "Crdedzy",
     price: 0,
-    info: "histo"
+    info: [["Manufacturer", "Supreme"], ["Material", "100% Cotton"]]
   },
   {
     imgUrl:
       "https://ae01.alicdn.com/kf/HTB1CLt4b79WBuNjSspeq6yz5VXav/Aolamegs-t-shirt-hommes-dr-le-photo-impression-hommes-t-shirts-col-rond-t-shirt-coton.jpg_640x640.jpg",
     title: "Crdedzy",
     price: 0,
-    info: "histo"
+    info: [["Manufacturer", "Supreme"], ["Material", "100% Cotton"]]
   }
 ];
 
