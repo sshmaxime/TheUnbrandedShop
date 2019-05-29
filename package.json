@@ -5,6 +5,7 @@
   "dependencies": {
     "@material-ui/core": "^3.9.3",
     "@material-ui/icons": "^3.0.2",
+    "deepstream.io-client-js": "^2.3.0",
     "react": "^16.8.6",
     "react-anime": "^2.2.0",
     "react-burger-menu": "^2.6.10",

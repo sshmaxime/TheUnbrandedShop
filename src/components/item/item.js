@@ -7,7 +7,11 @@ class Item extends Component {
     const { classes } = this.props;
     return (
       <div>
-        <Card className={classes.root} onClick={this.props.handleFunction}>
+        <Card
+          index={this.props.itemNbr}
+          className={classes.root}
+          onClick={this.props.handleFunction}
+        >
           <Typography className={classes.title}>{this.props.title}</Typography>
           <CardMedia className={classes.image} image={this.props.imgUrl} />
         </Card>

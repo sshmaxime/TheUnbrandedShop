@@ -19,6 +19,7 @@ class ItemList extends Component {
           <Grid key={index} item xs={12} sm={6} md={3}>
             <Item
               key={index}
+              itemNbr={index}
               handleFunction={this.props.handleFunction}
               delay={(index - 1) * 200}
               title={tile.title}
