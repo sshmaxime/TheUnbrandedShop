@@ -4,46 +4,35 @@ import Style from "./css.js";
 import ItemList from "../../components/itemList/itemList";
 import EuroIcon from "@material-ui/icons/EuroSymbol";
 import AddCart from "@material-ui/icons/AddShoppingCart";
-import createDeepstream from "deepstream.io-client-js";
+import { connect } from "react-redux";
 
 class Home extends Component {
   constructor(props) {
     super(props);
 
-    this.ds = createDeepstream("0.0.0.0:6020");
-    this.client = this.ds.login();
-    this.store = this.ds.record.getRecord("store");
+    // Get item from server and store them in the state
+    const items = this.props.store.get("items");
+    this.state.items = items;
 
-    this.store.subscribe(data => {
-      this.setState({
-        items: data.items,
-        isReady: true
-      });
-    });
+    document.addEventListener("keydown", this.escFunction, false);
   }
+
   state = {
     isShowcaseOn: false,
     showcaseItem: null,
-    items: null,
-    isReady: false
+    items: null
   };
-
-  componentDidMount() {
-    document.addEventListener("keydown", this.escFunction, false);
-  }
 
   closeShowcase = () => {
     this.setState(_ => ({
       isShowcaseOn: false
     }));
   };
-
   escFunction = event => {
     if (event.keyCode === 27) {
       this.closeShowcase();
     }
   };
-
   handleClickOnItem = event => {
     const itemIndex = event.currentTarget.getAttribute("index");
     this.setState(state => ({
@@ -53,7 +42,6 @@ class Home extends Component {
     console.log(this.state.items[itemIndex]);
     event.preventDefault();
   };
-
   isShowcaseOn(classes) {
     return (
       <React.Fragment>
@@ -91,15 +79,23 @@ class Home extends Component {
 
   render() {
     const { classes } = this.props;
-    if (this.state.isReady)
-      return (
-        <div className={classes.root}>
-          <ItemList items={this.state.items} handleFunction={this.handleClickOnItem} />
-          {this.state.isShowcaseOn ? this.isShowcaseOn(classes) : null}
-        </div>
-      );
-    return null;
+    return (
+      <div className={classes.root}>
+        <ItemList items={this.state.items} handleFunction={this.handleClickOnItem} />
+        {this.state.isShowcaseOn ? this.isShowcaseOn(classes) : null}
+      </div>
+    );
   }
 }
 
-export default withStyles(Style)(Home);
+const mapStateToProps = state => ({
+  store: state.remoteData.get("store"),
+  isReady: state.isReady
+});
+
+const mapDispatchToProps = dispatch => ({});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(Style)(Home));
