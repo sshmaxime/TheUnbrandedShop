@@ -9,34 +9,41 @@ class AboutUs extends Component {
       <div className={classes.root}>
         <div className={classes.question}>Our mission</div>
         <Divider />
-        <div className={classes.answer}>Find the hypest pieces of clothing on the internet.</div>
+        <div className={classes.answer}>
+          Find the hypest pieces of clothing on the internet and provide them to you for the lowest
+          price.
+        </div>
 
         <div className={classes.question}>Our products</div>
         <Divider />
         <div className={classes.answer}>
-          Our products come from several regulated kind of marketplaces. We are not designing and/or
-          manifacturing. We buy items from manufacturer/individual and sell them.
+          Our products come from several marketplaces. We are not designing and/or manufacturing. We
+          buy items from manufacturer/individual and sell them.
         </div>
 
         <div className={classes.question}>Quality</div>
         <Divider />
-        <div className={classes.answer}>We guarrantee you the best quality for the best price.</div>
+        <div className={classes.answer}>
+          We guarrantee you the best quality. If you receive the wrong item or a damaged one please
+          email us with your issue at: "mail@gmail.com"
+        </div>
 
-        <div className={classes.question}>Shpping</div>
+        <div className={classes.question}>Shipping</div>
         <Divider />
         <div className={classes.answer}>
-          Item labeled as "certified" will most likely be received under 7 working days in France,
-          under 10 working days in Europe and under 20 days anywhere else. Other items will most
-          likely be received under 10 to 30 days depending on your location.
+          Item labeled as "certified" are send by us and will most likely be received under 7
+          working days in France, under 10 working days in Europe and under 20 days anywhere else.
+          <br />
+          <br />
+          Other items will be sent by our suppliers and will most likely be received under 10 to 30
+          days depending on your location.
         </div>
 
         <div className={classes.question}>Our company</div>
         <Divider />
         <div className={classes.answer}>We are based in Montpellier, FRANCE.</div>
 
-        <div className={classes.question}>Any questions ?</div>
-        <Divider />
-        <div className={classes.answer}>Feel free to email us at: "mail@gmail.com"</div>
+        <div className={classes.question}>theunbrandedshop@gmail.com</div>
       </div>
     );
   }

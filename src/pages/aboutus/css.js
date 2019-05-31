@@ -2,12 +2,14 @@ const Style = theme => ({
   root: {
     textAlign: "center",
     marginLeft: "20%",
-    marginRight: "20%"
+    marginRight: "20%",
+    backgroundColor: "white",
+    padding: "20px"
   },
   question: {
     fontFamily: "monospace",
     fontSize: "1.5em",
-    fontWeight: 900,
+    fontWeight: 600,
     paddingBottom: "5px"
   },
   answer: {
