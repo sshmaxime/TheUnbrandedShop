@@ -12,23 +12,9 @@ import Style from "./css.js";
 import ShoppingBasketLogo from "@material-ui/icons/ShoppingBasket";
 import { Link } from "react-router-dom";
 import EuroIcon from "@material-ui/icons/EuroSymbol";
-
-const testData = [
-  {
-    imgUrl:
-      "https://ae01.alicdn.com/kf/HTB1CLt4b79WBuNjSspeq6yz5VXav/Aolamegs-t-shirt-hommes-dr-le-photo-impression-hommes-t-shirts-col-rond-t-shirt-coton.jpg_640x640.jpg",
-    title: "Crzy",
-    price: 299.99,
-    info: [["Manufacturer", "Supreme"], ["Material", "100% Cotton"]]
-  },
-  {
-    imgUrl:
-      "https://ae01.alicdn.com/kf/HTB1CLt4b79WBuNjSspeq6yz5VXav/Aolamegs-t-shirt-hommes-dr-le-photo-impression-hommes-t-shirts-col-rond-t-shirt-coton.jpg_640x640.jpg",
-    title: "Crdedzy",
-    price: 0,
-    info: "histo"
-  }
-];
+import DeleteIcon from "@material-ui/icons/Delete";
+import { connect } from "react-redux";
+import ACTIONS from "../../redux/actions";
 
 class Navbar extends Component {
   state = {
@@ -38,6 +24,10 @@ class Navbar extends Component {
     this.setState(state => {
       return { displayCart: !state.displayCart };
     });
+  };
+
+  handleClickRemoveItemFromCart = event => {
+    this.props.removeItemFromCart(event.currentTarget.getAttribute("index"));
   };
 
   render() {
@@ -60,23 +50,19 @@ class Navbar extends Component {
             <Typography className={classes.title}>
               <Link to="/">{this.props.title}</Link>
             </Typography>
-            {testData.length > 0 ? cartIcon : null}
+            {this.props.itemsInCart.length > 0 ? cartIcon : null}
           </Toolbar>
         </AppBar>
+
         <SwipeableDrawer
           onOpen={() => {}}
           anchor="right"
           open={this.state.displayCart}
           onClose={this.toggleCart}
         >
-          <div
-            className={classes.cartMenu}
-            role="presentation"
-            onClick={this.toggleCart}
-            onKeyDown={this.toggleCart}
-          >
+          <div className={classes.cartMenu} role="presentation">
             <div className={classes.cartTitle}>CART</div>
-            {testData.map((item, index) => (
+            {this.props.itemsInCart.map((item, index) => (
               <div key={index} className={classes.cartItem}>
                 <img className={classes.cartItemImg} alt="" src={item.imgUrl} />
                 <div className={classes.cartItemContent}>
@@ -85,16 +71,27 @@ class Navbar extends Component {
                     <Typography className={classes.cartItemPricePrice}>{item.price}</Typography>
                     <EuroIcon />
                   </div>
+                  <div
+                    index={index}
+                    className={classes.cartItemDelete}
+                    onClick={this.handleClickRemoveItemFromCart}
+                  >
+                    <Button style={{ minWidth: 0, padding: 0 }}>
+                      <DeleteIcon className={classes.cartItemDeleteIcon} />
+                    </Button>
+                  </div>
                 </div>
               </div>
             ))}
-            <div className={classes.checkout}>
-              <Button disableRipple className={classes.checkoutContainer} color="inherit">
-                <Link to="/checkout">
-                  <Typography className={classes.checkoutTitle}>CHECKOUT</Typography>
-                </Link>
-              </Button>
-            </div>
+            {this.props.itemsInCart.length === 0 ? null : (
+              <div className={classes.checkout}>
+                <Button disableRipple className={classes.checkoutContainer} color="inherit">
+                  <Link to="/checkout">
+                    <Typography className={classes.checkoutTitle}>CHECKOUT</Typography>
+                  </Link>
+                </Button>
+              </div>
+            )}
           </div>
         </SwipeableDrawer>
       </div>
@@ -102,4 +99,15 @@ class Navbar extends Component {
   }
 }
 
-export default withStyles(Style)(Navbar);
+const mapStateToProps = state => ({
+  itemsInCart: state.cart
+});
+
+const mapDispatchToProps = dispatch => ({
+  removeItemFromCart: index => dispatch(ACTIONS.removeItemFromCart(index))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(Style)(Navbar));

@@ -21,6 +21,16 @@ const globalReducer = (state = initialState, action) => {
       newState.remoteData = state.remoteData;
       return newState;
 
+    case ACTIONS.Types.ADD_ITEM_TO_CART:
+      newState.cart.push(payload.item);
+      newState.remoteData = state.remoteData;
+      return newState;
+
+    case ACTIONS.Types.REMOVE_ITEM_FROM_CART:
+      newState.cart.splice(payload.index, 1);
+      newState.remoteData = state.remoteData;
+      return newState;
+
     case ACTIONS.Types.UPDATE_REMOTE_DATA:
       const key = payload.key;
       const data = payload.data;

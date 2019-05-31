@@ -129,6 +129,22 @@ const Style = theme => ({
     alignItems: "center",
     padding: "10px"
   },
+  cartItemDelete: {
+    position: "absolute",
+    left: 0,
+    bottom: 0,
+    display: "flex",
+    alignItems: "center",
+    padding: "10px"
+  },
+  cartItemDeleteLogo: {
+    minWidth: 0,
+    padding: 0
+  },
+  cartItemDeleteIcon: {
+    minWidth: 0,
+    padding: 0
+  },
   cartItemPricePrice: {
     fontSize: "1.2em",
     fontWeight: 900,

@@ -5,6 +5,7 @@ import ItemList from "../../components/itemList/itemList";
 import EuroIcon from "@material-ui/icons/EuroSymbol";
 import AddCart from "@material-ui/icons/AddShoppingCart";
 import { connect } from "react-redux";
+import ACTIONS from "../../redux/actions";
 
 class Home extends Component {
   constructor(props) {
@@ -39,8 +40,11 @@ class Home extends Component {
       isShowcaseOn: !state.isShowcaseOn,
       showcaseItem: state.items[itemIndex]
     }));
-    console.log(this.state.items[itemIndex]);
     event.preventDefault();
+  };
+  handleClickAddToCart = () => {
+    console.log(this.state.showcaseItem);
+    this.props.addItemToCart(this.state.showcaseItem);
   };
   isShowcaseOn(classes) {
     return (
@@ -67,7 +71,11 @@ class Home extends Component {
                 </div>
               ))}
             </div>
-            <Button variant="contained" className={classes.addToCart}>
+            <Button
+              variant="contained"
+              className={classes.addToCart}
+              onClick={this.handleClickAddToCart}
+            >
               <AddCart />
               Add To Cart
             </Button>
@@ -93,7 +101,9 @@ const mapStateToProps = state => ({
   isReady: state.isReady
 });
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+  addItemToCart: item => dispatch(ACTIONS.addItemToCart(item))
+});
 
 export default connect(
   mapStateToProps,
