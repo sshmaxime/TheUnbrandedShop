@@ -10,7 +10,7 @@ class AboutUs extends Component {
         <div className={classes.question}>Our mission</div>
         <Divider />
         <div className={classes.answer}>
-          Find the hypest pieces of clothing on the internet and provide them to you for the lowest
+          Find the hypest pieces of clothing on the internet and provide them to you for the best
           price.
         </div>
 
@@ -24,14 +24,14 @@ class AboutUs extends Component {
         <div className={classes.question}>Quality</div>
         <Divider />
         <div className={classes.answer}>
-          We guarrantee you the best quality. If you receive the wrong item or a damaged one please
-          email us with your issue at: "mail@gmail.com"
+          We guarrantee the best quality. If you receive the wrong item or a damaged one please
+          email us.
         </div>
 
         <div className={classes.question}>Shipping</div>
         <Divider />
         <div className={classes.answer}>
-          Item labeled as "certified" are send by us and will most likely be received under 7
+          Item labeled as "certified" are sent by us and will most likely be received under 7
           working days in France, under 10 working days in Europe and under 20 days anywhere else.
           <br />
           <br />
@@ -41,7 +41,7 @@ class AboutUs extends Component {
 
         <div className={classes.question}>Our company</div>
         <Divider />
-        <div className={classes.answer}>We are based in Montpellier, FRANCE.</div>
+        <div className={classes.answer}>Since 2018, Montpellier, FRANCE.</div>
 
         <div className={classes.question}>theunbrandedshop@gmail.com</div>
       </div>

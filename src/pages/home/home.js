@@ -11,9 +11,11 @@ class Home extends Component {
   constructor(props) {
     super(props);
 
-    // Get item from server and store them in the state
-    const items = this.props.store.get("items");
-    this.state.items = items;
+    this.props.remoteEndpoint.record.getRecord("store").subscribe(value => {
+      this.setState({
+        items: value.items
+      });
+    });
 
     document.addEventListener("keydown", this.escFunction, false);
   }
@@ -21,7 +23,7 @@ class Home extends Component {
   state = {
     isShowcaseOn: false,
     showcaseItem: null,
-    items: null
+    items: this.props.items
   };
 
   closeShowcase = () => {
@@ -43,7 +45,6 @@ class Home extends Component {
     event.preventDefault();
   };
   handleClickAddToCart = () => {
-    console.log(this.state.showcaseItem);
     this.props.addItemToCart(this.state.showcaseItem);
   };
   isShowcaseOn(classes) {
@@ -97,7 +98,6 @@ class Home extends Component {
 }
 
 const mapStateToProps = state => ({
-  store: state.remoteData.get("store"),
   isReady: state.isReady
 });
 

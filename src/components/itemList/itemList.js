@@ -5,7 +5,7 @@ import Item from "../item/item";
 import { Animate, AnimateGroup } from "react-simple-animate";
 
 const props = {
-  start: { opacity: 0, transform: "scale(1.3)" },
+  start: { opacity: 0, transform: "scale(1.25)" },
   end: { opacity: 1, transform: "scale(1)" }
 };
 class ItemList extends Component {

@@ -13,45 +13,8 @@ import ACTIONS from "./redux/actions";
 class App extends Component {
   // Initialize connection to database
   componentDidMount() {
-    const ds = createDeepstream("0.0.0.0:6020").login();
-    ds.record.getRecord("store").whenReady(store => {
-      // Store store record to redux state
-      this.props.updateRemoteData("store", store);
-      this.props.setReady();
-
-      // store.set({
-      //   items: [
-      //     {
-      //       imgUrl:
-      //         "https://ae01.alicdn.com/kf/HTB1CLt4b79WBuNjSspeq6yz5VXav/Aolamegs-t-shirt-hommes-dr-le-photo-impression-hommes-t-shirts-col-rond-t-shirt-coton.jpg_640x640.jpg",
-      //       title: "Crzy",
-      //       price: 299.99,
-      //       info: [["Manufacturer", "Supreme"], ["Material", "100% Cotton"]]
-      //     },
-      //     {
-      //       imgUrl:
-      //         "https://ae01.alicdn.com/kf/HTB1CLt4b79WBuNjSspeq6yz5VXav/Aolamegs-t-shirt-hommes-dr-le-photo-impression-hommes-t-shirts-col-rond-t-shirt-coton.jpg_640x640.jpg",
-      //       title: "Crdedzy",
-      //       price: 0,
-      //       info: [["Manufacturer", "Hype"], ["Material", "100% Cotton"]]
-      //     },
-      //     {
-      //       imgUrl:
-      //         "https://ae01.alicdn.com/kf/HTB1CLt4b79WBuNjSspeq6yz5VXav/Aolamegs-t-shirt-hommes-dr-le-photo-impression-hommes-t-shirts-col-rond-t-shirt-coton.jpg_640x640.jpg",
-      //       title: "Crdedzy",
-      //       price: 0,
-      //       info: [["Manufacturer", "DC"], ["Material", "100% Cotton"]]
-      //     },
-      //     {
-      //       imgUrl:
-      //         "https://ae01.alicdn.com/kf/HTB1CLt4b79WBuNjSspeq6yz5VXav/Aolamegs-t-shirt-hommes-dr-le-photo-impression-hommes-t-shirts-col-rond-t-shirt-coton.jpg_640x640.jpg",
-      //       title: "Crdedzy",
-      //       price: 0,
-      //       info: [["Manufacturer", "Bape"], ["Material", "100% Cotton"]]
-      //     }
-      //   ]
-      // });
-    });
+    this.remoteEndpoint = createDeepstream("0.0.0.0:6020").login();
+    this.props.setReady();
   }
   render() {
     const { classes } = this.props;
@@ -61,7 +24,7 @@ class App extends Component {
         <Router>
           <Navbar title="The Unbranded Shop" />
           <div className={classes.app}>
-            <Route path="/" exact component={Home} />
+            <Route path="/" exact component={() => <Home remoteEndpoint={this.remoteEndpoint} />} />
             <Route path="/aboutus" component={AboutUs} />
             <Route path="/checkout" component={Checkout} />
           </div>

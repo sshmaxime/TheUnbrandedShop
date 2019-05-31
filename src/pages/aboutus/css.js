@@ -3,7 +3,6 @@ const Style = theme => ({
     textAlign: "center",
     marginLeft: "20%",
     marginRight: "20%",
-    backgroundColor: "white",
     padding: "20px"
   },
   question: {
@@ -14,7 +13,7 @@ const Style = theme => ({
   },
   answer: {
     fontFamily: "monospace",
-    fontSize: "1em",
+    fontSize: "1.2em",
     fontWeight: 100,
     paddingTop: "25px",
     paddingBottom: "50px"
