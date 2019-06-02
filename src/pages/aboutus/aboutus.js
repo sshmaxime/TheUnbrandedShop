@@ -43,7 +43,7 @@ class AboutUs extends Component {
         <Divider />
         <div className={classes.answer}>Since 2018, Montpellier, FRANCE.</div>
 
-        <div className={classes.question}>theunbrandedshop@gmail.com</div>
+        <div className={classes.answer}>theunbrandedshop@gmail.com</div>
       </div>
     );
   }

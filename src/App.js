@@ -13,9 +13,11 @@ import ACTIONS from "./redux/actions";
 class App extends Component {
   // Initialize connection to database
   componentDidMount() {
-    this.remoteEndpoint = createDeepstream("0.0.0.0:6020").login();
+    this.remoteEndpoint = createDeepstream("0.0.0.0:6020");
+    this.client = this.remoteEndpoint.login();
     this.props.setReady();
   }
+
   render() {
     const { classes } = this.props;
     if (!this.props.isReady) return null;
@@ -24,7 +26,7 @@ class App extends Component {
         <Router>
           <Navbar title="The Unbranded Shop" />
           <div className={classes.app}>
-            <Route path="/" exact component={() => <Home remoteEndpoint={this.remoteEndpoint} />} />
+            <Route path="/" exact component={() => <Home client={this.client} />} />
             <Route path="/aboutus" component={AboutUs} />
             <Route path="/checkout" component={Checkout} />
           </div>

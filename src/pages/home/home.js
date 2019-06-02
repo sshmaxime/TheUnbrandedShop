@@ -11,19 +11,37 @@ class Home extends Component {
   constructor(props) {
     super(props);
 
-    this.props.remoteEndpoint.record.getRecord("store").subscribe(value => {
+    this.storeRecord = this.props.client.record.getRecord("store");
+    this.storeRecord.subscribe(value => {
       this.setState({
         items: value.items
       });
+      if (this.state.isShowcaseOn) {
+        if (value.items.length === 0) {
+          this.setState({
+            isShowcaseOn: false,
+            showcaseItem: null
+          });
+        } else {
+          this.setState({
+            showcaseItem: value.items[this.state.showcaseIndex]
+          });
+        }
+      }
     });
 
     document.addEventListener("keydown", this.escFunction, false);
   }
 
+  componentWillUnmount() {
+    this.storeRecord.discard();
+  }
+
   state = {
     isShowcaseOn: false,
+    showcaseIndex: 0,
     showcaseItem: null,
-    items: this.props.items
+    items: null
   };
 
   closeShowcase = () => {
@@ -40,7 +58,8 @@ class Home extends Component {
     const itemIndex = event.currentTarget.getAttribute("index");
     this.setState(state => ({
       isShowcaseOn: !state.isShowcaseOn,
-      showcaseItem: state.items[itemIndex]
+      showcaseItem: state.items[itemIndex],
+      showcaseIndex: itemIndex
     }));
     event.preventDefault();
   };

@@ -42,11 +42,11 @@ class Navbar extends Component {
       <div className={classes.root}>
         <AppBar className={classes.navbar} position="static">
           <Toolbar style={{ padding: 0 }}>
-            <Button disableRipple className={classes.aboutUs} color="inherit">
+            {/* <Button disableRipple className={classes.aboutUs} color="inherit">
               <Link to="/aboutus">
                 <Typography className={classes.aboutUsText}>ABOUT US</Typography>
               </Link>
-            </Button>
+            </Button> */}
             <Typography className={classes.title}>
               <Link to="/">{this.props.title}</Link>
             </Typography>
@@ -85,11 +85,16 @@ class Navbar extends Component {
             ))}
             {this.props.itemsInCart.length === 0 ? null : (
               <div className={classes.checkout}>
-                <Button disableRipple className={classes.checkoutContainer} color="inherit">
-                  <Link to="/checkout">
+                <Link to="/checkout">
+                  <Button
+                    disableRipple
+                    className={classes.checkoutContainer}
+                    color="inherit"
+                    onClick={this.toggleCart}
+                  >
                     <Typography className={classes.checkoutTitle}>CHECKOUT</Typography>
-                  </Link>
-                </Button>
+                  </Button>
+                </Link>
               </div>
             )}
           </div>

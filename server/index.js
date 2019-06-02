@@ -13,14 +13,7 @@ client.record.getRecord("store").set({
         "https://ae01.alicdn.com/kf/HTB1CLt4b79WBuNjSspeq6yz5VXav/Aolamegs-t-shirt-hommes-dr-le-photo-impression-hommes-t-shirts-col-rond-t-shirt-coton.jpg_640x640.jpg",
       title: "Crzy",
       price: 299.99,
-      info: [["Manufaddscturer", "Supreme"], ["Material", "100% Cotton"]]
-    },
-    {
-      imgUrl:
-        "https://ae01.alicdn.com/kf/HTB1CLt4b79WBuNjSspeq6yz5VXav/Aolamegs-t-shirt-hommes-dr-le-photo-impression-hommes-t-shirts-col-rond-t-shirt-coton.jpg_640x640.jpg",
-      title: "Crdedzy",
-      price: 0,
-      info: [["Manufacturer", "Hype"], ["Material", "100% Cotton"]]
+      info: [["helleeoD", "Supreme"], ["Material", "100% Cotton"]]
     },
     {
       imgUrl:

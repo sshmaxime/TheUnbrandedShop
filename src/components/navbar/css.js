@@ -64,7 +64,7 @@ const Style = theme => ({
   },
   aboutUsText: {
     fontFamily: "fullpack",
-    fontSize: "1.5em",
+    fontSize: "1em",
     backgroundColor: "#FFF",
     transition: "all 0.5s ease-in-out",
     "&:hover": {
