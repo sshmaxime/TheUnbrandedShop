@@ -99,7 +99,7 @@ const Style = theme => ({
     width: "100%",
     height: "170px",
     backgroundColor: "#FBFCFC",
-    border: "1px solid black"
+    borderBottom: "1px solid black"
   },
   cartItemImg: {
     height: "100%",

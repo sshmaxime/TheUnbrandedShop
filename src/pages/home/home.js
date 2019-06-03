@@ -65,6 +65,7 @@ class Home extends Component {
   };
   handleClickAddToCart = () => {
     this.props.addItemToCart(this.state.showcaseItem);
+    this.closeShowcase();
   };
   isShowcaseOn(classes) {
     return (

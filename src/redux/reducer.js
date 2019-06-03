@@ -5,7 +5,22 @@ const initialState = {
   isReady: false,
   // "cart" object contains all itmes in customer's cart
   // Each item is and must be of type model.item
-  cart: []
+  cart: [
+    {
+      imgUrl:
+        "https://ae01.alicdn.com/kf/HTB1CLt4b79WBuNjSspeq6yz5VXav/Aolamegs-t-shirt-hommes-dr-le-photo-impression-hommes-t-shirts-col-rond-t-shirt-coton.jpg_640x640.jpg",
+      title: "Crzy",
+      price: 299.99,
+      info: [["helleeoD", "Supreme"], ["Material", "100% Cotton"]]
+    },
+    {
+      imgUrl:
+        "https://ae01.alicdn.com/kf/HTB1CLt4b79WBuNjSspeq6yz5VXav/Aolamegs-t-shirt-hommes-dr-le-photo-impression-hommes-t-shirts-col-rond-t-shirt-coton.jpg_640x640.jpg",
+      title: "Crzy",
+      price: 299.99,
+      info: [["helleeoD", "Supreme"], ["Material", "100% Cotton"]]
+    }
+  ]
 };
 
 const globalReducer = (state = initialState, action) => {
