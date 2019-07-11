@@ -1,11 +1,7 @@
 const Style = theme => ({
   root: {
-    marginLeft: "10%",
-    marginRight: "10%",
-    position: "relative"
-  },
-  stepper: {
-    backgroundColor: "#FBFCFC"
+    position: "relative",
+    marginTop: "50px"
   },
   icon: {
     "&$activeIcon": {
@@ -21,28 +17,43 @@ const Style = theme => ({
   activeIcon: {},
   completedIcon: {},
   step: {
-    width: "100%",
-    margin: "0 auto",
-    marginTop: "20px",
-    border: "1px solid black",
-    borderRadius: "5px",
-    padding: "10px"
+    border: "5px solid black",
+    padding: "10px",
+    position: "relative"
   },
-
+  step2: {
+    border: "5px solid black",
+    marginTop: "20px",
+    padding: "10px",
+    position: "relative"
+  },
+  step2Disabled: {
+    border: "5px solid black",
+    marginTop: "20px",
+    padding: "10px",
+    position: "relative",
+    backgroundColor: "#DCDCDC"
+  },
+  titleStep: {
+    fontFamily: "blader",
+    color: "black",
+    fontSize: "1.5em",
+    borderBottom: "2px solid black"
+  },
   cartItem: {
     width: "100%",
-    height: "200px",
+    height: "150px",
     backgroundColor: "#FBFCFC",
-    borderBottom: "1px solid black"
+    borderBottom: "2px solid black"
   },
   cartItemImg: {
-    height: "200px",
-    width: "200px",
+    height: "150px",
+    width: "150px",
     borderRight: "1px solid black"
   },
   cartItemContent: {
     height: "100%",
-    width: "calc(99% - 200px)",
+    width: "calc(99% - 150px)",
     display: "inline-block",
     position: "relative",
     verticalAlign: "top"
@@ -50,9 +61,9 @@ const Style = theme => ({
   cartItemTitle: {
     position: "absolute",
     left: 0,
-    fontFamily: "monospace",
-    fontSize: "1.5em",
-    textAlign: "center",
+    fontFamily: "fullpack",
+    fontSize: "0.9em",
+    textAlign: "left",
     padding: "10px"
   },
   cartItemPrice: {
@@ -61,7 +72,11 @@ const Style = theme => ({
     bottom: 0,
     display: "flex",
     alignItems: "center",
-    padding: "10px"
+    padding: "10px",
+    fontSize: "1em",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "0.6em"
+    }
   },
   cartItemDelete: {
     position: "absolute",
@@ -82,41 +97,45 @@ const Style = theme => ({
   cartItemPricePrice: {
     fontSize: "1.2em",
     fontWeight: 900,
-    letterSpacing: "1px",
-    fontFamily: "caesar"
+    letterSpacing: "3px",
+    fontFamily: "fullpack"
   },
   totalPrice: {
     display: "flex",
     alignItems: "center",
-    padding: "20px"
+    padding: "20px",
+    fontFamily: "fullpack"
   },
-  buttonNavigate: {
-    position: "absolute",
-    bottom: 0,
-    right: 0,
-    display: "flex",
-    alignItems: "center",
-    padding: "20px"
+  contentEmail: {
+    fontFamily: "SourceCodePro",
+    fontSize: "1em",
+    marginTop: "5px",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "0.8em"
+    }
   },
-  buttonNext: {
-    color: "white",
-    backgroundColor: "black"
+  contentBill: {
+    fontFamily: "SourceCodePro",
+    fontSize: "1.2em",
+    paddingBottom: "7px",
+    lineHeight: "15px",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "1em"
+    }
   },
-  buttonBack: {
-    marginRight: "10px",
-    color: "black"
+  confirmationPrice: {
+    fontFamily: "SourceCodePro",
+    fontSize: "1.4em",
+    fontWeight: "900"
   },
-
-  formItem: {
-    marginRight: "15px"
-  },
-  formCountry: {
-    marginRight: "15px",
-    width: "200px"
-  },
-  formAddress: {
-    marginRight: "15px",
-    width: "300px"
+  itemConfirmation: {
+    fontFamily: "SourceCodePro",
+    fontSize: "1.1em",
+    lineHeight: "17px",
+    fontWeight: "lighter",
+    [theme.breakpoints.down("sm")]: {
+      fontSize: "0.9em"
+    }
   }
 });
 

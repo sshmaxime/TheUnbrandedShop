@@ -16,9 +16,13 @@ const Style = theme => ({
     left: "50%",
     transform: "translate(-50%, -50%)",
     msTransform: "translate(-50%, -50%)",
+    transition: "all 0.5s ease-in-out",
     width: "100%",
     height: "100%",
     backgroundColor: "rgba(0, 0, 0, 0.5)"
+  },
+  showcaseContainerHidden: {
+    backgroundColor: "rgba(0, 0, 0, 0)"
   },
   showcaseImg: {
     backgroundColor: "green",
@@ -71,8 +75,10 @@ const Style = theme => ({
     paddingLeft: "5px",
     fontSize: "1.2em",
     fontFamily: "monospace",
+    transition: "all 0.5s ease-in-out",
     "&:hover": {
       backgroundColor: "#f50023",
+      transform: "scale(1.01)",
       boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.5)"
     }
   }

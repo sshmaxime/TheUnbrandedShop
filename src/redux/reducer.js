@@ -3,24 +3,10 @@ import _ from "lodash";
 
 const initialState = {
   isReady: false,
+  route: "/",
   // "cart" object contains all itmes in customer's cart
   // Each item is and must be of type model.item
-  cart: [
-    {
-      imgUrl:
-        "https://ae01.alicdn.com/kf/HTB1CLt4b79WBuNjSspeq6yz5VXav/Aolamegs-t-shirt-hommes-dr-le-photo-impression-hommes-t-shirts-col-rond-t-shirt-coton.jpg_640x640.jpg",
-      title: "Crzy",
-      price: 299.99,
-      info: [["helleeoD", "Supreme"], ["Material", "100% Cotton"]]
-    },
-    {
-      imgUrl:
-        "https://ae01.alicdn.com/kf/HTB1CLt4b79WBuNjSspeq6yz5VXav/Aolamegs-t-shirt-hommes-dr-le-photo-impression-hommes-t-shirts-col-rond-t-shirt-coton.jpg_640x640.jpg",
-      title: "Crzy",
-      price: 299.99,
-      info: [["helleeoD", "Supreme"], ["Material", "100% Cotton"]]
-    }
-  ]
+  cart: []
 };
 
 const globalReducer = (state = initialState, action) => {
@@ -38,6 +24,10 @@ const globalReducer = (state = initialState, action) => {
 
     case ACTIONS.Types.REMOVE_ITEM_FROM_CART:
       newState.cart.splice(payload.index, 1);
+      return newState;
+
+    case ACTIONS.Types.SET_ROUTE:
+      newState.route = payload.route;
       return newState;
 
     default:

@@ -1,13 +1,11 @@
 const Style = theme => ({
   root: {
     backgroundColor: "#FBFCFC",
-    height: "100vh"
+    height: "100%"
   },
   app: {
-    [theme.breakpoints.up("md")]: {
-      paddingRight: "130px",
-      paddingLeft: "130px"
-    }
+    paddingRight: "5vw",
+    paddingLeft: "5vw"
   }
 });
 

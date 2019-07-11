@@ -6,8 +6,10 @@ const Style = theme => ({
     transition: "all 0.5s ease-in-out",
     cursor: "pointer",
     opacity: 1,
-    "&:hover": {
-      transform: "scale(1.1)"
+    [theme.breakpoints.up("md")]: {
+      "&:hover": {
+        transform: "scale(1.05)"
+      }
     },
     "&:hover $title": {
       opacity: 1,
@@ -33,7 +35,8 @@ const Style = theme => ({
     cursor: "pointer"
   },
   image: {
-    height: "350px",
+    height: "0",
+    paddingTop: "100%",
     backgroundSize: "contain"
   }
 });

@@ -9,26 +9,45 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import createDeepstream from "deepstream.io-client-js";
 import ACTIONS from "./redux/actions";
+import { Elements, StripeProvider } from "react-stripe-elements";
 
 class App extends Component {
   // Initialize connection to database
   componentDidMount() {
-    this.remoteEndpoint = createDeepstream("0.0.0.0:6020");
-    this.client = this.remoteEndpoint.login();
+    const remoteEndpoint = createDeepstream("0.0.0.0:6020");
+    this.database = remoteEndpoint.login();
+
+    // Inform the app that it is now ready to display data from the database
     this.props.setReady();
   }
 
   render() {
-    const { classes } = this.props;
     if (!this.props.isReady) return null;
+
+    const { classes } = this.props;
     return (
       <div className={classes.root}>
         <Router>
-          <Navbar title="The Unbranded Shop" />
+          <Navbar normalTitle="The Unbranded Shop" reducedTitle="UNBRDSHP" />
           <div className={classes.app}>
-            <Route path="/" exact component={() => <Home client={this.client} />} />
+            <Route
+              path={["/"]}
+              exact
+              component={location => <Home database={this.database} location={location} />}
+            />
             <Route path="/aboutus" component={AboutUs} />
+            {/* <StripeProvider apiKey="***REMOVED***">
+              <Elements
+                fonts={[
+                  {
+                    cssSrc:
+                      "https://fonts.googleapis.com/css?family=Source+Code+Pro:400&display=swap"
+                  }
+                ]}
+              > */}
             <Route path="/checkout" component={Checkout} />
+            {/* </Elements>
+            </StripeProvider> */}
           </div>
         </Router>
       </div>
@@ -41,7 +60,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateRemoteData: (key, data) => dispatch(ACTIONS.updateRemoteData(key, data)),
   setReady: () => dispatch(ACTIONS.setReady())
 });
 

@@ -15,6 +15,12 @@ import EuroIcon from "@material-ui/icons/EuroSymbol";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { connect } from "react-redux";
 import ACTIONS from "../../redux/actions";
+import { Animate, AnimateGroup } from "react-simple-animate";
+
+const props = {
+  start: { opacity: 0 },
+  end: { opacity: 1 }
+};
 
 class Navbar extends Component {
   state = {
@@ -29,12 +35,15 @@ class Navbar extends Component {
   handleClickRemoveItemFromCart = event => {
     this.props.removeItemFromCart(event.currentTarget.getAttribute("index"));
   };
-
   render() {
     const { classes } = this.props;
     const cartIcon = (
       <IconButton disableRipple className={classes.cart} onClick={this.toggleCart}>
-        <ShoppingBasketLogo className={classes.cartLogo} />
+        <AnimateGroup play>
+          <Animate {...props} sequenceIndex={1} delay={0} duration={0.5}>
+            <ShoppingBasketLogo className={classes.cartLogo} />
+          </Animate>
+        </AnimateGroup>
       </IconButton>
     );
 
@@ -48,9 +57,16 @@ class Navbar extends Component {
               </Link>
             </Button> */}
             <Typography className={classes.title}>
-              <Link to="/">{this.props.title}</Link>
+              <Link className={classes.normalTitle} to="/">
+                {this.props.normalTitle}
+              </Link>
+              <Link className={classes.reducedTitle} to="/">
+                {this.props.reducedTitle}
+              </Link>
             </Typography>
-            {this.props.itemsInCart.length > 0 ? cartIcon : null}
+            {this.props.itemsInCart.length === 0 || this.props.route === "/checkout"
+              ? null
+              : cartIcon}
           </Toolbar>
         </AppBar>
 
@@ -69,6 +85,7 @@ class Navbar extends Component {
                   <Typography className={classes.cartItemTitle}>{item.title}</Typography>
                   <div className={classes.cartItemPrice}>
                     <Typography className={classes.cartItemPricePrice}>{item.price}</Typography>
+                    &nbsp;
                     <EuroIcon />
                   </div>
                   <div
@@ -105,7 +122,8 @@ class Navbar extends Component {
 }
 
 const mapStateToProps = state => ({
-  itemsInCart: state.cart
+  itemsInCart: state.cart,
+  route: state.route
 });
 
 const mapDispatchToProps = dispatch => ({

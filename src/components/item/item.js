@@ -8,12 +8,12 @@ class Item extends Component {
     return (
       <div>
         <Card
-          index={this.props.itemNbr}
           className={classes.root}
+          index={this.props.itemNbr}
           onClick={this.props.handleFunction}
         >
-          <Typography className={classes.title}>{this.props.title}</Typography>
           <CardMedia className={classes.image} image={this.props.imgUrl} />
+          <Typography className={classes.title}>{this.props.title}</Typography>
         </Card>
       </div>
     );

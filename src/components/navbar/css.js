@@ -1,32 +1,38 @@
 const Style = theme => ({
   root: {
     flexGrow: 1,
-    marginBottom: theme.spacing.unit * 5
+    marginBottom: theme.spacing(2)
   },
   navbar: {
     backgroundColor: "white",
     boxShadow: "none",
     position: "relative",
-    [theme.breakpoints.up("md")]: {
-      paddingRight: "130px",
-      paddingLeft: "130px"
-    },
-    height: "65px"
+    paddingRight: "5vw",
+    paddingLeft: "5vw",
+    paddingTop: "15px",
+    paddingBottom: "20px"
   },
   title: {
     position: "absolute",
     fontFamily: "bar",
     letterSpacing: "5px",
-    fontSize: "3.5em",
-    textAlign: "center",
-    left: "50%",
-    transform: "translate(-50%, 0)",
+    fontSize: "4em",
     "& > a": {
       textDecoration: "none",
       color: "black"
     },
     "& a:focus": {
       outline: "none"
+    }
+  },
+  normalTitle: {
+    [theme.breakpoints.down("sm")]: {
+      display: "None"
+    }
+  },
+  reducedTitle: {
+    [theme.breakpoints.up("md")]: {
+      display: "None"
     }
   },
   cart: {
@@ -76,13 +82,19 @@ const Style = theme => ({
       color: "black"
     }
   },
+  cartMenu: {
+    width: "450px",
+    height: "100%",
+    [theme.breakpoints.down("xs")]: {
+      width: "100%"
+    }
+  },
   cartTitle: {
+    paddingTop: "15px",
+    paddingBottom: "20px",
     textAlign: "center",
     fontFamily: "bar",
-    letterSpacing: "0px",
-    fontSize: "3em",
-    paddingTop: "5px",
-    height: "60px",
+    fontSize: "4em",
     "& > a": {
       textDecoration: "none",
       color: "black"
@@ -92,19 +104,22 @@ const Style = theme => ({
     },
     borderBottom: "2px solid black"
   },
-  cartMenu: {
-    width: "400px"
-  },
   cartItem: {
     width: "100%",
     height: "170px",
     backgroundColor: "#FBFCFC",
-    borderBottom: "1px solid black"
+    borderBottom: "1px solid black",
+    [theme.breakpoints.down("sm")]: {
+      height: "150px"
+    }
   },
   cartItemImg: {
-    height: "100%",
-    width: "45%",
-    borderRight: "1px solid black"
+    height: "170px",
+    width: "40%",
+    borderRight: "1px solid black",
+    [theme.breakpoints.down("sm")]: {
+      height: "150px"
+    }
   },
   cartItemContent: {
     height: "100%",
@@ -116,13 +131,14 @@ const Style = theme => ({
   cartItemTitle: {
     position: "absolute",
     left: 0,
-    fontFamily: "monospace",
-    fontSize: "1.5em",
-    textAlign: "center",
-    padding: "10px"
+    fontFamily: "fullpack",
+    fontSize: "1em",
+    textAlign: "left",
+    padding: "7px"
   },
   cartItemPrice: {
     position: "absolute",
+    fontFamily: "fullpack",
     right: 0,
     bottom: 0,
     display: "flex",
@@ -146,18 +162,24 @@ const Style = theme => ({
     padding: 0
   },
   cartItemPricePrice: {
-    fontSize: "1.2em",
+    fontSize: "1em",
     fontWeight: 900,
-    letterSpacing: "1px",
-    fontFamily: "caesar"
+    letterSpacing: "3px",
+    fontFamily: "fullpack"
   },
   checkout: {
     textAlign: "center",
-    padding: "5px"
+    padding: "5px",
+    "& a": {
+      textDecoration: "none"
+    }
   },
   checkoutContainer: {
     "& a": {
       textDecoration: "none"
+    },
+    "& a:focus": {
+      outline: "none"
     }
   },
   checkoutTitle: {

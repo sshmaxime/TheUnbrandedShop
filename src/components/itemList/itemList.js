@@ -19,10 +19,10 @@ class ItemList extends Component {
           direction="row"
           justify="space-evenly"
           alignItems="center"
-          spacing={16}
+          spacing={2}
         >
           {this.props.items.map((tile, index) => (
-            <Grid key={index} item xs={12} sm={6} md={3}>
+            <Grid key={index} item xs={6} sm={6} md={4} lg={3} xl={3}>
               <AnimateGroup play>
                 <Animate {...props} sequenceIndex={index} delay={index * 0.1}>
                   <Item

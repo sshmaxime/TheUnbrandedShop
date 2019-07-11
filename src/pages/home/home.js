@@ -10,28 +10,51 @@ import ACTIONS from "../../redux/actions";
 class Home extends Component {
   constructor(props) {
     super(props);
+    this.props.setRoute("/");
 
-    this.storeRecord = this.props.client.record.getRecord("store");
-    this.storeRecord.subscribe(value => {
-      this.setState({
-        items: value.items
-      });
-      if (this.state.isShowcaseOn) {
-        if (value.items.length === 0) {
-          this.setState({
-            isShowcaseOn: false,
-            showcaseItem: null
-          });
-        } else {
-          this.setState({
-            showcaseItem: value.items[this.state.showcaseIndex]
-          });
-        }
-      }
-    });
+    // Load data from parent
+    this.database = this.props.database;
 
+    this.storeRecord = this.database.record.getRecord("store");
+    this.storeRecord.subscribe(this.updateStore);
+
+    // Set the comportment of the Escape keyboard key
     document.addEventListener("keydown", this.escFunction, false);
   }
+
+  componentDidMount() {
+    console.log(this.props);
+  }
+
+  // Util functions //
+  updateItems = newItems => {
+    this.setState({
+      items: newItems
+    });
+  };
+
+  IndexOfItemInStore = (listItems, id) => {
+    if (listItems.length === 0) return null;
+
+    for (var index = 0; index < listItems.length; index++) {
+      if (listItems[index].id === id) {
+        return index;
+      }
+    }
+    return null;
+  };
+
+  updateStore = newStore => {
+    this.updateItems(newStore.items);
+    if (this.state.isShowcaseOn) {
+      const index = this.IndexOfItemInStore(newStore.items, this.state.showcaseItem.id);
+      if (index === null) {
+        this.closeShowcase();
+      } else {
+        this.updateShowcaseItem(newStore.items[index]);
+      }
+    }
+  };
 
   componentWillUnmount() {
     this.storeRecord.discard();
@@ -39,14 +62,21 @@ class Home extends Component {
 
   state = {
     isShowcaseOn: false,
-    showcaseIndex: 0,
     showcaseItem: null,
+    showcaseIndex: 0,
     items: null
+  };
+
+  updateShowcaseItem = item => {
+    this.setState({
+      showcaseItem: item
+    });
   };
 
   closeShowcase = () => {
     this.setState(_ => ({
-      isShowcaseOn: false
+      isShowcaseOn: false,
+      showcaseItem: null
     }));
   };
   escFunction = event => {
@@ -67,39 +97,42 @@ class Home extends Component {
     this.props.addItemToCart(this.state.showcaseItem);
     this.closeShowcase();
   };
-  isShowcaseOn(classes) {
+  displayShowcase(classes) {
     return (
       <React.Fragment>
-        <div className={classes.showcaseContainer} onClick={this.closeShowcase} />
-        <div className={classes.showcaseItem}>
-          <img className={classes.showcaseImg} alt="" src={this.state.showcaseItem.imgUrl} />
-          <div className={classes.showcaseInfo}>
-            <Typography className={classes.showcaseInfoTitle}>
-              {this.state.showcaseItem.title}
-            </Typography>
-            <Divider />
-            <div className={classes.showcaseInfoPrice}>
-              <div className={classes.showcaseInfoPricePrice}>{this.state.showcaseItem.price}</div>
-              <EuroIcon className={classes.showcaseInfoPriceLogo} />
-            </div>
-            <Typography className={classes.showcaseInfoInfoTitle}>Information:</Typography>
-            <div className={classes.showcaseInfoInfoContent}>
-              {this.state.showcaseItem.info.map((info, index) => (
-                <div key={index}>
-                  <span style={{ fontWeight: "bold" }}>{info[0]}</span>
-                  <span>: </span>
-                  <span>{info[1]}</span>
+        <div className={classes.showcaseContainer} onClick={this.closeShowcase}>
+          <div className={classes.showcaseItem}>
+            <img className={classes.showcaseImg} alt="" src={this.state.showcaseItem.imgUrl} />
+            <div className={classes.showcaseInfo}>
+              <Typography className={classes.showcaseInfoTitle}>
+                {this.state.showcaseItem.title}
+              </Typography>
+              <Divider />
+              <div className={classes.showcaseInfoPrice}>
+                <div className={classes.showcaseInfoPricePrice}>
+                  {this.state.showcaseItem.price}
                 </div>
-              ))}
+                <EuroIcon className={classes.showcaseInfoPriceLogo} />
+              </div>
+              <Typography className={classes.showcaseInfoInfoTitle}>Information:</Typography>
+              <div className={classes.showcaseInfoInfoContent}>
+                {this.state.showcaseItem.info.map((info, index) => (
+                  <div key={index}>
+                    <span style={{ fontWeight: "bold" }}>{info[0]}</span>
+                    <span>: </span>
+                    <span>{info[1]}</span>
+                  </div>
+                ))}
+              </div>
+              <Button
+                variant="contained"
+                className={classes.addToCart}
+                onClick={this.handleClickAddToCart}
+              >
+                <AddCart />
+                Add To Cart
+              </Button>
             </div>
-            <Button
-              variant="contained"
-              className={classes.addToCart}
-              onClick={this.handleClickAddToCart}
-            >
-              <AddCart />
-              Add To Cart
-            </Button>
           </div>
         </div>
       </React.Fragment>
@@ -111,7 +144,7 @@ class Home extends Component {
     return (
       <div className={classes.root}>
         <ItemList items={this.state.items} handleFunction={this.handleClickOnItem} />
-        {this.state.isShowcaseOn ? this.isShowcaseOn(classes) : null}
+        {this.state.isShowcaseOn ? this.displayShowcase(classes) : null}
       </div>
     );
   }
@@ -122,7 +155,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addItemToCart: item => dispatch(ACTIONS.addItemToCart(item))
+  addItemToCart: item => dispatch(ACTIONS.addItemToCart(item)),
+  setRoute: route => dispatch(ACTIONS.setRoute(route))
 });
 
 export default connect(
