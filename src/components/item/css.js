@@ -25,7 +25,7 @@ const Style = theme => ({
     textAlign: "center",
     letterSpacing: "5px",
     textDecoration: "none",
-    transition: "all 0.4s ease-in-out",
+    transition: "all 0.5s ease-in-out",
     position: "absolute",
     top: "50%",
     left: "50%",

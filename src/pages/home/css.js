@@ -1,5 +1,7 @@
 const Style = theme => ({
-  root: {},
+  root: {
+    // transition: "all 0.5s ease-in-out"
+  },
   showcaseItem: {
     backgroundColor: "#E5E7E9",
     height: "500px",
@@ -16,7 +18,6 @@ const Style = theme => ({
     left: "50%",
     transform: "translate(-50%, -50%)",
     msTransform: "translate(-50%, -50%)",
-    transition: "all 0.5s ease-in-out",
     width: "100%",
     height: "100%",
     backgroundColor: "rgba(0, 0, 0, 0.5)"
@@ -25,21 +26,15 @@ const Style = theme => ({
     backgroundColor: "rgba(0, 0, 0, 0)"
   },
   showcaseImg: {
-    backgroundColor: "green",
     height: "500px"
   },
   showcaseInfo: {
-    position: "relative",
-    display: "inline-block",
-    verticalAlign: "top",
-    width: "390px",
-    height: "100%",
-    paddingLeft: "10px"
+    [theme.breakpoints.down("sm")]: {}
   },
   showcaseInfoTitle: {
     fontFamily: "fullpack",
     fontSize: "1.6em",
-    letterSpacing: "5px",
+    letterSpacinWg: "5px",
     textAlign: "center",
     padding: "10px"
   },

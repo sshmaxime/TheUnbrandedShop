@@ -6,8 +6,16 @@ import EuroIcon from "@material-ui/icons/EuroSymbol";
 import AddCart from "@material-ui/icons/AddShoppingCart";
 import { connect } from "react-redux";
 import ACTIONS from "../../redux/actions";
+import { Grid } from "@material-ui/core";
 
 class Home extends Component {
+  state = {
+    isShowcaseOn: false,
+    showcaseItem: null,
+    showcaseIndex: 0,
+    items: null
+  };
+
   constructor(props) {
     super(props);
     this.props.setRoute("/");
@@ -22,9 +30,15 @@ class Home extends Component {
     document.addEventListener("keydown", this.escFunction, false);
   }
 
-  componentDidMount() {
-    console.log(this.props);
-  }
+  handleShowcaseAtStartUp = () => {
+    const itemID = this.props.location.match.params.id ? this.props.location.match.params.id : 0;
+    for (var index = 0; index < this.state.items.length; index++) {
+      if (this.state.items[index].id.toString() === itemID.toString()) {
+        this.updateShowcaseItem(this.state.items[index]);
+        this.displayShowcase();
+      }
+    }
+  };
 
   // Util functions //
   updateItems = newItems => {
@@ -54,17 +68,17 @@ class Home extends Component {
         this.updateShowcaseItem(newStore.items[index]);
       }
     }
+    this.handleShowcaseAtStartUp();
   };
 
   componentWillUnmount() {
     this.storeRecord.discard();
   }
 
-  state = {
-    isShowcaseOn: false,
-    showcaseItem: null,
-    showcaseIndex: 0,
-    items: null
+  displayShowcase = () => {
+    this.setState(_ => ({
+      isShowcaseOn: true
+    }));
   };
 
   updateShowcaseItem = item => {
@@ -73,7 +87,9 @@ class Home extends Component {
     });
   };
 
-  closeShowcase = () => {
+  closeShowcase = event => {
+    if (event.target.id !== "container" && event.target.id !== "button" && event.keyCode !== 27)
+      return;
     this.setState(_ => ({
       isShowcaseOn: false,
       showcaseItem: null
@@ -81,7 +97,7 @@ class Home extends Component {
   };
   escFunction = event => {
     if (event.keyCode === 27) {
-      this.closeShowcase();
+      this.closeShowcase(event);
     }
   };
   handleClickOnItem = event => {
@@ -93,49 +109,48 @@ class Home extends Component {
     }));
     event.preventDefault();
   };
-  handleClickAddToCart = () => {
+  handleClickAddToCart = event => {
     this.props.addItemToCart(this.state.showcaseItem);
-    this.closeShowcase();
+    event.target.id = "button";
+    this.closeShowcase(event);
   };
-  displayShowcase(classes) {
+  showcase(classes) {
     return (
-      <React.Fragment>
-        <div className={classes.showcaseContainer} onClick={this.closeShowcase}>
-          <div className={classes.showcaseItem}>
+      <div className={classes.showcaseContainer} onClick={this.closeShowcase} id={"container"}>
+        <Grid container className={classes.showcaseItem}>
+          <Grid item xs={12} md={7}>
             <img className={classes.showcaseImg} alt="" src={this.state.showcaseItem.imgUrl} />
-            <div className={classes.showcaseInfo}>
-              <Typography className={classes.showcaseInfoTitle}>
-                {this.state.showcaseItem.title}
-              </Typography>
-              <Divider />
-              <div className={classes.showcaseInfoPrice}>
-                <div className={classes.showcaseInfoPricePrice}>
-                  {this.state.showcaseItem.price}
-                </div>
-                <EuroIcon className={classes.showcaseInfoPriceLogo} />
-              </div>
-              <Typography className={classes.showcaseInfoInfoTitle}>Information:</Typography>
-              <div className={classes.showcaseInfoInfoContent}>
-                {this.state.showcaseItem.info.map((info, index) => (
-                  <div key={index}>
-                    <span style={{ fontWeight: "bold" }}>{info[0]}</span>
-                    <span>: </span>
-                    <span>{info[1]}</span>
-                  </div>
-                ))}
-              </div>
-              <Button
-                variant="contained"
-                className={classes.addToCart}
-                onClick={this.handleClickAddToCart}
-              >
-                <AddCart />
-                Add To Cart
-              </Button>
+          </Grid>
+          <Grid item xs={12} md={5} className={classes.showcaseInfo}>
+            <Typography className={classes.showcaseInfoTitle}>
+              {this.state.showcaseItem.title}
+            </Typography>
+            <Divider />
+            <div className={classes.showcaseInfoPrice}>
+              <div className={classes.showcaseInfoPricePrice}>{this.state.showcaseItem.price}</div>
+              <EuroIcon className={classes.showcaseInfoPriceLogo} />
             </div>
-          </div>
-        </div>
-      </React.Fragment>
+            <Typography className={classes.showcaseInfoInfoTitle}>Information:</Typography>
+            <div className={classes.showcaseInfoInfoContent}>
+              {this.state.showcaseItem.info.map((info, index) => (
+                <div key={index}>
+                  <span style={{ fontWeight: "bold" }}>{info[0]}</span>
+                  <span>: </span>
+                  <span>{info[1]}</span>
+                </div>
+              ))}
+            </div>
+            <Button
+              variant="contained"
+              className={classes.addToCart}
+              onClick={this.handleClickAddToCart}
+            >
+              <AddCart />
+              Add To Cart
+            </Button>
+          </Grid>
+        </Grid>
+      </div>
     );
   }
 
@@ -144,7 +159,7 @@ class Home extends Component {
     return (
       <div className={classes.root}>
         <ItemList items={this.state.items} handleFunction={this.handleClickOnItem} />
-        {this.state.isShowcaseOn ? this.displayShowcase(classes) : null}
+        {this.state.isShowcaseOn ? this.showcase(classes) : null}
       </div>
     );
   }

@@ -31,7 +31,7 @@ class App extends Component {
           <Navbar normalTitle="The Unbranded Shop" reducedTitle="UNBRDSHP" />
           <div className={classes.app}>
             <Route
-              path={["/"]}
+              path={["/", "/item:id"]}
               exact
               component={location => <Home database={this.database} location={location} />}
             />

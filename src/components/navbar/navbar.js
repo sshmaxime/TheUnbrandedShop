@@ -34,6 +34,9 @@ class Navbar extends Component {
 
   handleClickRemoveItemFromCart = event => {
     this.props.removeItemFromCart(event.currentTarget.getAttribute("index"));
+    if (this.props.itemsInCart.length === 1) {
+      this.toggleCart();
+    }
   };
   render() {
     const { classes } = this.props;
