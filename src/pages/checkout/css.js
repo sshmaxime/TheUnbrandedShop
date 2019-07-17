@@ -1,7 +1,7 @@
 const Style = theme => ({
   root: {
     position: "relative",
-    marginTop: "50px"
+    marginTop: "10px"
   },
   icon: {
     "&$activeIcon": {

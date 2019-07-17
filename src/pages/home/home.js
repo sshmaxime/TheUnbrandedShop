@@ -79,6 +79,7 @@ class Home extends Component {
     this.setState(_ => ({
       isShowcaseOn: true
     }));
+    this.props.setRoute("/item");
   };
 
   updateShowcaseItem = item => {
@@ -94,6 +95,7 @@ class Home extends Component {
       isShowcaseOn: false,
       showcaseItem: null
     }));
+    this.props.setRoute("/");
   };
   escFunction = event => {
     if (event.keyCode === 27) {
@@ -103,10 +105,10 @@ class Home extends Component {
   handleClickOnItem = event => {
     const itemIndex = event.currentTarget.getAttribute("index");
     this.setState(state => ({
-      isShowcaseOn: !state.isShowcaseOn,
       showcaseItem: state.items[itemIndex],
       showcaseIndex: itemIndex
     }));
+    this.displayShowcase();
     event.preventDefault();
   };
   handleClickAddToCart = event => {
@@ -156,17 +158,26 @@ class Home extends Component {
 
   render() {
     const { classes } = this.props;
+
+    const showcase =
+      this.state.isShowcaseOn === false || this.props.route === "/"
+        ? null
+        : this.state.isShowcaseOn
+        ? this.showcase(classes)
+        : null;
+
     return (
       <div className={classes.root}>
         <ItemList items={this.state.items} handleFunction={this.handleClickOnItem} />
-        {this.state.isShowcaseOn ? this.showcase(classes) : null}
+        {showcase}
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  isReady: state.isReady
+  isReady: state.isReady,
+  route: state.route
 });
 
 const mapDispatchToProps = dispatch => ({

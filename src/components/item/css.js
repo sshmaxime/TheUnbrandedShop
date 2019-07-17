@@ -9,12 +9,12 @@ const Style = theme => ({
     [theme.breakpoints.up("md")]: {
       "&:hover": {
         transform: "scale(1.05)"
+      },
+      "&:hover $title": {
+        opacity: 1,
+        backgroundColor: "#f50023",
+        padding: "10px"
       }
-    },
-    "&:hover $title": {
-      opacity: 1,
-      backgroundColor: "#f50023",
-      padding: "10px"
     }
   },
   title: {

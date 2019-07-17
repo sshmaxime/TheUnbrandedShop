@@ -1,8 +1,5 @@
 const Style = theme => ({
-  root: {
-    backgroundColor: "#FBFCFC",
-    height: "100%"
-  },
+  root: {},
   app: {
     paddingRight: "5vw",
     paddingLeft: "5vw"

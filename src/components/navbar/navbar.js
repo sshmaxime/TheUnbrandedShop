@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import Style from "./css.js";
 import ShoppingBasketLogo from "@material-ui/icons/ShoppingBasket";
+import CloseIcon from "@material-ui/icons/Close";
 import { Link } from "react-router-dom";
 import EuroIcon from "@material-ui/icons/EuroSymbol";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -42,14 +43,20 @@ class Navbar extends Component {
     const { classes } = this.props;
     const cartIcon = (
       <IconButton disableRipple className={classes.cart} onClick={this.toggleCart}>
-        <AnimateGroup play>
-          <Animate {...props} sequenceIndex={1} delay={0} duration={0.5}>
-            <ShoppingBasketLogo className={classes.cartLogo} />
-          </Animate>
-        </AnimateGroup>
+        <ShoppingBasketLogo className={classes.cartLogo} />
       </IconButton>
     );
 
+    const closeIcon = (
+      <IconButton disableRipple className={classes.cart} onClick={() => this.props.setRoute("/")}>
+        <CloseIcon className={classes.cartLogo} />
+      </IconButton>
+    );
+
+    var icon =
+      this.props.itemsInCart.length === 0 || this.props.route === "/checkout" ? null : cartIcon;
+
+    icon = this.props.route === "/item" ? closeIcon : icon;
     return (
       <div className={classes.root}>
         <AppBar className={classes.navbar} position="static">
@@ -67,9 +74,7 @@ class Navbar extends Component {
                 {this.props.reducedTitle}
               </Link>
             </Typography>
-            {this.props.itemsInCart.length === 0 || this.props.route === "/checkout"
-              ? null
-              : cartIcon}
+            {icon}
           </Toolbar>
         </AppBar>
 
@@ -130,7 +135,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  removeItemFromCart: index => dispatch(ACTIONS.removeItemFromCart(index))
+  removeItemFromCart: index => dispatch(ACTIONS.removeItemFromCart(index)),
+  setRoute: route => dispatch(ACTIONS.setRoute(route))
 });
 
 export default connect(

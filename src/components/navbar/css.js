@@ -1,7 +1,8 @@
 const Style = theme => ({
   root: {
     flexGrow: 1,
-    marginBottom: theme.spacing(2)
+    marginBottom: theme.spacing(2),
+    height: "100px"
   },
   navbar: {
     backgroundColor: "white",

@@ -10,7 +10,12 @@ const Style = theme => ({
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    msTransform: "translate(-50%, -50%)"
+    msTransform: "translate(-50%, -50%)",
+    [theme.breakpoints.down("sm")]: {
+      height: "100%",
+      width: "100%",
+      padding: "5vw"
+    }
   },
   showcaseContainer: {
     position: "fixed",
@@ -26,11 +31,14 @@ const Style = theme => ({
     backgroundColor: "rgba(0, 0, 0, 0)"
   },
   showcaseImg: {
-    height: "500px"
+    height: "500px",
+    [theme.breakpoints.down("sm")]: {
+      paddingTop: "100px",
+      width: "100%",
+      height: "85vw"
+    }
   },
-  showcaseInfo: {
-    [theme.breakpoints.down("sm")]: {}
-  },
+  showcaseInfo: {},
   showcaseInfoTitle: {
     fontFamily: "fullpack",
     fontSize: "1.6em",
