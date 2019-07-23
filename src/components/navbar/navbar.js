@@ -10,18 +10,12 @@ import {
 } from "@material-ui/core";
 import Style from "./css.js";
 import ShoppingBasketLogo from "@material-ui/icons/ShoppingBasket";
-import CloseIcon from "@material-ui/icons/Close";
 import { Link } from "react-router-dom";
 import EuroIcon from "@material-ui/icons/EuroSymbol";
 import DeleteIcon from "@material-ui/icons/Delete";
+import CloseIcon from "@material-ui/icons/CloseOutlined";
 import { connect } from "react-redux";
 import ACTIONS from "../../redux/actions";
-import { Animate, AnimateGroup } from "react-simple-animate";
-
-const props = {
-  start: { opacity: 0 },
-  end: { opacity: 1 }
-};
 
 class Navbar extends Component {
   state = {
@@ -47,25 +41,13 @@ class Navbar extends Component {
       </IconButton>
     );
 
-    const closeIcon = (
-      <IconButton disableRipple className={classes.cart} onClick={() => this.props.setRoute("/")}>
-        <CloseIcon className={classes.cartLogo} />
-      </IconButton>
-    );
-
     var icon =
       this.props.itemsInCart.length === 0 || this.props.route === "/checkout" ? null : cartIcon;
 
-    icon = this.props.route === "/item" ? closeIcon : icon;
     return (
       <div className={classes.root}>
         <AppBar className={classes.navbar} position="static">
           <Toolbar style={{ padding: 0 }}>
-            {/* <Button disableRipple className={classes.aboutUs} color="inherit">
-              <Link to="/aboutus">
-                <Typography className={classes.aboutUsText}>ABOUT US</Typography>
-              </Link>
-            </Button> */}
             <Typography className={classes.title}>
               <Link className={classes.normalTitle} to="/">
                 {this.props.normalTitle}
@@ -85,24 +67,27 @@ class Navbar extends Component {
           onClose={this.toggleCart}
         >
           <div className={classes.cartMenu} role="presentation">
+            <Button className={classes.closeCartIcon} onClick={this.toggleCart}>
+              <CloseIcon />
+            </Button>
             <div className={classes.cartTitle}>CART</div>
             {this.props.itemsInCart.map((item, index) => (
               <div key={index} className={classes.cartItem}>
                 <img className={classes.cartItemImg} alt="" src={item.imgUrl} />
                 <div className={classes.cartItemContent}>
                   <Typography className={classes.cartItemTitle}>{item.title}</Typography>
+                  <Typography className={classes.cartItemSize}>Size: {item.size}</Typography>
                   <div className={classes.cartItemPrice}>
                     <Typography className={classes.cartItemPricePrice}>{item.price}</Typography>
                     &nbsp;
                     <EuroIcon />
                   </div>
-                  <div
-                    index={index}
-                    className={classes.cartItemDelete}
-                    onClick={this.handleClickRemoveItemFromCart}
-                  >
+                  <div index={index} className={classes.cartItemDelete}>
                     <Button style={{ minWidth: 0, padding: 0 }}>
-                      <DeleteIcon className={classes.cartItemDeleteIcon} />
+                      <DeleteIcon
+                        className={classes.cartItemDeleteIcon}
+                        onClick={this.handleClickRemoveItemFromCart}
+                      />
                     </Button>
                   </div>
                 </div>

@@ -17,14 +17,9 @@ import Divider from "@material-ui/core/Divider";
 import * as EmailValidator from "email-validator";
 import { injectStripe } from "react-stripe-elements";
 import { CardElement } from "react-stripe-elements";
-import { Animate, AnimateGroup } from "react-simple-animate";
+import Fade from "react-reveal/Fade";
 
 const API_TOKEN = "***REMOVED***";
-
-const props = {
-  start: { opacity: "0" },
-  end: { opacity: "1" }
-};
 
 const countries = [
   {
@@ -369,7 +364,7 @@ class Checkout extends Component {
           boxShadow: "5px 4px 10px grey"
         }}
       >
-        {/* <CardElement
+        <CardElement
           onChange={obj => {
             if (obj.complete === true) {
               this.displayConfirmation();
@@ -380,7 +375,7 @@ class Checkout extends Component {
           style={{
             base: { fontSize: "18px", fontFamily: "Source Code Pro, Monospace" }
           }}
-        /> */}
+        />
       </div>
     );
 
@@ -476,66 +471,72 @@ class Checkout extends Component {
     }
     return (
       <div className={classes.root}>
-        <AnimateGroup play>
-          <Animate {...props} sequenceIndex={1} delay={0.1} duration={0.5}>
-            <Grid container spacing={2}>
-              <Box clone order={{ xs: 2, sm: 2, md: 1 }}>
-                <Grid item xs={12} md={7}>
-                  <div className={classes.step}>{this.getStepShipping(classes)}</div>
-                  <Collapse in={this.state.displayPayment} collapsedHeight="80px">
-                    <div
-                      className={this.state.displayPayment ? classes.step2 : classes.step2Disabled}
-                    >
-                      {this.getStepPayment(classes)}
-                    </div>
-                  </Collapse>
-                  <Collapse in={this.state.displayConfirmation} collapsedHeight="80px">
-                    <div
-                      className={
-                        this.state.displayConfirmation ? classes.step2 : classes.step2Disabled
-                      }
-                    >
-                      {this.getStepConfirm(classes)}
-                    </div>
-                  </Collapse>
-                </Grid>
-              </Box>
+        <Grid container spacing={2}>
+          <Box clone order={{ xs: 2, sm: 2, md: 1 }}>
+            <Grid item xs={12} md={7}>
+              <Fade delay={100}>
+                <div className={classes.step}>{this.getStepShipping(classes)}</div>
+              </Fade>
 
-              <Box clone order={{ xs: 1, sm: 1, md: 2 }}>
-                <Grid item xs={12} md={5}>
-                  <div className={classes.step}>
-                    <Typography className={classes.titleStep}>Cart</Typography>
-                    {this.props.itemsInCart.map((item, index) => (
-                      <div key={index} className={classes.cartItem}>
-                        <img className={classes.cartItemImg} alt="" src={item.imgUrl} />
-                        <div className={classes.cartItemContent}>
-                          <Typography className={classes.cartItemTitle}>{item.title}</Typography>
-                          <div className={classes.cartItemPrice}>
-                            <Typography className={classes.cartItemPricePrice}>
-                              {item.price}
-                            </Typography>
-                            &nbsp;
-                            <EuroIcon />
-                          </div>
-                          <div
-                            index={index}
-                            className={classes.cartItemDelete}
-                            onClick={this.handleClickRemoveItemFromCart}
-                          >
-                            <Button style={{ minWidth: 0, padding: 0 }}>
-                              <DeleteIcon className={classes.cartItemDeleteIcon} />
-                            </Button>
-                          </div>
+              <Fade delay={200}>
+                <Collapse in={this.state.displayPayment} collapsedHeight="80px">
+                  <div
+                    className={this.state.displayPayment ? classes.step2 : classes.step2Disabled}
+                  >
+                    {this.getStepPayment(classes)}
+                  </div>
+                </Collapse>
+              </Fade>
+
+              <Fade delay={300}>
+                <Collapse in={this.state.displayConfirmation} collapsedHeight="80px">
+                  <div
+                    className={
+                      this.state.displayConfirmation ? classes.step2 : classes.step2Disabled
+                    }
+                  >
+                    {this.getStepConfirm(classes)}
+                  </div>
+                </Collapse>
+              </Fade>
+            </Grid>
+          </Box>
+
+          <Box clone order={{ xs: 1, sm: 1, md: 2 }}>
+            <Grid item xs={12} md={5}>
+              <Fade delay={400}>
+                <div className={classes.step}>
+                  <Typography className={classes.titleStep}>Cart</Typography>
+                  {this.props.itemsInCart.map((item, index) => (
+                    <div key={index} className={classes.cartItem}>
+                      <img className={classes.cartItemImg} alt="" src={item.imgUrl} />
+                      <div className={classes.cartItemContent}>
+                        <Typography className={classes.cartItemTitle}>{item.title}</Typography>
+                        <div className={classes.cartItemPrice}>
+                          <Typography className={classes.cartItemPricePrice}>
+                            {item.price}
+                          </Typography>
+                          &nbsp;
+                          <EuroIcon />
+                        </div>
+                        <div
+                          index={index}
+                          className={classes.cartItemDelete}
+                          onClick={this.handleClickRemoveItemFromCart}
+                        >
+                          <Button style={{ minWidth: 0, padding: 0 }}>
+                            <DeleteIcon className={classes.cartItemDeleteIcon} />
+                          </Button>
                         </div>
                       </div>
-                    ))}
-                    {this.getDivPrice(classes)}
-                  </div>
-                </Grid>
-              </Box>
+                    </div>
+                  ))}
+                  {this.getDivPrice(classes)}
+                </div>
+              </Fade>
             </Grid>
-          </Animate>
-        </AnimateGroup>
+          </Box>
+        </Grid>
       </div>
     );
   }
@@ -550,14 +551,14 @@ const mapDispatchToProps = dispatch => ({
   setRoute: route => dispatch(ACTIONS.setRoute(route))
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(Style)(Checkout));
-
 // export default injectStripe(
 //   connect(
 //     mapStateToProps,
 //     mapDispatchToProps
 //   )(withStyles(Style)(Checkout))
 // );
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(Style)(Checkout));

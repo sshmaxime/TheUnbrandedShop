@@ -133,9 +133,22 @@ const Style = theme => ({
     position: "absolute",
     left: 0,
     fontFamily: "fullpack",
-    fontSize: "1em",
+    fontSize: "1.2em",
     textAlign: "left",
-    padding: "7px"
+    padding: "7px",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1em"
+    }
+  },
+  cartItemSize: {
+    position: "absolute",
+    left: 0,
+    fontFamily: "SourceCodePro",
+    fontSize: "0.9em",
+    textAlign: "left",
+    marginTop: "35px",
+    padding: "7px",
+    letterSpacing: "1px"
   },
   cartItemPrice: {
     position: "absolute",
@@ -195,6 +208,21 @@ const Style = theme => ({
     backgroundColor: "#f50023",
     letterSpacing: "5px",
     transition: "all 0.5s ease-in-out"
+  },
+  closeCartIcon: {
+    position: "absolute",
+    minWidth: 0,
+    right: 10,
+    top: 18,
+    padding: 0,
+    transition: "all 0.5s ease-in-out",
+    "& svg": {
+      fontSize: "50px"
+    },
+    "&:hover": {
+      backgroundColor: "#FFF",
+      transform: "scale(1.2)"
+    }
   }
 });
 

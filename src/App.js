@@ -1,54 +1,70 @@
 import React, { Component } from "react";
+
 import Navbar from "./components/navbar/navbar";
 import Home from "./pages/home/home.js";
-import AboutUs from "./pages/aboutus/aboutus.js";
+import Item from "./pages/item/item.js";
 import Checkout from "./pages/checkout/checkout.js";
+
 import Style from "./css.js";
+
 import { withStyles } from "@material-ui/core";
+
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { connect } from "react-redux";
-import createDeepstream from "deepstream.io-client-js";
 import ACTIONS from "./redux/actions";
+
+import createDeepstream from "deepstream.io-client-js";
+
 import { Elements, StripeProvider } from "react-stripe-elements";
 
 class App extends Component {
+  state = {
+    items: null
+  };
+
   // Initialize connection to database
   componentDidMount() {
     const remoteEndpoint = createDeepstream("0.0.0.0:6020");
-    this.database = remoteEndpoint.login();
+    this.databaseClient = remoteEndpoint.login();
 
-    // Inform the app that it is now ready to display data from the database
-    this.props.setReady();
+    this.storeRecord = this.databaseClient.record.getRecord("store");
+
+    this.storeRecord.whenReady(_ => {
+      this.props.setReady();
+    });
   }
 
   render() {
+    const { classes } = this.props;
+
     if (!this.props.isReady) return null;
 
-    const { classes } = this.props;
     return (
       <div className={classes.root}>
         <Router>
           <Navbar normalTitle="The Unbranded Shop" reducedTitle="UNBRDSHP" />
+          {/* <StripeProvider apiKey="***REMOVED***"> */}
           <div className={classes.app}>
             <Route
-              path={["/", "/item:id"]}
+              path={["/"]}
               exact
-              component={location => <Home database={this.database} location={location} />}
+              component={location => <Home storeRecord={this.storeRecord} location={location} />}
             />
-            <Route path="/aboutus" component={AboutUs} />
-            {/* <StripeProvider apiKey="***REMOVED***">
-              <Elements
-                fonts={[
-                  {
-                    cssSrc:
-                      "https://fonts.googleapis.com/css?family=Source+Code+Pro:400&display=swap"
-                  }
-                ]}
-              > */}
-            <Route path="/checkout" component={Checkout} />
-            {/* </Elements>
-            </StripeProvider> */}
+            <Route
+              path={["/item:id"]}
+              exact
+              component={location => <Item storeRecord={this.storeRecord} location={location} />}
+            />
+
+            {/* <Elements> */}
+            <Route
+              path={["/checkout"]}
+              exact
+              component={location => <Checkout location={location} />}
+            />
+            {/* </Elements> */}
           </div>
+          {/* </StripeProvider> */}
         </Router>
       </div>
     );
