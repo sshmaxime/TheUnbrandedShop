@@ -144,11 +144,14 @@ const Style = theme => ({
     position: "absolute",
     left: 0,
     fontFamily: "SourceCodePro",
-    fontSize: "0.9em",
+    fontSize: "1.1em",
     textAlign: "left",
     marginTop: "35px",
     padding: "7px",
-    letterSpacing: "1px"
+    letterSpacing: "-1px",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "1em"
+    }
   },
   cartItemPrice: {
     position: "absolute",

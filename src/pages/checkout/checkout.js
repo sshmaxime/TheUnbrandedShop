@@ -344,6 +344,7 @@ class Checkout extends Component {
     ev.preventDefault();
 
     this.props.stripe.createToken({ type: "card", name: "Jenny Rosen" }).then(token => {
+      console.log(token);
       fetch("http://localhost:9000/test", {
         method: "POST",
         headers: { "Content-Type": "text/plain" },
@@ -512,6 +513,7 @@ class Checkout extends Component {
                       <img className={classes.cartItemImg} alt="" src={item.imgUrl} />
                       <div className={classes.cartItemContent}>
                         <Typography className={classes.cartItemTitle}>{item.title}</Typography>
+                        <Typography className={classes.cartItemSize}>Size: {item.size}</Typography>
                         <div className={classes.cartItemPrice}>
                           <Typography className={classes.cartItemPricePrice}>
                             {item.price}
@@ -551,14 +553,9 @@ const mapDispatchToProps = dispatch => ({
   setRoute: route => dispatch(ACTIONS.setRoute(route))
 });
 
-// export default injectStripe(
-//   connect(
-//     mapStateToProps,
-//     mapDispatchToProps
-//   )(withStyles(Style)(Checkout))
-// );
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(Style)(Checkout));
+export default injectStripe(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(withStyles(Style)(Checkout))
+);

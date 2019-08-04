@@ -28,7 +28,6 @@ class App extends Component {
     this.databaseClient = remoteEndpoint.login();
 
     this.storeRecord = this.databaseClient.record.getRecord("store");
-
     this.storeRecord.whenReady(_ => {
       this.props.setReady();
     });
@@ -43,28 +42,28 @@ class App extends Component {
       <div className={classes.root}>
         <Router>
           <Navbar normalTitle="The Unbranded Shop" reducedTitle="UNBRDSHP" />
-          {/* <StripeProvider apiKey="***REMOVED***"> */}
-          <div className={classes.app}>
-            <Route
-              path={["/"]}
-              exact
-              component={location => <Home storeRecord={this.storeRecord} location={location} />}
-            />
-            <Route
-              path={["/item:id"]}
-              exact
-              component={location => <Item storeRecord={this.storeRecord} location={location} />}
-            />
+          <StripeProvider apiKey="***REMOVED***">
+            <div className={classes.app}>
+              <Route
+                path={["/"]}
+                exact
+                component={location => <Home storeRecord={this.storeRecord} location={location} />}
+              />
+              <Route
+                path={["/item:id"]}
+                exact
+                component={location => <Item storeRecord={this.storeRecord} location={location} />}
+              />
 
-            {/* <Elements> */}
-            <Route
-              path={["/checkout"]}
-              exact
-              component={location => <Checkout location={location} />}
-            />
-            {/* </Elements> */}
-          </div>
-          {/* </StripeProvider> */}
+              <Elements>
+                <Route
+                  path={["/checkout"]}
+                  exact
+                  component={location => <Checkout location={location} />}
+                />
+              </Elements>
+            </div>
+          </StripeProvider>
         </Router>
       </div>
     );

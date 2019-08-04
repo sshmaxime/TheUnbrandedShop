@@ -62,7 +62,16 @@ const Style = theme => ({
     position: "absolute",
     left: 0,
     fontFamily: "fullpack",
-    fontSize: "0.9em",
+    fontSize: "1.2em",
+    textAlign: "left",
+    padding: "10px"
+  },
+  cartItemSize: {
+    position: "absolute",
+    left: 0,
+    top: "35px",
+    fontFamily: "SourceCodePro",
+    fontSize: "1.1em",
     textAlign: "left",
     padding: "10px"
   },

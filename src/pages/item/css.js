@@ -44,7 +44,7 @@ const Style = theme => ({
   },
   informationTitle: {
     fontFamily: "blader",
-    fontSize: "1.5em",
+    fontSize: "1.7em",
     borderBottom: "2px solid black",
     marginBottom: "15px"
   },

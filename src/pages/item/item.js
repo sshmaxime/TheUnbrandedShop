@@ -75,7 +75,7 @@ class Item extends Component {
       <div className={classes.root}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Fade delay={100}>
+            <Fade delay={50}>
               <div className={classes.item}>
                 <div style={{ boxShadow: "5px 4px 10px grey" }}>
                   <div className={classes.itemImgContainer}>
@@ -88,7 +88,7 @@ class Item extends Component {
           </Grid>
 
           <Grid item xs={12}>
-            <Fade delay={200}>
+            <Fade delay={100}>
               <div className={classes.item}>
                 <Typography className={classes.informationTitle}>Information:</Typography>
                 <div style={{ boxShadow: "5px 4px 10px grey", padding: "10px" }}>
@@ -104,7 +104,7 @@ class Item extends Component {
           </Grid>
 
           <Grid item md={2} xs={6}>
-            <Fade delay={300}>
+            <Fade delay={150}>
               <TextField
                 required
                 id="standard-select-currency"
@@ -129,7 +129,7 @@ class Item extends Component {
           </Grid>
 
           <Grid item md={4} xs={6}>
-            <Fade delay={400}>
+            <Fade delay={200}>
               <Typography className={classes.numberItemLeft}>
                 {this.getNumberOfItem(this.state.sizeRequested)} item(s) left
               </Typography>
@@ -137,7 +137,7 @@ class Item extends Component {
           </Grid>
 
           <Grid item xs={12}>
-            <Fade delay={500}>
+            <Fade delay={250}>
               <div>
                 <Button
                   className={classes.buyButton}
@@ -149,7 +149,6 @@ class Item extends Component {
                 <Button className={classes.returnButton} onClick={this.handleClickReturnHome}>
                   RETURN
                 </Button>
-                /
               </div>
             </Fade>
           </Grid>
