@@ -21,7 +21,7 @@ class Home extends Component {
 
   updateStore = newStore => {
     this.setState({
-      items: newStore.items
+      items: []
     });
   };
 

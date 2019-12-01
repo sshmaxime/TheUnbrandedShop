@@ -1,3 +1,4 @@
+
 import React, { Component } from "react";
 
 import Navbar from "./components/navbar/navbar";
@@ -32,6 +33,7 @@ class App extends Component {
       this.props.setReady();
     });
   }
+
 
   render() {
     const { classes } = this.props;
