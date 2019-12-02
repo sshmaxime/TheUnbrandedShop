@@ -53,14 +53,14 @@ class Checkout extends Component {
     displayPayment: false,
     displayConfirmation: false,
 
-    firstname: "",
-    lastname: "",
-    email: "",
+    firstname: "d",
+    lastname: "d",
+    email: "d@g.com",
 
     country: "",
-    postalCode: "",
-    city: "",
-    address: ""
+    postalCode: "3333",
+    city: "333",
+    address: "3333"
   };
 
   checkReadyToPay = () => {
@@ -120,19 +120,19 @@ class Checkout extends Component {
   validateAddress = () => {
     fetch(
       "https://eu1.locationiq.com/v1/search.php?key=" +
-        API_TOKEN +
-        "&street=" +
-        this.state.address +
-        "&city=" +
-        this.state.city +
-        "&postalcode=" +
-        this.state.postalCode +
-        "&country=" +
-        this.state.country +
-        "&format=json"
+      API_TOKEN +
+      "&street=" +
+      this.state.address +
+      "&city=" +
+      this.state.city +
+      "&postalcode=" +
+      this.state.postalCode +
+      "&country=" +
+      this.state.country +
+      "&format=json"
     )
       .then(res => res.json())
-      .then(res => {});
+      .then(res => { });
   };
   handleChange = name => event => {
     this.setState(
@@ -330,29 +330,24 @@ class Checkout extends Component {
       </div>
     );
   };
-  onToken = token => {
-    fetch("/save-stripe-token", {
-      method: "POST",
-      body: JSON.stringify(token)
-    }).then(response => {
-      response.json().then(data => {
-        alert(`We are in business, ${data.email}`);
-      });
-    });
-  };
+
   handleSubmit = ev => {
     ev.preventDefault();
 
-    this.props.stripe.createToken({ type: "card", name: "Jenny Rosen" }).then(token => {
-      console.log(token);
-      fetch("http://localhost:9000/test", {
-        method: "POST",
-        headers: { "Content-Type": "text/plain" },
-        body: token.token.id
-      }).then(response => {
-        if (response.ok) console.log("Purchase Complete!");
-      });
-    });
+    fetch("http://localhost:8000", {
+      method: "GET",
+      headers: {
+        "Content-Type": "text/plain",
+      },
+    }).then(response => response.json())
+      .then(jsondata =>
+        this.props.stripe.redirectToCheckout({
+          sessionId: jsondata.id
+        }).then(function (result) {
+          console.log(result)
+        })
+        // if (response.ok) console.log("Purchase Complete!");
+      )
   };
   getStepPayment = classes => {
     var stepPayment = !this.state.displayPayment ? null : (

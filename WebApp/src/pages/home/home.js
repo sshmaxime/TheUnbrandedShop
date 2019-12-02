@@ -20,8 +20,9 @@ class Home extends Component {
   }
 
   updateStore = newStore => {
+    console.log(newStore.items)
     this.setState({
-      items: []
+      items: newStore.items
     });
   };
 
