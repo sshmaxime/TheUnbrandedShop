@@ -19,10 +19,6 @@ import createDeepstream from "deepstream.io-client-js";
 import { Elements, StripeProvider } from "react-stripe-elements";
 
 class App extends Component {
-  state = {
-    items: null
-  };
-
   // Initialize connection to database
   componentDidMount() {
     const remoteEndpoint = createDeepstream("0.0.0.0:6020");
@@ -37,14 +33,14 @@ class App extends Component {
 
   render() {
     const { classes } = this.props;
-
+    console.log(process.env)
     if (!this.props.isReady) return null;
 
     return (
       <div className={classes.root}>
         <Router>
           <Navbar normalTitle="The Unbranded Shop" reducedTitle="UNBRDSHP" />
-          <StripeProvider apiKey="***REMOVED***">
+          <StripeProvider apiKey={process.env.STRIPE_API_KEY_1}>
             <div className={classes.app}>
               <Route
                 path={["/"]}

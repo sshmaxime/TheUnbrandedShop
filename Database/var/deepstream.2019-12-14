@@ -1,0 +1,37 @@
+{"event":"INFO","level":"info","message":"logger ready: no dependency description provided","timestamp":"2019-12-14T18:05:05.219Z"}
+{"event":"INFO","level":"info","message":"deepstream version: 2.3.7","timestamp":"2019-12-14T18:05:05.221Z"}
+{"event":"INFO","level":"info","message":"configuration file loaded from conf/config.yml","timestamp":"2019-12-14T18:05:05.221Z"}
+{"event":"INFO","level":"info","message":"library directory set to: /Users/maximeaubanel/workspace/TheUnbrandedShop/DBServer/lib","timestamp":"2019-12-14T18:05:05.221Z"}
+{"event":"INFO","level":"info","message":"messageConnector ready: no message connector specified","timestamp":"2019-12-14T18:05:05.221Z"}
+{"event":"INFO","level":"info","message":"storage ready: no storage connector specified","timestamp":"2019-12-14T18:05:05.221Z"}
+{"event":"INFO","level":"info","message":"cache ready: local cache","timestamp":"2019-12-14T18:05:05.222Z"}
+{"event":"INFO","level":"info","message":"authenticationHandler ready: none","timestamp":"2019-12-14T18:05:05.222Z"}
+{"event":"INFO","level":"info","message":"permissionHandler ready: valve permissions loaded from /Users/maximeaubanel/workspace/TheUnbrandedShop/DBServer/conf/permissions.yml","timestamp":"2019-12-14T18:05:05.229Z"}
+{"event":"CLUSTER_JOIN","level":"info","message":"k45w4m45-1wkq1cen21vk0","timestamp":"2019-12-14T18:05:05.230Z"}
+{"event":"INFO","level":"info","message":"Listening for websocket connections on 0.0.0.0:6020/deepstream","timestamp":"2019-12-14T18:05:05.239Z"}
+{"event":"INFO","level":"info","message":"Listening for health checks on path /health-check ","timestamp":"2019-12-14T18:05:05.239Z"}
+{"event":"INFO","level":"info","message":"connectionEndpoint ready: WebSocket Connection Endpoint","timestamp":"2019-12-14T18:05:05.239Z"}
+{"event":"INFO","level":"info","message":"Deepstream started","timestamp":"2019-12-14T18:05:05.239Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-14T18:05:11.081Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-14T18:05:11.088Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-14T18:05:48.861Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-14T18:05:48.943Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-14T18:16:55.002Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-14T18:16:55.003Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-14T18:16:55.772Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-14T18:16:55.773Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-14T18:16:55.849Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-14T18:16:55.851Z"}
+{"event":"CLUSTER_LEAVE","level":"info","message":"k45w4m45-1wkq1cen21vk0","timestamp":"2019-12-14T18:18:54.844Z"}
+{"event":"CLUSTER_JOIN","level":"info","message":"k45w4m45-1wkq1cen21vk0","timestamp":"2019-12-14T18:18:56.625Z"}
+{"event":"CLUSTER_LEAVE","level":"info","message":"k45w4m45-1wkq1cen21vk0","timestamp":"2019-12-14T18:20:09.827Z"}
+{"event":"CLUSTER_JOIN","level":"info","message":"k45w4m45-1wkq1cen21vk0","timestamp":"2019-12-14T18:20:09.828Z"}
+{"event":"CLUSTER_LEAVE","level":"info","message":"k45w4m45-1wkq1cen21vk0","timestamp":"2019-12-14T18:22:53.916Z"}
+{"event":"CLUSTER_JOIN","level":"info","message":"k45w4m45-1wkq1cen21vk0","timestamp":"2019-12-14T18:22:55.740Z"}
+{"event":"CLUSTER_LEAVE","level":"info","message":"k45w4m45-1wkq1cen21vk0","timestamp":"2019-12-14T18:24:22.379Z"}
+{"event":"CLUSTER_JOIN","level":"info","message":"k45w4m45-1wkq1cen21vk0","timestamp":"2019-12-14T18:24:22.380Z"}
+{"event":"CLUSTER_LEAVE","level":"info","message":"k45w4m45-1wkq1cen21vk0","timestamp":"2019-12-14T18:24:40.339Z"}
+{"event":"CLUSTER_JOIN","level":"info","message":"k45w4m45-1wkq1cen21vk0","timestamp":"2019-12-14T18:24:40.927Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-14T18:35:39.556Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-14T18:35:39.557Z"}
+{"event":"CLUSTER_LEAVE","level":"info","message":"k45w4m45-1wkq1cen21vk0","timestamp":"2019-12-14T18:35:39.559Z"}

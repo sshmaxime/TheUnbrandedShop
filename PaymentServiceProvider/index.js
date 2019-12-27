@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 
-const stripe = require('stripe')('***REMOVED***');
+const stripe = require('stripe')(process.env.STRIPE_API_KEY_2);
 
 app.use(function (req, res, next) {
     res.setHeader("Access-Control-Allow-Origin", 'http://localhost:3000');

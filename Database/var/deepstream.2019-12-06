@@ -1,0 +1,219 @@
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T02:57:32.994Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T02:57:32.996Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T02:57:32.997Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T02:57:32.997Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T02:57:33.267Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T02:57:33.269Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T02:57:33.280Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T02:57:33.283Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T02:57:33.292Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T02:57:33.296Z"}
+{"event":"CLUSTER_LEAVE","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T03:07:00.256Z"}
+{"event":"CLUSTER_JOIN","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T03:07:01.013Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T03:07:07.204Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T03:07:07.690Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T03:07:07.690Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T03:07:08.351Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T03:07:08.353Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T03:07:08.369Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T03:07:08.371Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T03:07:08.511Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T03:07:08.514Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T03:10:48.052Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T03:10:48.055Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T03:12:24.106Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T03:12:24.109Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T03:12:24.110Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T03:12:24.110Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T03:12:24.234Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T03:12:24.250Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T03:12:24.253Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T03:12:24.255Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T03:12:24.262Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T03:12:24.264Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T03:12:24.273Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T03:12:24.275Z"}
+{"event":"CLUSTER_LEAVE","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T03:13:33.671Z"}
+{"event":"CLUSTER_JOIN","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T03:13:33.975Z"}
+{"event":"CLUSTER_LEAVE","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T03:50:51.532Z"}
+{"event":"CLUSTER_JOIN","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T03:50:51.532Z"}
+{"event":"CLUSTER_LEAVE","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T05:51:26.810Z"}
+{"event":"CLUSTER_JOIN","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T05:51:28.604Z"}
+{"event":"CLUSTER_LEAVE","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T07:51:43.745Z"}
+{"event":"CLUSTER_JOIN","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T07:51:44.955Z"}
+{"event":"CLUSTER_LEAVE","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T08:01:32.028Z"}
+{"event":"CLUSTER_JOIN","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T08:01:32.043Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T08:15:26.069Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T08:15:26.070Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T08:15:26.070Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T08:15:26.070Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T08:15:27.511Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T08:15:27.514Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T08:15:27.524Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T08:15:27.528Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T08:15:27.536Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T08:15:27.539Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T08:15:27.549Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T08:15:27.552Z"}
+{"event":"CLUSTER_LEAVE","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T08:26:29.606Z"}
+{"event":"CLUSTER_JOIN","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T08:26:32.320Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T08:26:37.873Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T08:26:37.877Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T08:26:37.877Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T08:26:37.877Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T08:26:39.098Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T08:26:39.100Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T08:26:39.109Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T08:26:39.120Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T08:26:39.121Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T08:26:39.128Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T08:26:39.220Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T08:26:39.223Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T08:31:11.647Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T08:31:11.648Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T08:31:11.648Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T08:31:11.649Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T08:31:11.941Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T08:31:11.942Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T08:31:11.953Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T08:31:11.955Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T08:31:11.965Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T08:31:11.976Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T08:31:11.977Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T08:31:11.980Z"}
+{"event":"CLUSTER_LEAVE","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T08:42:31.089Z"}
+{"event":"CLUSTER_JOIN","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T08:42:33.325Z"}
+{"event":"CLUSTER_LEAVE","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T09:00:31.214Z"}
+{"event":"CLUSTER_JOIN","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T09:00:32.262Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T12:08:13.991Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T12:08:13.996Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T12:08:13.996Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T12:08:13.996Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T12:08:15.190Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T12:08:15.191Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T12:08:15.202Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T12:08:15.205Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T12:08:15.214Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T12:08:15.224Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T12:08:15.226Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T12:08:15.232Z"}
+{"event":"CLUSTER_LEAVE","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T12:38:51.658Z"}
+{"event":"CLUSTER_JOIN","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T12:38:51.663Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T12:39:02.878Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T12:39:02.880Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T12:39:03.839Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T12:39:03.841Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T12:39:04.391Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T12:39:04.431Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T12:39:04.514Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T12:39:04.565Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T12:39:04.736Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T12:39:04.765Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T12:39:04.768Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T12:39:04.813Z"}
+{"event":"CLUSTER_LEAVE","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T12:40:21.617Z"}
+{"event":"CLUSTER_JOIN","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T12:40:22.910Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T12:40:40.829Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T12:40:40.830Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T12:40:41.841Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T12:40:41.847Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T12:40:41.930Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T12:40:41.985Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T12:40:42.026Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T12:40:42.034Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T12:40:42.866Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T12:40:42.894Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T12:40:43.191Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T12:40:44.663Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T12:40:47.579Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T12:40:47.582Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T12:40:47.585Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T12:40:47.587Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T12:40:47.978Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T12:40:47.997Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T12:40:48.004Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T12:40:48.015Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T12:40:48.022Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T12:40:48.043Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T12:40:48.065Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T12:40:48.075Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T12:41:19.484Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T12:41:19.485Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T12:41:19.486Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T12:41:19.487Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T12:41:19.680Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T12:41:19.689Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T12:41:19.838Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T12:41:19.842Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T12:41:19.850Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T12:41:19.854Z"}
+{"event":"CLUSTER_LEAVE","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T12:44:06.465Z"}
+{"event":"CLUSTER_JOIN","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T12:44:08.709Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T12:44:10.895Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T12:44:10.897Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T18:43:33.963Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T18:43:34.700Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T20:05:56.480Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T20:05:56.481Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T20:05:57.930Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T20:05:57.933Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T20:05:57.943Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T20:05:57.945Z"}
+{"event":"CLUSTER_LEAVE","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T20:11:01.206Z"}
+{"event":"CLUSTER_JOIN","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T20:11:01.207Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T20:11:11.716Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T20:11:11.716Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T20:11:13.086Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T20:11:13.095Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T20:11:13.098Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T20:11:13.100Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T20:46:57.328Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T20:46:57.329Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T20:46:57.879Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T20:46:57.881Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T20:46:57.891Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T20:46:57.895Z"}
+{"event":"CLUSTER_LEAVE","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T21:04:26.530Z"}
+{"event":"CLUSTER_JOIN","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T21:04:26.531Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T21:48:20.127Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T21:48:20.127Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T21:48:20.133Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T21:48:20.135Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T21:48:21.101Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T21:48:21.104Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T22:16:23.850Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T22:16:23.851Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T22:16:23.863Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T22:16:23.873Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T22:16:23.874Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T22:16:23.876Z"}
+{"event":"CLUSTER_LEAVE","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T22:37:23.029Z"}
+{"event":"CLUSTER_JOIN","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T22:37:23.030Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T22:37:33.166Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T22:37:33.918Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T22:37:33.920Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T22:37:34.237Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T22:37:34.888Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T22:37:34.898Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T23:17:25.368Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T23:17:25.369Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T23:17:25.754Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T23:17:25.756Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T23:17:25.766Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T23:17:25.773Z"}
+{"event":"CLUSTER_LEAVE","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T23:20:20.886Z"}
+{"event":"CLUSTER_JOIN","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T23:20:23.353Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T23:20:30.968Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T23:20:30.968Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T23:20:32.030Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T23:20:32.031Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T23:20:32.041Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T23:20:32.042Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T23:45:58.780Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-06T23:45:58.780Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T23:45:59.072Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T23:45:59.075Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-06T23:45:59.085Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-06T23:45:59.088Z"}
+{"event":"CLUSTER_LEAVE","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T23:48:19.789Z"}
+{"event":"CLUSTER_JOIN","level":"info","message":"k3ow0j6p-1cngt2t8ntwgg","timestamp":"2019-12-06T23:48:19.790Z"}

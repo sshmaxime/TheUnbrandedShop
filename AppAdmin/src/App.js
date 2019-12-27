@@ -14,10 +14,10 @@ function App() {
     storeRecord.set("items", [
       {
         id: 1,
-        size: [["S", 10], ["M", 1]],
+        size: [["S", 0], ["M", 1]],
         imgUrl: "https://ae01.alicdn.com/kf/HTB1vRhyd25G3KVjSZPxq6zI3XXat/Nessaj-noir-t-PU-cuir-pantalon-femmes-taille-haute-Skinny-Push-Up-Leggings-Sexy-lastique-pantalon.jpg",
         info: [["Allo", "OK"]],
-        title: "Le glaive",
+        title: "Le penis",
         price: 100
       },
       {

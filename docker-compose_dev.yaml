@@ -1,0 +1,47 @@
+version: "3"
+
+services:
+  App:
+    image: node:10
+    user: node
+    working_dir: /home/node/app
+    env_file:
+      - ./.env
+    volumes:
+      - ./App/:/home/node/app
+    ports:
+      - 3000:3000
+    command: yarn start
+
+  AppAdmin:
+    image: node:10
+    user: node
+    working_dir: /home/node/appadmin
+    env_file:
+      - ./.env
+    volumes:
+      - ./AppAdmin/:/home/node/appadmin
+    ports:
+      - 3001:3000
+    command: yarn start
+
+  Database:
+    image: deepstreamio/deepstream.io:2.3
+    working_dir: /home/database/
+    volumes:
+      - ./Database/:/home/database
+    ports:
+      - 6020:6020
+    command: deepstream
+
+  PaymentServiceProvider:
+    image: node:10
+    user: node
+    working_dir: /home/paymentserviceprovider/app
+    env_file:
+      - ./.env
+    volumes:
+      - ./PaymentServiceProvider/:/home/paymentserviceprovider/app
+    ports:
+      - 8000:8000
+    command: bash -c "yarn install && node index.js"

@@ -4,7 +4,7 @@ import _ from "lodash";
 const initialState = {
   isReady: false,
   route: "/",
-  // "cart" object contains all itmes in customer's cart
+  // "cart" object contains all items in customer's cart
   // Each item is and must be of type model.item
   cart: []
 };

@@ -1,0 +1,31 @@
+{"event":"INFO","level":"info","message":"logger ready: no dependency description provided","timestamp":"2019-12-10T21:39:05.280Z"}
+{"event":"INFO","level":"info","message":"deepstream version: 2.3.7","timestamp":"2019-12-10T21:39:05.283Z"}
+{"event":"INFO","level":"info","message":"configuration file loaded from conf/config.yml","timestamp":"2019-12-10T21:39:05.283Z"}
+{"event":"INFO","level":"info","message":"library directory set to: /Users/maximeaubanel/workspace/TheUnbrandedShop/DBServer/lib","timestamp":"2019-12-10T21:39:05.283Z"}
+{"event":"INFO","level":"info","message":"messageConnector ready: no message connector specified","timestamp":"2019-12-10T21:39:05.284Z"}
+{"event":"INFO","level":"info","message":"storage ready: no storage connector specified","timestamp":"2019-12-10T21:39:05.284Z"}
+{"event":"INFO","level":"info","message":"cache ready: local cache","timestamp":"2019-12-10T21:39:05.284Z"}
+{"event":"INFO","level":"info","message":"authenticationHandler ready: none","timestamp":"2019-12-10T21:39:05.284Z"}
+{"event":"INFO","level":"info","message":"permissionHandler ready: valve permissions loaded from /Users/maximeaubanel/workspace/TheUnbrandedShop/DBServer/conf/permissions.yml","timestamp":"2019-12-10T21:39:05.290Z"}
+{"event":"CLUSTER_JOIN","level":"info","message":"k40e0ewz-15l2tugqt20w8","timestamp":"2019-12-10T21:39:05.291Z"}
+{"event":"INFO","level":"info","message":"Listening for websocket connections on 0.0.0.0:6020/deepstream","timestamp":"2019-12-10T21:39:05.301Z"}
+{"event":"INFO","level":"info","message":"Listening for health checks on path /health-check ","timestamp":"2019-12-10T21:39:05.301Z"}
+{"event":"INFO","level":"info","message":"connectionEndpoint ready: WebSocket Connection Endpoint","timestamp":"2019-12-10T21:39:05.301Z"}
+{"event":"INFO","level":"info","message":"Deepstream started","timestamp":"2019-12-10T21:39:05.302Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-10T21:39:09.331Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-10T21:39:09.346Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-10T21:39:14.435Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-10T21:39:14.437Z"}
+{"event":"MULTIPLE_SUBSCRIPTIONS","level":"warn","message":"repeat supscription to \"store\" by open","timestamp":"2019-12-10T21:39:14.438Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-10T21:41:16.891Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-10T21:41:17.009Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-10T21:41:17.038Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-10T21:46:12.484Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-10T21:46:13.067Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-10T21:46:13.090Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-10T21:46:14.215Z"}
+{"event":"INCOMING_CONNECTION","level":"info","message":"from undefined (127.0.0.1)","timestamp":"2019-12-10T21:46:14.462Z"}
+{"event":"AUTH_SUCCESSFUL","level":"info","message":"open","timestamp":"2019-12-10T21:46:14.496Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-10T21:47:19.682Z"}
+{"event":"CLIENT_DISCONNECTED","level":"info","message":"open","timestamp":"2019-12-10T21:47:44.076Z"}
+{"event":"CLUSTER_LEAVE","level":"info","message":"k40e0ewz-15l2tugqt20w8","timestamp":"2019-12-10T21:47:48.533Z"}
