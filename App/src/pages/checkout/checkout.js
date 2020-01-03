@@ -19,8 +19,6 @@ import { injectStripe } from "react-stripe-elements";
 import { CardElement } from "react-stripe-elements";
 import Fade from "react-reveal/Fade";
 
-const API_TOKEN = "***REMOVED***";
-
 const countries = [
   {
     label: "France"
@@ -116,23 +114,6 @@ class Checkout extends Component {
       return;
     }
     this.displayPayment();
-  };
-  validateAddress = () => {
-    fetch(
-      "https://eu1.locationiq.com/v1/search.php?key=" +
-      API_TOKEN +
-      "&street=" +
-      this.state.address +
-      "&city=" +
-      this.state.city +
-      "&postalcode=" +
-      this.state.postalCode +
-      "&country=" +
-      this.state.country +
-      "&format=json"
-    )
-      .then(res => res.json())
-      .then(res => { });
   };
   handleChange = name => event => {
     this.setState(

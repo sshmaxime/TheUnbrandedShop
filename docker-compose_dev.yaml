@@ -5,8 +5,6 @@ services:
     image: node:10
     user: node
     working_dir: /home/node/app
-    env_file:
-      - ./.env
     volumes:
       - ./App/:/home/node/app
     ports:
@@ -17,8 +15,6 @@ services:
     image: node:10
     user: node
     working_dir: /home/node/appadmin
-    env_file:
-      - ./.env
     volumes:
       - ./AppAdmin/:/home/node/appadmin
     ports:
@@ -38,8 +34,6 @@ services:
     image: node:10
     user: node
     working_dir: /home/paymentserviceprovider/app
-    env_file:
-      - ./.env
     volumes:
       - ./PaymentServiceProvider/:/home/paymentserviceprovider/app
     ports:

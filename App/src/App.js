@@ -40,7 +40,7 @@ class App extends Component {
       <div className={classes.root}>
         <Router>
           <Navbar normalTitle="The Unbranded Shop" reducedTitle="UNBRDSHP" />
-          <StripeProvider apiKey={process.env.STRIPE_API_KEY_1}>
+          <StripeProvider apiKey={process.env.REACT_APP_STRIPE_API_KEY}>
             <div className={classes.app}>
               <Route
                 path={["/"]}

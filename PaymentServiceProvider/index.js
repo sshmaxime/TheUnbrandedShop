@@ -1,7 +1,9 @@
+require('dotenv').config()
+
 const express = require('express')
 const app = express()
 
-const stripe = require('stripe')(process.env.STRIPE_API_KEY_2);
+const stripe = require('stripe')(process.env.STRIPE_API_KEY);
 
 app.use(function (req, res, next) {
     res.setHeader("Access-Control-Allow-Origin", 'http://localhost:3000');
