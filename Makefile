@@ -1,4 +1,9 @@
-dev: 
+installdep:
+	@echo "Installing dependencies ..."
+	cd App && yarn install
+	cd AppAdmin && yarn install
+
+dev: installdep
 	@echo "Starting development mode ..."
 	docker-compose -f docker-compose_dev.yaml up 
 
@@ -8,3 +13,6 @@ dev-down:
 
 prod:
 	@echo "Starting production mode ..."
+
+clean: dev-down
+	docker rm -f $(docker ps -a -q)
