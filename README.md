@@ -24,4 +24,10 @@ The payment provider server.
 
 ## Get Started
 
-Configuration ...
+First thing first we have to provide a .env file to each of some of our applications.
+
+##### App
+
+```
+REACT_APP_STRIPE_API_KEY=YOUR_API_KEY
+```

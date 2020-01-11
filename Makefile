@@ -1,3 +1,5 @@
+all: dev
+
 installdep:
 	@echo "Installing dependencies ..."
 	cd App && yarn install
