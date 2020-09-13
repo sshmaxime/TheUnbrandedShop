@@ -1,14 +1,17 @@
-const Style = theme => ({
+import { Theme, createStyles } from "@material-ui/core";
+
+const Style = ({ breakpoints, spacing }: Theme) => createStyles({
   root: {
-    paddingLeft: "25%",
-    paddingRight: "25%",
-    [theme.breakpoints.down("md")]: {
-      paddingLeft: "10%",
-      paddingRight: "10%"
+    margin: "0 auto",
+    paddingLeft: "30vw",
+    paddingRight: "30vw",
+    [breakpoints.down("md")]: {
+      paddingLeft: "25vw",
+      paddingRight: "25vw",
     },
-    [theme.breakpoints.down("sm")]: {
-      paddingLeft: "0%",
-      paddingRight: "0%"
+    [breakpoints.down("sm")]: {
+      paddingLeft: "5vw",
+      paddingRight: "5vw"
     }
   },
   item: {
@@ -18,16 +21,16 @@ const Style = theme => ({
   itemTitle: {
     fontFamily: "fullpack",
     textAlign: "center",
-    fontSize: "2em",
+    fontSize: "1.5em",
     marginTop: "20px",
     padding: "5px",
-    letterSpacing: "20px",
+    letterSpacing: "10px",
     backgroundColor: "black",
     color: "white",
-    [theme.breakpoints.down("md")]: {
+    [breakpoints.down("md")]: {
       fontSize: "2em"
     },
-    [theme.breakpoints.down("sm")]: {
+    [breakpoints.down("sm")]: {
       fontSize: "1.2em"
     }
   },
@@ -38,7 +41,7 @@ const Style = theme => ({
   },
   itemImg: {
     height: "400px",
-    [theme.breakpoints.down("xs")]: {
+    [breakpoints.down("xs")]: {
       height: "300px"
     }
   },
@@ -51,7 +54,7 @@ const Style = theme => ({
   informationDataTitle: {
     fontFamily: "SourceCodePro",
     fontSize: "1.1em",
-    fontWeight: "900"
+    fontWeight: 900
   },
   informationDataContent: {
     fontFamily: "SourceCodePro",

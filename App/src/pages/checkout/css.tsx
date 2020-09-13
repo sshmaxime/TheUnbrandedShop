@@ -1,7 +1,13 @@
-const Style = theme => ({
+import { Theme, createStyles } from "@material-ui/core";
+
+const Style = ({ breakpoints, spacing }: Theme) => createStyles({
   root: {
-    position: "relative",
-    marginTop: "10px"
+    paddingRight: "10vw",
+    paddingLeft: "10vw",
+    [breakpoints.down("sm")]: {
+      paddingLeft: "5vw",
+      paddingRight: "5vw"
+    }
   },
   icon: {
     "&$activeIcon": {
@@ -83,7 +89,7 @@ const Style = theme => ({
     alignItems: "center",
     padding: "10px",
     fontSize: "1em",
-    [theme.breakpoints.down("sm")]: {
+    [breakpoints.down("sm")]: {
       fontSize: "0.6em"
     }
   },
@@ -119,7 +125,7 @@ const Style = theme => ({
     fontFamily: "SourceCodePro",
     fontSize: "1em",
     marginTop: "5px",
-    [theme.breakpoints.down("sm")]: {
+    [breakpoints.down("sm")]: {
       fontSize: "0.8em"
     }
   },
@@ -128,21 +134,21 @@ const Style = theme => ({
     fontSize: "1.2em",
     paddingBottom: "7px",
     lineHeight: "15px",
-    [theme.breakpoints.down("sm")]: {
+    [breakpoints.down("sm")]: {
       fontSize: "1em"
     }
   },
   confirmationPrice: {
     fontFamily: "SourceCodePro",
     fontSize: "1.4em",
-    fontWeight: "900"
+    fontWeight: 900
   },
   itemConfirmation: {
     fontFamily: "SourceCodePro",
     fontSize: "1.1em",
     lineHeight: "17px",
     fontWeight: "lighter",
-    [theme.breakpoints.down("sm")]: {
+    [breakpoints.down("sm")]: {
       fontSize: "0.9em"
     }
   }

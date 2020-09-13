@@ -1,17 +1,24 @@
-const Style = theme => ({
+import { Theme, createStyles } from "@material-ui/core";
+
+const Style = ({ breakpoints, spacing }: Theme) => createStyles({
   root: {
     flexGrow: 1,
-    marginBottom: theme.spacing(2),
+    marginBottom: spacing(2),
     height: "100px"
   },
   navbar: {
     backgroundColor: "white",
     boxShadow: "none",
     position: "relative",
-    paddingRight: "5vw",
-    paddingLeft: "5vw",
     paddingTop: "15px",
-    paddingBottom: "20px"
+    paddingBottom: "20px",
+
+    paddingRight: "10vw",
+    paddingLeft: "10vw",
+    [breakpoints.down("sm")]: {
+      paddingLeft: "5vw",
+      paddingRight: "5vw"
+    }
   },
   title: {
     position: "absolute",
@@ -27,12 +34,12 @@ const Style = theme => ({
     }
   },
   normalTitle: {
-    [theme.breakpoints.down("sm")]: {
+    [breakpoints.down("sm")]: {
       display: "None"
     }
   },
   reducedTitle: {
-    [theme.breakpoints.up("md")]: {
+    [breakpoints.up("md")]: {
       display: "None"
     }
   },
@@ -84,15 +91,16 @@ const Style = theme => ({
     }
   },
   cartMenu: {
-    width: "450px",
-    height: "100%",
-    [theme.breakpoints.down("xs")]: {
-      width: "100%"
+    boxShadow: "none",
+    height: "100px",
+    width: "400px",
+    paddingTop: "12px",
+    [breakpoints.down("xs")]: {
+      width: "100vw",
     }
   },
   cartTitle: {
-    paddingTop: "15px",
-    paddingBottom: "20px",
+    paddingBottom: "16px",
     textAlign: "center",
     fontFamily: "bar",
     fontSize: "4em",
@@ -110,7 +118,7 @@ const Style = theme => ({
     height: "170px",
     backgroundColor: "#FBFCFC",
     borderBottom: "1px solid black",
-    [theme.breakpoints.down("sm")]: {
+    [breakpoints.down("sm")]: {
       height: "150px"
     }
   },
@@ -118,13 +126,13 @@ const Style = theme => ({
     height: "170px",
     width: "40%",
     borderRight: "1px solid black",
-    [theme.breakpoints.down("sm")]: {
+    [breakpoints.down("sm")]: {
       height: "150px"
     }
   },
   cartItemContent: {
     height: "100%",
-    width: "50%",
+    width: "59%",
     display: "inline-block",
     position: "relative",
     verticalAlign: "top"
@@ -136,7 +144,7 @@ const Style = theme => ({
     fontSize: "1.2em",
     textAlign: "left",
     padding: "7px",
-    [theme.breakpoints.down("xs")]: {
+    [breakpoints.down("xs")]: {
       fontSize: "1em"
     }
   },
@@ -149,7 +157,7 @@ const Style = theme => ({
     marginTop: "35px",
     padding: "7px",
     letterSpacing: "-1px",
-    [theme.breakpoints.down("xs")]: {
+    [breakpoints.down("xs")]: {
       fontSize: "1em"
     }
   },

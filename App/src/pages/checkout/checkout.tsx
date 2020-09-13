@@ -1,12 +1,11 @@
-import React, { Component } from "react";
-import Style from "./css.js";
-import { withStyles } from "@material-ui/core";
+import React, { FunctionComponent, useState, useEffect } from "react";
+import Style from "./css";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import EuroIcon from "@material-ui/icons/EuroSymbol";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { connect } from "react-redux";
-import ACTIONS from "../../redux/actions";
+// import ACTIONS from "../../redux/actions";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import { Redirect } from "react-router";
@@ -14,10 +13,14 @@ import { Grid } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Collapse from "@material-ui/core/Collapse";
 import Divider from "@material-ui/core/Divider";
-import * as EmailValidator from "email-validator";
-import { injectStripe } from "react-stripe-elements";
-import { CardElement } from "react-stripe-elements";
-import Fade from "react-reveal/Fade";
+import * as EmailValidator from 'email-validator';
+// import { injectStripe } from "react-stripe-elements";
+// import { CardElement } from "react-stripe-elements";
+// import Fade from "react-reveal/Fade";
+import { WithStyles, withStyles } from "@material-ui/core";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { IAppState } from '../../store/reducers';
 
 const countries = [
   {
@@ -33,35 +36,90 @@ const countries = [
     label: "UK"
   },
   {
-    label: "United States"
+    label: "US"
   },
   {
     label: "Australia"
   }
 ];
 
-class Checkout extends Component {
-  constructor(props) {
-    super(props);
-    this.props.setRoute("/checkout");
-  }
-  state = {
-    redirectHome: false,
+interface props extends WithStyles<typeof Style> {
+}
 
+const defaultState = (): {
+  firstname: string,
+
+  lastname: string,
+
+  email: string,
+
+  country: string,
+
+  city: string,
+
+  postalCode: string,
+
+  address: string,
+  ok: boolean,
+} => {
+  return {
+    firstname: "",
+
+    lastname: "",
+
+    email: "",
+
+    country: "France",
+
+    city: "",
+
+    postalCode: "",
+
+    address: "",
+    ok: false,
+  }
+}
+
+const defaultDisplayState = (): {
+  displayPayment: boolean,
+  displayConfirmation: boolean,
+} => {
+  return {
     displayPayment: false,
     displayConfirmation: false,
+  }
+}
 
-    firstname: "d",
-    lastname: "d",
-    email: "d@g.com",
+const defaultErrorState = (): {
+  errorFirstname: boolean,
+  errorLastname: boolean,
+  errorAddress: boolean,
+  errorPostalCode: boolean,
+  errorCity: boolean,
+  errorEmail: boolean,
+  errorCountry: boolean,
 
-    country: "",
-    postalCode: "3333",
-    city: "333",
-    address: "3333"
-  };
 
-  checkReadyToPay = () => {
+} => {
+  return {
+    errorAddress: false,
+    errorPostalCode: false,
+    errorCity: false,
+    errorCountry: false,
+    errorEmail: false,
+    errorLastname: false,
+    errorFirstname: false,
+  }
+}
+
+const Checkout: FunctionComponent<props> = ({ classes }) => {
+  const { commonState } = useSelector((state: IAppState) => state);
+  const dispatch = useDispatch();
+  const [state, setState] = useState(defaultState());
+  const [displayState, setDisplayState] = useState(defaultDisplayState());
+  const [errorState, setErrorState] = useState(defaultErrorState());
+
+  const checkReadyToPay = () => {
     var errorFirstname = false;
     var errorLastname = false;
     var errorEmail = false;
@@ -71,35 +129,36 @@ class Checkout extends Component {
     var errorAddress = false;
     var ok = true;
 
-    if (this.state.firstname === "") {
+    if (state.firstname === "") {
       errorFirstname = true;
       ok = false;
     }
-    if (this.state.lastname === "") {
+    if (state.lastname === "") {
       errorLastname = true;
       ok = false;
     }
-    if (EmailValidator.validate(this.state.email) === false) {
+    if (EmailValidator.validate(state.email) === false) {
       errorEmail = true;
       ok = false;
     }
-    if (this.state.country === "") {
+    if (state.country === "") {
       errorCountry = true;
       ok = false;
     }
-    if (this.state.city === "") {
+    if (state.city === "") {
       errorCity = true;
       ok = false;
     }
-    if (this.state.postalCode === "") {
+    if (state.postalCode === "") {
       errorPostalCode = true;
       ok = false;
     }
-    if (this.state.address === "") {
+    if (state.address === "") {
       errorAddress = true;
       ok = false;
     }
-    this.setState({
+    setErrorState({
+      ...errorState,
       errorFirstname: errorFirstname,
       errorLastname: errorLastname,
       errorEmail: errorEmail,
@@ -109,55 +168,48 @@ class Checkout extends Component {
       errorAddress: errorAddress
     });
     if (ok === false) {
-      this.hideConfirmation();
-      this.hidePayment();
+      setDisplayState({
+        ...displayState,
+        displayPayment: false,
+        displayConfirmation: false
+      })
       return;
     }
-    this.displayPayment();
+    setDisplayState({
+      ...displayState,
+      displayPayment: true,
+    })
   };
-  handleChange = name => event => {
-    this.setState(
+
+  const getTotalPrice = () => {
+    var totalPrice = 0.0;
+    for (var i = 0; i < commonState.itemsInCart.length; i++) {
+      totalPrice += Number(commonState.itemsInCart[i].price);
+    }
+    return totalPrice;
+  };
+
+  const handleChange = (name: string) => (event: any) => {
+    setState(
       {
+        ...state,
         [name]: event.target.value
       },
-      () => {
-        this.checkReadyToPay();
-      }
     );
   };
-  hidePayment = () => {
-    this.setState({
-      displayPayment: false
-    });
+
+  useEffect(() => {
+    checkReadyToPay();
+  }, [state])
+
+  const removeItem = (event: any) => {
+    dispatch({ type: "REMOVE_ITEM", payload: event.currentTarget.getAttribute("data-index") })
   };
-  displayPayment = () => {
-    this.setState({
-      displayPayment: true
-    });
-  };
-  hideConfirmation = () => {
-    this.setState({
-      displayConfirmation: false
-    });
-  };
-  displayConfirmation = () => {
-    this.setState({
-      displayConfirmation: true
-    });
-  };
-  handleClickRemoveItemFromCart = event => {
-    this.props.removeItemFromCart(event.currentTarget.getAttribute("index"));
-    if (this.props.itemsInCart.length - 1 === 0) {
-      // -1 because counting the one remove just above that hasbn't been updated yet
-      this.setState({
-        redirectHome: true
-      });
-    }
-  };
-  getDivPrice = classes => {
+
+  const getDivPrice = () => {
     var totalPrice = 0.0;
-    for (var i = 0; i < this.props.itemsInCart.length; i++) {
-      totalPrice += this.props.itemsInCart[i].price;
+    for (var i = 0; i < commonState.itemsInCart.length; i++) {
+      totalPrice += Number(commonState.itemsInCart[i].price);
     }
     return (
       <div>
@@ -169,14 +221,8 @@ class Checkout extends Component {
       </div>
     );
   };
-  getTotalPrice = () => {
-    var totalPrice = 0.0;
-    for (var i = 0; i < this.props.itemsInCart.length; i++) {
-      totalPrice += this.props.itemsInCart[i].price;
-    }
-    return totalPrice;
-  };
-  getStepShipping = classes => {
+
+  const getStepShipping = () => {
     return (
       <div>
         <Typography className={classes.titleStep}>Shipping Information</Typography>
@@ -194,14 +240,13 @@ class Checkout extends Component {
               <TextField
                 required
                 label="Firstname"
-                value={this.state.firstname}
-                onChange={this.handleChange("firstname")}
+                value={state.firstname}
+                onChange={handleChange("firstname")}
                 margin="normal"
                 style={{ width: "100%" }}
                 InputProps={{ style: { fontFamily: "SourceCodePro" } }}
                 InputLabelProps={{ style: { fontFamily: "SourceCodePro" } }}
                 variant="outlined"
-                error={this.state.errorFirstname}
               />
             </Grid>
             <Grid item xs={6} md={4}>
@@ -212,11 +257,10 @@ class Checkout extends Component {
                 style={{ width: "100%" }}
                 InputProps={{ style: { fontFamily: "SourceCodePro" } }}
                 InputLabelProps={{ style: { fontFamily: "SourceCodePro" } }}
-                value={this.state.lastname}
-                onChange={this.handleChange("lastname")}
+                value={state.lastname}
+                onChange={handleChange("lastname")}
                 margin="normal"
                 variant="outlined"
-                error={this.state.errorLastname}
               />
             </Grid>
 
@@ -228,11 +272,10 @@ class Checkout extends Component {
                 InputLabelProps={{ style: { fontFamily: "SourceCodePro" } }}
                 id="outlined-name"
                 label="Address"
-                value={this.state.address}
-                onChange={this.handleChange("address")}
+                value={state.address}
+                onChange={handleChange("address")}
                 margin="normal"
                 variant="outlined"
-                error={this.state.errorAddress}
               />
             </Grid>
 
@@ -244,15 +287,14 @@ class Checkout extends Component {
                 style={{ width: "100%" }}
                 InputProps={{ style: { fontFamily: "SourceCodePro" } }}
                 InputLabelProps={{ style: { fontFamily: "SourceCodePro" } }}
-                value={this.state.city}
-                onChange={this.handleChange("city")}
+                value={state.city}
+                onChange={handleChange("city")}
                 margin="normal"
                 variant="outlined"
-                error={this.state.errorCity}
               />
             </Grid>
 
-            <Grid item xs={6} md={4}>
+            <Grid item xs={5} md={4}>
               <TextField
                 required
                 id="standard-select-currency"
@@ -261,12 +303,11 @@ class Checkout extends Component {
                 InputProps={{ style: { fontFamily: "SourceCodePro" } }}
                 InputLabelProps={{ style: { fontFamily: "SourceCodePro" } }}
                 label="Country"
-                value={this.state.country}
+                value={state.country}
                 rows="4"
-                onChange={this.handleChange("country")}
+                onChange={handleChange("country")}
                 margin="normal"
                 variant="outlined"
-                error={this.state.errorCountry}
               >
                 {countries.map(option => (
                   <MenuItem key={option.label} value={option.label}>
@@ -275,7 +316,7 @@ class Checkout extends Component {
                 ))}
               </TextField>
             </Grid>
-            <Grid item xs={6} md={3}>
+            <Grid item xs={7} md={3}>
               <TextField
                 required
                 id="outlined-name"
@@ -283,11 +324,10 @@ class Checkout extends Component {
                 InputProps={{ style: { fontFamily: "SourceCodePro" } }}
                 InputLabelProps={{ style: { fontFamily: "SourceCodePro" } }}
                 label="PostalCode"
-                value={this.state.postalCode}
-                onChange={this.handleChange("postalCode")}
+                value={state.postalCode}
+                onChange={handleChange("postalCode")}
                 margin="normal"
                 variant="outlined"
-                error={this.state.errorPostalCode}
               />
             </Grid>
             <Divider style={{ width: "100%", height: "2px", backgroundColor: "black" }} />
@@ -299,11 +339,10 @@ class Checkout extends Component {
                 style={{ width: "100%" }}
                 InputProps={{ style: { fontFamily: "SourceCodePro" } }}
                 InputLabelProps={{ style: { fontFamily: "SourceCodePro" } }}
-                value={this.state.email}
-                onChange={this.handleChange("email")}
+                value={state.email}
+                onChange={handleChange("email")}
                 margin="normal"
                 variant="outlined"
-                error={this.state.errorEmail}
               />
             </Grid>
           </Grid>
@@ -312,26 +351,28 @@ class Checkout extends Component {
     );
   };
 
-  handleSubmit = ev => {
-    ev.preventDefault();
+  const handleSubmit = () => {
+    console.log("pay");
+    // ev.preventDefault();
 
-    fetch("http://localhost:8000", {
-      method: "GET",
-      headers: {
-        "Content-Type": "text/plain",
-      },
-    }).then(response => response.json())
-      .then(jsondata =>
-        this.props.stripe.redirectToCheckout({
-          sessionId: jsondata.id
-        }).then(function (result) {
-          console.log(result)
-        })
-        // if (response.ok) console.log("Purchase Complete!");
-      )
+    // fetch("http://localhost:8000", {
+    //   method: "GET",
+    //   headers: {
+    //     "Content-Type": "text/plain",
+    //   },
+    // }).then(response => response.json())
+    //   .then(jsondata =>
+    //     props.stripe.redirectToCheckout({
+    //       sessionId: jsondata.id
+    //     }).then(function (result) {
+    //       console.log(result)
+    //     })
+    //     // if (response.ok) console.log("Purchase Complete!");
+    //   )
   };
-  getStepPayment = classes => {
-    var stepPayment = !this.state.displayPayment ? null : (
+
+  const getStepPayment = () => {
+    var stepPayment = !displayState.displayPayment ? null : (
       <div
         style={{
           marginTop: "15px",
@@ -341,18 +382,18 @@ class Checkout extends Component {
           boxShadow: "5px 4px 10px grey"
         }}
       >
-        <CardElement
+        {/* <CardElement
           onChange={obj => {
             if (obj.complete === true) {
-              this.displayConfirmation();
+              displayConfirmation();
             } else {
-              this.hideConfirmation();
+              hideConfirmation();
             }
           }}
           style={{
             base: { fontSize: "18px", fontFamily: "Source Code Pro, Monospace" }
           }}
-        />
+        /> */}
       </div>
     );
 
@@ -363,10 +404,11 @@ class Checkout extends Component {
       </div>
     );
   };
-  getStepConfirm = classes => {
-    const fullname = this.state.firstname + " " + this.state.lastname;
 
-    var stepConfirm = !this.state.displayConfirmation ? null : (
+  const getStepConfirm = () => {
+    const fullname = state.firstname + " " + state.lastname;
+
+    var stepConfirm = !displayState.displayConfirmation ? null : (
       <div
         style={{
           marginTop: "15px",
@@ -385,11 +427,11 @@ class Checkout extends Component {
               backgroundColor: "black"
             }}
           />
-          <Typography className={classes.contentBill}>{this.state.address}</Typography>
+          <Typography className={classes.contentBill}>{state.address}</Typography>
           <Typography className={classes.contentBill}>
-            {this.state.city}, {this.state.postalCode}
+            {state.city}, {state.postalCode}
           </Typography>
-          <Typography className={classes.contentBill}>{this.state.country} </Typography>
+          <Typography className={classes.contentBill}>{state.country} </Typography>
         </div>
         <Divider
           style={{
@@ -398,7 +440,7 @@ class Checkout extends Component {
             marginBottom: "15px"
           }}
         />
-        {this.props.itemsInCart.map((item, index) => (
+        {commonState.itemsInCart.map((item, index) => (
           <div key={index} className={classes.itemConfirmation}>
             1x {item.title} ${item.price}
           </div>
@@ -411,7 +453,7 @@ class Checkout extends Component {
           }}
         />
         <Typography className={classes.confirmationPrice}>
-          Total: ${this.getTotalPrice()}
+          Total: ${getTotalPrice()}
         </Typography>
         <Button
           style={{
@@ -426,8 +468,8 @@ class Checkout extends Component {
             paddingLeft: "30px",
             paddingRight: "30px"
           }}
-          className={classes.buttonConfirmation}
-          onClick={this.handleSubmit}
+          // className={classes.buttonConfirmation}
+          onClick={handleSubmit}
         >
           PAY
         </Button>
@@ -441,97 +483,77 @@ class Checkout extends Component {
     );
   };
 
-  render() {
-    const { classes } = this.props;
-    if (this.state.redirectHome) {
-      return <Redirect push to="/" />;
-    }
-    return (
-      <div className={classes.root}>
-        <Grid container spacing={2}>
-          <Box clone order={{ xs: 2, sm: 2, md: 1 }}>
-            <Grid item xs={12} md={7}>
-              <Fade delay={100}>
-                <div className={classes.step}>{this.getStepShipping(classes)}</div>
-              </Fade>
+  return (
+    <div className={classes.root}>
+      <Grid container spacing={2}>
+        <Box clone order={{ xs: 2, sm: 2, md: 1 }}>
+          <Grid item xs={12} md={7}>
+            {/* <Fade delay={100}> */}
+            <div className={classes.step}>{getStepShipping()}</div>
+            {/* </Fade> */}
 
-              <Fade delay={200}>
-                <Collapse in={this.state.displayPayment} collapsedHeight="80px">
-                  <div
-                    className={this.state.displayPayment ? classes.step2 : classes.step2Disabled}
-                  >
-                    {this.getStepPayment(classes)}
-                  </div>
-                </Collapse>
-              </Fade>
+            {/* <Fade delay={200}> */}
+            <Collapse in={displayState.displayPayment} collapsedHeight="80px">
+              <div
+                className={displayState.displayPayment ? classes.step2 : classes.step2Disabled}
+              >
+                {getStepPayment()}
+              </div>
+            </Collapse>
+            {/* </Fade> */}
 
-              <Fade delay={300}>
-                <Collapse in={this.state.displayConfirmation} collapsedHeight="80px">
-                  <div
-                    className={
-                      this.state.displayConfirmation ? classes.step2 : classes.step2Disabled
-                    }
-                  >
-                    {this.getStepConfirm(classes)}
-                  </div>
-                </Collapse>
-              </Fade>
-            </Grid>
-          </Box>
+            {/* <Fade delay={300}> */}
+            <Collapse in={displayState.displayConfirmation} collapsedHeight="80px">
+              <div
+                className={
+                  displayState.displayConfirmation ? classes.step2 : classes.step2Disabled
+                }
+              >
+                {getStepConfirm()}
+              </div>
+            </Collapse>
+            {/* </Fade> */}
+          </Grid>
+        </Box>
 
-          <Box clone order={{ xs: 1, sm: 1, md: 2 }}>
-            <Grid item xs={12} md={5}>
-              <Fade delay={400}>
-                <div className={classes.step}>
-                  <Typography className={classes.titleStep}>Cart</Typography>
-                  {this.props.itemsInCart.map((item, index) => (
-                    <div key={index} className={classes.cartItem}>
-                      <img className={classes.cartItemImg} alt="" src={item.imgUrl} />
-                      <div className={classes.cartItemContent}>
-                        <Typography className={classes.cartItemTitle}>{item.title}</Typography>
-                        <Typography className={classes.cartItemSize}>Size: {item.size}</Typography>
-                        <div className={classes.cartItemPrice}>
-                          <Typography className={classes.cartItemPricePrice}>
-                            {item.price}
-                          </Typography>
+        <Box clone order={{ xs: 1, sm: 1, md: 2 }}>
+          <Grid item xs={12} md={5}>
+            {/* <Fade delay={400}> */}
+            <div className={classes.step}>
+              <Typography className={classes.titleStep}>Cart</Typography>
+              {commonState.itemsInCart.map((item, index) => (
+                <div key={index} className={classes.cartItem}>
+                  <img className={classes.cartItemImg} alt="" src={item.imgUrl} />
+                  <div className={classes.cartItemContent}>
+                    <Typography className={classes.cartItemTitle}>{item.title}</Typography>
+                    <Typography className={classes.cartItemSize}>Size: {item.size}</Typography>
+                    <div className={classes.cartItemPrice}>
+                      <Typography className={classes.cartItemPricePrice}>
+                        {item.price}
+                      </Typography>
                           &nbsp;
                           <EuroIcon />
-                        </div>
-                        <div
-                          index={index}
-                          className={classes.cartItemDelete}
-                          onClick={this.handleClickRemoveItemFromCart}
-                        >
-                          <Button style={{ minWidth: 0, padding: 0 }}>
-                            <DeleteIcon className={classes.cartItemDeleteIcon} />
-                          </Button>
-                        </div>
-                      </div>
                     </div>
-                  ))}
-                  {this.getDivPrice(classes)}
+                    <div
+                      data-index={index}
+                      className={classes.cartItemDelete}
+                      onClick={removeItem}
+                    >
+                      <Button style={{ minWidth: 0, padding: 0 }}>
+                        <DeleteIcon className={classes.cartItemDeleteIcon} />
+                      </Button>
+                    </div>
+                  </div>
                 </div>
-              </Fade>
-            </Grid>
-          </Box>
-        </Grid>
-      </div>
-    );
-  }
+              ))}
+              {getDivPrice()}
+            </div>
+            {/* </Fade> */}
+          </Grid>
+        </Box>
+      </Grid>
+    </div>
+  );
 }
 
-const mapStateToProps = state => ({
-  itemsInCart: state.cart
-});
-
-const mapDispatchToProps = dispatch => ({
-  removeItemFromCart: index => dispatch(ACTIONS.removeItemFromCart(index)),
-  setRoute: route => dispatch(ACTIONS.setRoute(route))
-});
-
-export default injectStripe(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(withStyles(Style)(Checkout))
-);
+export default withStyles(Style)(Checkout);
