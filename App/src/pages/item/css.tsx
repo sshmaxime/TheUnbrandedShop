@@ -5,6 +5,8 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     margin: "0 auto",
     paddingLeft: "30vw",
     paddingRight: "30vw",
+    marginTop: "20px",
+    marginBottom: "20px",
     [breakpoints.down("md")]: {
       paddingLeft: "25vw",
       paddingRight: "25vw",

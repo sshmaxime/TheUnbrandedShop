@@ -19,7 +19,6 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
   },
   divider: {
     height: "3px",
-    marginTop: "20px",
     backgroundColor: "black",
     marginRight: "10vw",
     marginLeft: "10vw",

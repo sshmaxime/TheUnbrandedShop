@@ -3,7 +3,6 @@ import { Theme, createStyles } from "@material-ui/core";
 const Style = ({ breakpoints, spacing }: Theme) => createStyles({
   root: {
     flexGrow: 1,
-    marginBottom: spacing(2),
     height: "100px"
   },
   navbar: {

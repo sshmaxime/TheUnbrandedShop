@@ -15,12 +15,9 @@ const Home: FunctionComponent<props> = ({ classes }) => {
   const dispatch = useDispatch();
 
   return (
-    <>
-      {/* <img src={image1} style={{ width: "100vw", height: "100vh" }} /> */}
-      <div className={classes.root}>
-        <ItemList />
-      </div>
-    </>
+    <div className={classes.root}>
+      <ItemList />
+    </div>
   )
 }
 
