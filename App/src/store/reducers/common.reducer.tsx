@@ -14,10 +14,10 @@ const commonState = (
           0,
           new item(
             "0",
-            "de",
+            "Myriam",
             "https://ae01.alicdn.com/kf/H2a6069f97e7f4301bbf75941bb99d4dfy/Japon-Anime-Prison-cole-yeux-triste-impression-Panama-seau-chapeaux-mode-adulte-cr-me-solaire-p.jpg_640x640.jpg",
-            new Map<size, number>([["M", 1]]),
-            new Map<string, string>([["Allo", "OK"]]),
+            new Map<size, number>([["M", 1], ["L", 1]]),
+            new Map<string, string>([["Materiaux", "Cachemire"]]),
             "100"
           )
         ],
@@ -51,7 +51,7 @@ const commonState = (
   switch (action.type) {
     default:
     case "REMOVE_ITEM": {
-      state.itemsInCart.splice(action.payload)
+      state.itemsInCart.splice(action.payload, 1);
       return {
         ...state,
       }

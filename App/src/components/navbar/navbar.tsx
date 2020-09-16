@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react'
+import React, { FunctionComponent, useEffect, useState } from 'react'
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { IAppState } from '../../store/reducers';
@@ -17,6 +17,8 @@ import Style from "./css"
 import EuroIcon from "@material-ui/icons/EuroSymbol";
 import DeleteIcon from "@material-ui/icons/Delete";
 import CloseIcon from "@material-ui/icons/CloseOutlined";
+import { cartItem } from '../../store/types/myType';
+import { store } from '../../store';
 
 interface props extends WithStyles<typeof Style> {
   normalTitle: string,
@@ -27,7 +29,7 @@ const defaultState = (): {
   openDrawer: boolean,
 } => {
   return {
-    openDrawer: false
+    openDrawer: false,
   }
 }
 
@@ -42,6 +44,19 @@ const Navbar: FunctionComponent<props> = ({ normalTitle, reducedTitle, classes }
       openDrawer: !state.openDrawer
     })
   }
+
+  var oldNb: Number = commonState.itemsInCart.length;
+  useEffect(() => {
+    store.subscribe(() => {
+      if (commonState.itemsInCart.length > oldNb) {
+        setState({
+          ...state,
+          openDrawer: true
+        })
+      }
+      oldNb = commonState.itemsInCart.length
+    })
+  }, [])
 
   const removeItem = (event: any) => {
     dispatch({ type: "REMOVE_ITEM", payload: event.currentTarget.getAttribute("data-index") })
