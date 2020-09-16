@@ -3,7 +3,7 @@ LABEL maintainer="Maxime Aubanel <maximeauba@gmail.com>"
 
 RUN apt-get update
 
-ADD src /home/workspace
+ADD . /home/workspace
 
 WORKDIR "/home/workspace"
 
