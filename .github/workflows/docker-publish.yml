@@ -1,0 +1,48 @@
+name: Docker
+
+on:
+  push:
+    paths-ignore:
+      - README.md
+      - LICENSE
+
+    branches:
+      - master
+
+    # Publish `v1.2.3` tags as releases.
+    tags:
+      - v*
+
+  # Run tests for any PRs.
+  pull_request:
+
+env:
+  IMAGE_NAME_APP: app
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build app
+        working-directory: ./App
+        run: docker build --label org.opencontainers.image.source=https://github.com/${{ github.repository }} . --file Dockerfile --tag $IMAGE_NAME_APP
+      
+      - name: Log into GitHub Container Registry
+        run: echo "${{ secrets.CR_PAT }}" | docker login https://ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Push image to GitHub Container Registry
+        run: |
+          IMAGE_ID_APP=ghcr.io/${{ github.repository }}/$IMAGE_NAME_APP
+
+          # Change all uppercase to lowercase
+          IMAGE_ID_APP=$(echo $IMAGE_ID_APP | tr '[A-Z]' '[a-z]')
+
+          echo IMAGE_ID_APP=$IMAGE_ID_APP
+
+          docker tag $IMAGE_NAME_APP $IMAGE_ID_APP:latest
+
+          docker push $IMAGE_ID_APP:latest
