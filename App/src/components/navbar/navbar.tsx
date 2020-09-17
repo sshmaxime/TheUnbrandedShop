@@ -59,6 +59,12 @@ const Navbar: FunctionComponent<props> = ({ normalTitle, reducedTitle, classes }
   }, [])
 
   const removeItem = (event: any) => {
+    if (commonState.itemsInCart.length == 1) {
+      setState({
+        ...state,
+        openDrawer: false
+      })
+    }
     dispatch({ type: "REMOVE_ITEM", payload: event.currentTarget.getAttribute("data-index") })
   };
 

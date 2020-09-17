@@ -44,10 +44,10 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
   },
   titleDisabled: {
     fontFamily: "fullpack",
-    fontSize: "0.8em",
+    fontSize: "0.9em",
     fontWeight: 900,
     textAlign: "center",
-    letterSpacing: "5px",
+    letterSpacing: "2px",
     textDecoration: "none",
     transition: "all 0.5s ease-in-out",
     position: "absolute",
@@ -58,7 +58,7 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     backgroundColor: "black",
     color: "white",
     width: "100%",
-    padding: "10px",
+    padding: "5px",
     [breakpoints.down("xs")]: {
       fontSize: "0.5em",
       padding: "5px"

@@ -16,6 +16,17 @@ const Home: FunctionComponent<props> = ({ classes }) => {
 
   return (
     <div className={classes.root}>
+
+      <div className={classes.imgDiv}>
+        <div className={classes.shopButton}>
+          Shop Now
+        </div>
+        <img src={image1} style={{ width: "100%" }} />
+      </div>
+
+      <div>
+      </div>
+
       <ItemList />
     </div>
   )

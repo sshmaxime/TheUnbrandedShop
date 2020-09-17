@@ -11,6 +11,7 @@ import Home from "./pages/home/home";
 import Checkout from "./pages/checkout/checkout";
 import Item from "./pages/item/item";
 import { LastLocationProvider } from 'react-router-last-location';
+import ScrollToTop from "./components/tools/scrollToTop";
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
   bindActionCreators(
@@ -30,6 +31,7 @@ class App extends React.Component<ReturnType<typeof mapStateToProps> & ReturnTyp
     return (
       <div className="App">
         <Router>
+          <ScrollToTop />
           <LastLocationProvider>
             <Navbar normalTitle="The Unbranded Shop" reducedTitle="UNBRDSHP" />
             <div >
