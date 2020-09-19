@@ -9,7 +9,7 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     [breakpoints.down("sm")]: {
       paddingLeft: "5vw",
       paddingRight: "5vw"
-    }
+    },
   },
   imgDiv: {
     borderRadius: "5px",
@@ -18,8 +18,7 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     overflow: "hidden",
     marginBottom: "20px",
     [breakpoints.down("md")]: {
-      display: "None"
-    }
+    },
   },
   shopButton: {
     position: "absolute",
@@ -33,6 +32,7 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     color: "white",
     padding: "10px",
     cursor: "pointer",
+    textAlign: "center",
     transition: "all 0.5s ease-in-out",
     borderRadius: "5px",
     [breakpoints.up("md")]: {
@@ -41,6 +41,50 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
         msTransform: "translate(-50%, -50%) scale(1.05)",
       },
     },
+    [breakpoints.down("md")]: {
+      width: "50%",
+    },
+  },
+  Title: {
+    fontSize: "3.5em",
+    marginTop: "25px",
+    marginBottom: "50px",
+    fontFamily: "bar",
+    textAlign: "center",
+    margin: "0 auto",
+    [breakpoints.down("md")]: {
+      width: "80%",
+    },
+  },
+  text: {
+    fontSize: "1em",
+    lineHeight: "1.5em",
+    letterSpacing: "-1px",
+    textAlign: "center",
+    fontFamily: "SourceCodePro",
+    paddingRight: "5%",
+    paddingLeft: "5%",
+    [breakpoints.down("sm")]: {
+      paddingLeft: "1%",
+      paddingRight: "1%"
+    },
+  },
+  arrowDownDiv: {
+    position: "absolute",
+    bottom: "2%",
+    left: "50%",
+  },
+  arrowDown: {
+    fontSize: "2.5em",
+    color: "white",
+    transform: "translate(-50%, 0)",
+    msTransform: "translate(-50%, 0)",
+  },
+  firstContainer: {
+    marginTop: "10px",
+  },
+  container: {
+    marginTop: "50px",
   },
 });
 

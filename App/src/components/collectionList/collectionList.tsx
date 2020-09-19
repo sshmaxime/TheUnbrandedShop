@@ -12,24 +12,16 @@ interface props extends WithStyles<typeof Style> {
   type: type | "ALL",
 }
 
-const ItemList: FunctionComponent<props> = ({ classes, type }) => {
+const CollectionList: FunctionComponent<props> = ({ classes, type }) => {
   const { commonState } = useSelector((state: IAppState) => state);
 
   return (
     <div className={classes.root}>
       <Grid className={classes.root} container direction="row" alignItems="center" spacing={3}>
-        {Array.from(commonState.items.entries()).map((entry: [number, item]) => {
-          return type === "ALL" || entry[1].type === type ? (<Grid key={entry[0]} item xs={12} sm={6} md={3} >
-            <Item
-              key={entry[1].id}
-              item={entry[1]}
-            />
-          </Grid>
-          ) : null
-        })}
+        {Array.from(commonState.items.entries()).map((entry: [number, item]) => { })}
       </Grid>
     </div >
   )
 }
 
-export default withStyles(Style)(ItemList);
+export default withStyles(Style)(CollectionList);

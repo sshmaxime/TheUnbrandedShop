@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navbar from "./components/navbar/navbar";
 import Footer from "./components/footer/footer";
 import Home from "./pages/home/home";
+import Collections from "./pages/collections/collections";
 import Checkout from "./pages/checkout/checkout";
 import Item from "./pages/item/item";
 import { LastLocationProvider } from 'react-router-last-location';
@@ -44,6 +45,11 @@ class App extends React.Component<ReturnType<typeof mapStateToProps> & ReturnTyp
                 path={["/item:id"]}
                 exact
                 component={Item}
+              />
+              <Route
+                path={["/collections"]}
+                exact
+                component={Collections}
               />
               <Route
                 path={["/checkout"]}

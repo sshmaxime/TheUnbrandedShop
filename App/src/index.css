@@ -23,6 +23,14 @@
   font-family: SourceCodePro;
   src: url(fonts/SourceCodePro-Regular.ttf);
 }
+@font-face {
+  font-family: vintv;
+  src: url(fonts/VINTV.ttf);
+}
+@font-face {
+  font-family: bwn;
+  src: url(fonts/bwm.ttf);
+}
 
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0-modified | 20110126

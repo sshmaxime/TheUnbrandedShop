@@ -2,6 +2,7 @@ export class item {
   id: string;
   title: string;
   imgUrl: string;
+  type: type;
   size: Map<size, number>;
   info: Map<string, string>;
   price: string;
@@ -10,12 +11,14 @@ export class item {
     id: string,
     title: string,
     imgUrl: string,
+    type: type,
     size: Map<size, number>,
     info: Map<string, string>,
     price: string) {
     this.id = id;
     this.title = title;
     this.imgUrl = imgUrl;
+    this.type = type;
     this.size = size;
     this.info = info;
     this.price = price;
@@ -44,3 +47,12 @@ export type size =
   | "M"
   | "L"
   | "XL"
+
+
+export type type =
+  "ACCESSORIES"
+  | "SHIRTS"
+  | "TEE-SHIRTS"
+  | "HOODIES"
+  | "JEANS"
+  | "PARKAS"
