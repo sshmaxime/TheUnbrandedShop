@@ -34,7 +34,7 @@ const Item: FunctionComponent<props> = ({ item, classes }) => {
         >
           <CardMedia
             className={isAvailable ? classes.image : classes.imageDisabled}
-            image={item.imgUrl}
+            image={item.imgUrl[0]}
           />
           <Typography className={isAvailable ? classes.title : classes.titleDisabled}>
             {isAvailable ? item.title : "Out Of Stock"}

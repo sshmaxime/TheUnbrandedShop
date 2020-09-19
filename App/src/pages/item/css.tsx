@@ -7,9 +7,13 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     paddingRight: "20vw",
     marginTop: "20px",
     marginBottom: "20px",
+    [breakpoints.down("lg")]: {
+      paddingLeft: "20vw",
+      paddingRight: "20vw",
+    },
     [breakpoints.down("md")]: {
-      paddingLeft: "25vw",
-      paddingRight: "25vw",
+      paddingLeft: "10vw",
+      paddingRight: "10vw",
     },
     [breakpoints.down("sm")]: {
       paddingLeft: "5vw",
@@ -57,6 +61,12 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     }
   },
   itemImgSmall: {
+    cursor: "pointer",
+    transition: "all 0.2s ease-in-out",
+    "&:hover": {
+      transform: "scale(1.03)",
+      boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.5)"
+    },
     width: "100%",
     borderRadius: "5px",
   },

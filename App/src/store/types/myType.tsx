@@ -1,7 +1,7 @@
 export class item {
   id: string;
   title: string;
-  imgUrl: string;
+  imgUrl: string[];
   type: type;
   size: Map<size, number>;
   info: Map<string, string>;
@@ -10,7 +10,7 @@ export class item {
   constructor(
     id: string,
     title: string,
-    imgUrl: string,
+    imgUrl: string[],
     type: type,
     size: Map<size, number>,
     info: Map<string, string>,

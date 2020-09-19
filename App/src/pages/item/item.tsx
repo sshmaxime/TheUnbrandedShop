@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react'
+import React, { FunctionComponent, useEffect, useState } from 'react'
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { IAppState } from '../../store/reducers';
@@ -11,23 +11,22 @@ import { item, size, cartItem } from '../../store/types/myType';
 import { useParams, RouteComponentProps } from 'react-router-dom';
 import { useLastLocation } from 'react-router-last-location';
 
-interface MatchParams {
-  id: string;
+interface props extends WithStyles<typeof Style> {
+  item: item
 }
 
-interface props extends WithStyles<typeof Style>, RouteComponentProps<MatchParams> {
-}
-
-const defaultState = (): {
+const defaultState = (item: item): {
   currentSize: size,
+  currentImg: string
 } => {
   return {
     currentSize: "M",
+    currentImg: item.imgUrl[0]
   }
 }
 
-const Item: FunctionComponent<props> = ({ classes, match, history }) => {
-  const [state, setState] = useState(defaultState())
+const Item: FunctionComponent<props> = ({ classes, item }) => {
+  const [state, setState] = useState(defaultState(item))
   const { commonState } = useSelector((state: IAppState) => state);
   const dispatch = useDispatch();
   const lastLocation = useLastLocation();
@@ -43,16 +42,12 @@ const Item: FunctionComponent<props> = ({ classes, match, history }) => {
     const newItem: cartItem = {
       id: item.id,
       title: item.title,
-      imgUrl: item.imgUrl,
+      imgUrl: item.imgUrl[0],
       size: state.currentSize,
       price: item.price
     }
     dispatch({ type: "ADD_ITEM", payload: newItem })
   };
-
-
-  const item = commonState.items.get(Number(match.params.id));
-  if (!item) return <div>item not found</div>;
 
   return (
     <div className={classes.root}>
@@ -61,7 +56,7 @@ const Item: FunctionComponent<props> = ({ classes, match, history }) => {
           <div className={classes.item}>
             <div style={{ borderRadius: "15px", boxShadow: "5px 4px 10px grey" }}>
               <div className={classes.itemImgContainer}>
-                <img className={classes.itemImg} alt={""} src={item.imgUrl} />
+                <img className={classes.itemImg} alt={""} src={state.currentImg} />
               </div>
               <Typography className={classes.itemTitle}>{item.title}</Typography>
             </div>
@@ -72,15 +67,11 @@ const Item: FunctionComponent<props> = ({ classes, match, history }) => {
           <div className={classes.item}>
             <div style={{ borderRadius: "15px", boxShadow: "5px 4px 10px grey" }}>
               <Grid container className={classes.itemImgContainerSmall}>
-                <Grid item md={4} style={{ padding: "5px" }}>
-                  <img className={classes.itemImgSmall} alt={""} src={"https://ae01.alicdn.com/kf/H8caed1fd158341c6bab76fcfa809b68cd/GONTHWID-Creatvie-Arc-En-Ciel-Licorne-Imprim-Manches-Longues-T-shirts-Harajuku-Hip-Hop-D-contract.jpg"} />
-                </Grid>
-                <Grid item md={4} style={{ padding: "5px" }}>
-                  <img className={classes.itemImgSmall} alt={""} src={"https://ae01.alicdn.com/kf/H0db82f597355424fb1c532255ea2565f0/GONTHWID-Creatvie-Arc-En-Ciel-Licorne-Imprim-Manches-Longues-T-shirts-Harajuku-Hip-Hop-D-contract.jpg"} />
-                </Grid>
-                <Grid item md={4} style={{ padding: "5px" }}>
-                  <img className={classes.itemImgSmall} alt={""} src={"https://ae01.alicdn.com/kf/H100e37c75fd6425bbe9927133c08e4f7W/GONTHWID-Creatvie-Arc-En-Ciel-Licorne-Imprim-Manches-Longues-T-shirts-Harajuku-Hip-Hop-D-contract.jpg"} />
-                </Grid>
+                {item.imgUrl.map((imgUrl: string, index: number) => (
+                  <Grid onClick={() => { setState({ ...state, currentImg: imgUrl }) }} key={imgUrl} item md={4} style={{ padding: "5px" }}>
+                    <img className={classes.itemImgSmall} alt={""} src={imgUrl} />
+                  </Grid>
+                ))}
               </Grid>
             </div>
           </div>
@@ -125,19 +116,15 @@ const Item: FunctionComponent<props> = ({ classes, match, history }) => {
               ))
             }
           </TextField>
-          {/* </Fade> */}
         </Grid>
 
         <Grid item md={4} xs={6}>
-          {/* <Fade delay={200}> */}
           <Typography className={classes.numberItemLeft}>
             {item.getNbItemForSize(state.currentSize)} item(s) left
           </Typography>
-          {/* </Fade> */}
         </Grid>
 
         <Grid item xs={12}>
-          {/* <Fade delay={250}> */}
           <div>
             <Button
               className={classes.buyButton}
@@ -146,16 +133,7 @@ const Item: FunctionComponent<props> = ({ classes, match, history }) => {
             >
               ADD TO CART
                 </Button>
-            <Button className={classes.returnButton} onClick={() => {
-              if (lastLocation === null) {
-                return history.push("/")
-              }
-              return history.goBack()
-            }}>
-              RETURN
-            </Button>
           </div>
-          {/* </Fade> */}
         </Grid>
       </Grid>
     </div >

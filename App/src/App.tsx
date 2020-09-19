@@ -13,6 +13,7 @@ import Checkout from "./pages/checkout/checkout";
 import Item from "./pages/item/item";
 import { LastLocationProvider } from 'react-router-last-location';
 import ScrollToTop from "./components/tools/scrollToTop";
+import ItemWrapper from "./pages/item/itemWrapper";
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
   bindActionCreators(
@@ -44,7 +45,7 @@ class App extends React.Component<ReturnType<typeof mapStateToProps> & ReturnTyp
               <Route
                 path={["/item:id"]}
                 exact
-                component={Item}
+                component={ItemWrapper}
               />
               <Route
                 path={["/collections"]}
