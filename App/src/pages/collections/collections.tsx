@@ -6,6 +6,7 @@ import { IAppState } from '../../store/reducers';
 import Style from "./css"
 import { WithStyles, withStyles } from "@material-ui/core";
 import image1 from '../../assets/cover.jpg';
+import CollectionList from '../../components/collectionList/collectionList';
 
 interface props extends WithStyles<typeof Style> {
 }

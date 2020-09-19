@@ -7,18 +7,24 @@ import { WithStyles } from "@material-ui/core";
 import Style from "./css"
 import { item, type } from '../../store/types/myType';
 import Item from '../item/item';
+import Collection from '../../components/collection/collection';
 
 interface props extends WithStyles<typeof Style> {
-  type: type | "ALL",
 }
 
-const CollectionList: FunctionComponent<props> = ({ classes, type }) => {
+const CollectionList: FunctionComponent<props> = ({ classes }) => {
   const { commonState } = useSelector((state: IAppState) => state);
 
   return (
     <div className={classes.root}>
       <Grid className={classes.root} container direction="row" alignItems="center" spacing={3}>
-        {Array.from(commonState.items.entries()).map((entry: [number, item]) => { })}
+        {Array.from(commonState.items.entries()).map((entry: [number, item]) => {
+          return (
+            <Grid key={entry[0]} item xs={6} sm={6} md={6} >
+              <Collection />
+            </Grid>
+          )
+        })}
       </Grid>
     </div >
   )

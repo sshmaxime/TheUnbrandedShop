@@ -17,16 +17,23 @@ import { CardMedia, Card } from "@material-ui/core";
 import { item } from '../../store/types/myType';
 
 interface props extends WithStyles<typeof Style> {
-  item: item
 }
 
-const Collection: FunctionComponent<props> = ({ item, classes }) => {
+const Collection: FunctionComponent<props> = ({ classes }) => {
   const { commonState } = useSelector((state: IAppState) => state);
   const dispatch = useDispatch();
 
   return (
     <div className={classes.root}>
-      Hello
+      <Card>
+        <Typography >
+          "Out Of Stock"
+        </Typography>
+        <CardMedia
+          className={classes.img}
+          image="https://ae01.alicdn.com/kf/Hd32a1bb236184b54a254bc1f9751fcc42/MICHELANGELO-dr-le-impression-seau-casquettes-t-pliable-cr-me-solaire-p-cheur-Panama-chapeaux-2020.jpg"
+        />
+      </Card>
     </div>
   )
 }

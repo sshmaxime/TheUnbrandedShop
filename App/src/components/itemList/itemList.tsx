@@ -19,12 +19,13 @@ const ItemList: FunctionComponent<props> = ({ classes, type }) => {
     <div className={classes.root}>
       <Grid className={classes.root} container direction="row" alignItems="center" spacing={3}>
         {Array.from(commonState.items.entries()).map((entry: [number, item]) => {
-          return type === "ALL" || entry[1].type === type ? (<Grid key={entry[0]} item xs={12} sm={6} md={3} >
-            <Item
-              key={entry[1].id}
-              item={entry[1]}
-            />
-          </Grid>
+          return type === "ALL" || entry[1].type === type ? (
+            <Grid key={entry[0]} item xs={12} sm={6} md={3} >
+              <Item
+                key={entry[1].id}
+                item={entry[1]}
+              />
+            </Grid>
           ) : null
         })}
       </Grid>
