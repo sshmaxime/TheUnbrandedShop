@@ -57,21 +57,36 @@ const Item: FunctionComponent<props> = ({ classes, match, history }) => {
   return (
     <div className={classes.root}>
       <Grid container spacing={2}>
-        <Grid item xs={12}>
-          {/* <Fade delay={50}> */}
+        <Grid item xs={7}>
           <div className={classes.item}>
-            <div style={{ boxShadow: "5px 4px 10px grey" }}>
+            <div style={{ borderRadius: "15px", boxShadow: "5px 4px 10px grey" }}>
               <div className={classes.itemImgContainer}>
                 <img className={classes.itemImg} alt={""} src={item.imgUrl} />
               </div>
               <Typography className={classes.itemTitle}>{item.title}</Typography>
             </div>
           </div>
-          {/* </Fade> */}
         </Grid>
 
-        <Grid item xs={12}>
-          {/* <Fade delay={100}> */}
+        <Grid item sm={5}>
+          <div className={classes.item}>
+            <div style={{ borderRadius: "15px", boxShadow: "5px 4px 10px grey" }}>
+              <Grid container className={classes.itemImgContainerSmall}>
+                <Grid item md={4} style={{ padding: "5px" }}>
+                  <img className={classes.itemImgSmall} alt={""} src={"https://ae01.alicdn.com/kf/H8caed1fd158341c6bab76fcfa809b68cd/GONTHWID-Creatvie-Arc-En-Ciel-Licorne-Imprim-Manches-Longues-T-shirts-Harajuku-Hip-Hop-D-contract.jpg"} />
+                </Grid>
+                <Grid item md={4} style={{ padding: "5px" }}>
+                  <img className={classes.itemImgSmall} alt={""} src={"https://ae01.alicdn.com/kf/H0db82f597355424fb1c532255ea2565f0/GONTHWID-Creatvie-Arc-En-Ciel-Licorne-Imprim-Manches-Longues-T-shirts-Harajuku-Hip-Hop-D-contract.jpg"} />
+                </Grid>
+                <Grid item md={4} style={{ padding: "5px" }}>
+                  <img className={classes.itemImgSmall} alt={""} src={"https://ae01.alicdn.com/kf/H100e37c75fd6425bbe9927133c08e4f7W/GONTHWID-Creatvie-Arc-En-Ciel-Licorne-Imprim-Manches-Longues-T-shirts-Harajuku-Hip-Hop-D-contract.jpg"} />
+                </Grid>
+              </Grid>
+            </div>
+          </div>
+        </Grid>
+
+        <Grid item xs={7}>
           <div className={classes.item}>
             <Typography className={classes.informationTitle}>Information:</Typography>
             <div style={{ boxShadow: "5px 4px 10px grey", padding: "10px" }}>
@@ -83,10 +98,10 @@ const Item: FunctionComponent<props> = ({ classes, match, history }) => {
               ))}
             </div>
           </div>
-          {/* </Fade> */}
         </Grid>
+        <Grid item xs={5} />
 
-        <Grid item md={2} xs={6}>
+        <Grid item xs={2}>
           {/* <Fade delay={150}> */}
           <TextField
             required

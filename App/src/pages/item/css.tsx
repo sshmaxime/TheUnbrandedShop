@@ -3,8 +3,8 @@ import { Theme, createStyles } from "@material-ui/core";
 const Style = ({ breakpoints, spacing }: Theme) => createStyles({
   root: {
     margin: "0 auto",
-    paddingLeft: "30vw",
-    paddingRight: "30vw",
+    paddingLeft: "20vw",
+    paddingRight: "20vw",
     marginTop: "20px",
     marginBottom: "20px",
     [breakpoints.down("md")]: {
@@ -18,15 +18,17 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
   },
   item: {
     padding: "10px",
+    borderRadius: "5px",
     border: "5px solid black"
   },
   itemTitle: {
     fontFamily: "fullpack",
+    borderRadius: "10px",
     textAlign: "center",
-    fontSize: "1.5em",
+    fontSize: "1.3em",
     marginTop: "20px",
     padding: "5px",
-    letterSpacing: "10px",
+    letterSpacing: "3px",
     backgroundColor: "black",
     color: "white",
     [breakpoints.down("md")]: {
@@ -37,8 +39,15 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     }
   },
   itemImgContainer: {
+    borderRadius: "5px",
     textAlign: "center",
     backgroundColor: "white",
+    width: "100%"
+  },
+  itemImgContainerSmall: {
+    borderRadius: "5px",
+    textAlign: "center",
+    backgroundColor: "#f5f5f5",
     width: "100%"
   },
   itemImg: {
@@ -46,6 +55,10 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     [breakpoints.down("xs")]: {
       height: "300px"
     }
+  },
+  itemImgSmall: {
+    width: "100%",
+    borderRadius: "5px",
   },
   informationTitle: {
     fontFamily: "blader",
