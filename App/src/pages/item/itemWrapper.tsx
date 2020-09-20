@@ -24,8 +24,7 @@ const ItemWrapper: FunctionComponent<props> = ({ classes, match, history }) => {
 
   const item = commonState.items.get(Number(match.params.id));
   if (!item) return <div>item not found</div>; // TODO
-
-  return <Item item={item} />
+  return <Item item={item} history={history} />
 }
 
 export default withStyles(Style)(ItemWrapper);

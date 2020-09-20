@@ -216,7 +216,7 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
         <div className={classes.totalPrice}>
           <Typography className={classes.cartItemPricePrice}>{totalPrice}</Typography>
           &nbsp;
-          <EuroIcon />
+          <EuroIcon style={{ fontSize: "2em" }} />
         </div>
       </div>
     );
@@ -518,7 +518,6 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
 
         <Box clone order={{ xs: 1, sm: 1, md: 2 }}>
           <Grid item xs={12} md={5}>
-            {/* <Fade delay={400}> */}
             <div className={classes.step}>
               <Typography className={classes.titleStep}>Cart</Typography>
               {commonState.itemsInCart.map((item, index) => (
@@ -532,7 +531,7 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
                         {item.price}
                       </Typography>
                           &nbsp;
-                          <EuroIcon />
+                          <EuroIcon style={{ fontSize: "2em" }} />
                     </div>
                     <div
                       data-index={index}
@@ -548,7 +547,6 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
               ))}
               {getDivPrice()}
             </div>
-            {/* </Fade> */}
           </Grid>
         </Box>
       </Grid>

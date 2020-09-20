@@ -46,7 +46,7 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     },
   },
   Title: {
-    fontSize: "1.5em",
+    fontSize: "1.8em",
     marginTop: "25px",
     marginBottom: "50px",
     fontFamily: "vintv",

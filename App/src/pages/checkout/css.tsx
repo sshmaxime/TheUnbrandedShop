@@ -70,7 +70,7 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     position: "absolute",
     left: 0,
     fontFamily: "fullpack",
-    fontSize: "1.2em",
+    fontSize: "1em",
     textAlign: "left",
     padding: "10px"
   },
@@ -112,8 +112,9 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     padding: 0
   },
   cartItemPricePrice: {
-    fontSize: "1.2em",
+    fontSize: "1.5em",
     fontWeight: 900,
+    paddingTop: "3px",
     letterSpacing: "3px",
     fontFamily: "fullpack"
   },

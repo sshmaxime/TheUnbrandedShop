@@ -89,15 +89,17 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     textAlign: "left",
     fontFamily: "SourceCodePro",
     position: "relative",
-    top: "30px"
+    top: "30px",
+    letterSpacing: "-1px"
   },
   buyButton: {
     backgroundColor: "#f50023",
     color: "white",
     paddingTop: "5px",
     paddingBottom: "5px",
-    paddingRight: "5px",
-    paddingLeft: "5px",
+    letterSpacing: "-0.5px",
+    paddingRight: "10px",
+    paddingLeft: "10px",
     fontSize: "1.3em",
     fontFamily: "monospace",
     transition: "all 0.5s ease-in-out",
@@ -113,20 +115,20 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
   },
   returnButton: {
     marginLeft: "5px",
-    backgroundColor: "black",
-    color: "white",
+    color: "black",
     paddingTop: "5px",
     paddingBottom: "5px",
     paddingRight: "5px",
     paddingLeft: "5px",
     fontSize: "1.3em",
+    letterSpacing: "-0.5px",
     fontFamily: "monospace",
     transition: "all 0.5s ease-in-out",
-    "&:hover": {
-      transform: "scale(1.03)",
-      backgroundColor: "black",
-      boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.5)"
-    }
+  },
+  displayNoneDownMd: {
+    [breakpoints.down("md")]: {
+      display: "none"
+    },
   }
 });
 

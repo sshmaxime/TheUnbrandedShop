@@ -153,7 +153,7 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     fontFamily: "SourceCodePro",
     fontSize: "1.1em",
     textAlign: "left",
-    marginTop: "35px",
+    marginTop: "30px",
     padding: "7px",
     letterSpacing: "-1px",
     [breakpoints.down("xs")]: {
@@ -162,7 +162,7 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
   },
   cartItemPrice: {
     position: "absolute",
-    fontFamily: "fullpack",
+    fontFamily: "SourceCodePro",
     right: 0,
     bottom: 0,
     display: "flex",
@@ -187,6 +187,7 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
   },
   cartItemPricePrice: {
     fontSize: "1em",
+    paddingTop: "5px",
     fontWeight: 900,
     letterSpacing: "3px",
     fontFamily: "fullpack"

@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 import ShoppingBasketLogo from "@material-ui/icons/ShoppingBasket";
 import Style from "./css"
 import EuroIcon from "@material-ui/icons/EuroSymbol";
-import DeleteIcon from "@material-ui/icons/Delete";
+import DeleteIcon from "@material-ui/icons/RemoveShoppingCart";
 import CloseIcon from "@material-ui/icons/CloseOutlined";
 import { cartItem } from '../../store/types/myType';
 import { store } from '../../store';
@@ -108,8 +108,7 @@ const Navbar: FunctionComponent<props> = ({ normalTitle, reducedTitle, classes }
                 <Typography className={classes.cartItemSize}>Size: {item.size}</Typography>
                 <div className={classes.cartItemPrice}>
                   <Typography className={classes.cartItemPricePrice}>{item.price}</Typography>
-                    &nbsp;
-                    <EuroIcon />
+                  <EuroIcon />
                 </div>
                 <div className={classes.cartItemDelete}>
                   <Button style={{ minWidth: 0, padding: 0 }}>
@@ -140,7 +139,7 @@ const Navbar: FunctionComponent<props> = ({ normalTitle, reducedTitle, classes }
         </div>
       </SwipeableDrawer>
 
-    </div>
+    </div >
   )
 }
 
