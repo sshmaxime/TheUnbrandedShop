@@ -20,6 +20,10 @@
   src: url(fonts/BAR.ttf);
 }
 @font-face {
+  font-family: nobar;
+  src: url(fonts/nobartest.ttf);
+}
+@font-face {
   font-family: SourceCodePro;
   src: url(fonts/SourceCodePro-Regular.ttf);
 }

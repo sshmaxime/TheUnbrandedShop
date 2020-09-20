@@ -40,7 +40,7 @@ const Home: FunctionComponent<props> = ({ classes }) => {
 
       <Grid container className={classes.firstContainer}>
         <Grid item xs={12}>
-          <div className={classes.Title}>
+          <div className={classes.TitleSoft}>
             THE UNBRANDED SHOP
           </div>
         </Grid>
@@ -53,7 +53,7 @@ const Home: FunctionComponent<props> = ({ classes }) => {
         <Grid item md={1} />
         <Grid item md={5}>
           <div className={classes.Title}>
-            POLICY
+            ABOUT US
           </div>
           <div className={classes.text}>
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
@@ -64,7 +64,7 @@ const Home: FunctionComponent<props> = ({ classes }) => {
       <Grid container className={classes.container}>
         <Grid item md={5}>
           <div className={classes.Title}>
-            ABOUT US
+            POLICY
           </div>
           <div className={classes.text}>
             Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.

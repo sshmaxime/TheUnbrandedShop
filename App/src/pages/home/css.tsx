@@ -46,10 +46,20 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     },
   },
   Title: {
-    fontSize: "3.5em",
+    fontSize: "1.5em",
     marginTop: "25px",
     marginBottom: "50px",
-    fontFamily: "bar",
+    fontFamily: "vintv",
+    textAlign: "center",
+    margin: "0 auto",
+    [breakpoints.down("md")]: {
+      width: "80%",
+    },
+  },
+  TitleSoft: {
+    fontSize: "3.5em",
+    letterSpacing: "-10px",
+    fontFamily: "nobar",
     textAlign: "center",
     margin: "0 auto",
     [breakpoints.down("md")]: {
