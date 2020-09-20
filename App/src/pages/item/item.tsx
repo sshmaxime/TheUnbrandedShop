@@ -51,11 +51,6 @@ const Item: FunctionComponent<props> = ({ classes, item, history }) => {
     dispatch({ type: "ADD_ITEM", payload: newItem })
   };
 
-  useEffect(() => {
-    storeItem(item)
-
-  }, [])
-
   return (
     <div className={classes.root}>
       <Grid container spacing={2}>

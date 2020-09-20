@@ -15,7 +15,7 @@ import Collapse from "@material-ui/core/Collapse";
 import Divider from "@material-ui/core/Divider";
 import * as EmailValidator from 'email-validator';
 // import { injectStripe } from "react-stripe-elements";
-// import { CardElement } from "react-stripe-elements";
+import { Elements, CardElement } from '@stripe/react-stripe-js';
 // import Fade from "react-reveal/Fade";
 import { WithStyles, withStyles } from "@material-ui/core";
 import { useSelector } from "react-redux";
@@ -63,19 +63,19 @@ const defaultState = (): {
   ok: boolean,
 } => {
   return {
-    firstname: "",
+    firstname: "Maxime",
 
-    lastname: "",
+    lastname: "Aubanel",
 
-    email: "",
+    email: "max@gmail.co",
 
     country: "France",
 
-    city: "",
+    city: "Montpellier",
 
-    postalCode: "",
+    postalCode: "34980",
 
-    address: "",
+    address: "1030 chemin du Mas de L'huile",
     ok: false,
   }
 }
@@ -382,18 +382,36 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
           boxShadow: "5px 4px 10px grey"
         }}
       >
-        {/* <CardElement
+        <CardElement
           onChange={obj => {
             if (obj.complete === true) {
-              displayConfirmation();
+              setDisplayState({
+                ...displayState,
+                displayConfirmation: true
+              })
             } else {
-              hideConfirmation();
+              setDisplayState({
+                ...displayState,
+                displayConfirmation: false
+              })
             }
           }}
-          style={{
-            base: { fontSize: "18px", fontFamily: "Source Code Pro, Monospace" }
+          options={{
+            style: {
+              base: {
+                fontFamily: "Source Code Pro",
+                fontSize: '16px',
+                color: '#424770',
+                '::placeholder': {
+                  color: '#aab7c4',
+                },
+              },
+              invalid: {
+                color: '#9e2146',
+              },
+            },
           }}
-        /> */}
+        />
       </div>
     );
 
@@ -408,7 +426,7 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
   const getStepConfirm = () => {
     const fullname = state.firstname + " " + state.lastname;
 
-    var stepConfirm = !displayState.displayConfirmation ? null : (
+    var stepConfirm = displayState.displayConfirmation ? null : (
       <div
         style={{
           marginTop: "15px",
@@ -440,18 +458,6 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
             marginBottom: "15px"
           }}
         />
-        {commonState.itemsInCart.map((item, index) => (
-          <div key={index} className={classes.itemConfirmation}>
-            1x {item.title} ${item.price}
-          </div>
-        ))}
-        <Divider
-          style={{
-            height: "2px",
-            marginTop: "15px",
-            marginBottom: "15px"
-          }}
-        />
         <Typography className={classes.confirmationPrice}>
           Total: ${getTotalPrice()}
         </Typography>
@@ -461,19 +467,18 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
             fontSize: "1.5em",
             backgroundColor: "black",
             fontFamily: "SourceCodePro",
-            letterSpacing: "10px",
+            letterSpacing: "1px",
             color: "white",
             paddingTop: "0px",
             paddingBottom: "0px",
-            paddingLeft: "30px",
-            paddingRight: "30px"
+            paddingLeft: "10px",
+            paddingRight: "10px"
           }}
-          // className={classes.buttonConfirmation}
           onClick={handleSubmit}
         >
           PAY
         </Button>
-      </div>
+      </div >
     );
     return (
       <div>
@@ -503,10 +508,10 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
             {/* </Fade> */}
 
             {/* <Fade delay={300}> */}
-            <Collapse in={displayState.displayConfirmation} collapsedHeight="80px">
+            <Collapse in={!displayState.displayConfirmation} collapsedHeight="80px">
               <div
                 className={
-                  displayState.displayConfirmation ? classes.step2 : classes.step2Disabled
+                  !displayState.displayConfirmation ? classes.step2 : classes.step2Disabled
                 }
               >
                 {getStepConfirm()}

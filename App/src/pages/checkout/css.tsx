@@ -134,7 +134,7 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
   },
   contentBill: {
     fontFamily: "SourceCodePro",
-    fontSize: "1.2em",
+    fontSize: "1em",
     paddingBottom: "7px",
     lineHeight: "15px",
     [breakpoints.down("sm")]: {
