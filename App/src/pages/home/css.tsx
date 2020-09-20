@@ -41,7 +41,7 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
         msTransform: "translate(-50%, -50%) scale(1.05)",
       },
     },
-    [breakpoints.down("md")]: {
+    [breakpoints.down("xs")]: {
       width: "50%",
     },
   },

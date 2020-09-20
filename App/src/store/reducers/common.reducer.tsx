@@ -56,39 +56,17 @@ const commonState = (
     ),
     itemsInCart: [
       {
-        id: "0",
+        id: "1",
         title: "Extreme",
         imgUrl: "https://ae01.alicdn.com/kf/H3a928f29024e4047864dd64c42b872f4H/HIP-HOP-Streetwear-Patchwork-PUNK-d-contract-chemise-carreaux-hommes-manches-longues-de-haute-qualit-2020.jpg_640x640.jpg",
         size: "M",
         price: "100"
       },
-      {
-        id: "1",
-        title: "Holy Saint",
-        imgUrl: "https://ae01.alicdn.com/kf/H3a928f29024e4047864dd64c42b872f4H/HIP-HOP-Streetwear-Patchwork-PUNK-d-contract-chemise-carreaux-hommes-manches-longues-de-haute-qualit-2020.jpg_640x640.jpg",
-        size: "M",
-        price: "100"
-      },
-      {
-        id: "1",
-        title: "Kami",
-        imgUrl: "https://ae01.alicdn.com/kf/H3a928f29024e4047864dd64c42b872f4H/HIP-HOP-Streetwear-Patchwork-PUNK-d-contract-chemise-carreaux-hommes-manches-longues-de-haute-qualit-2020.jpg_640x640.jpg",
-        size: "M",
-        price: "100"
-      },
-      {
-        id: "1",
-        title: "PurpleRose",
-        imgUrl: "https://ae01.alicdn.com/kf/H3a928f29024e4047864dd64c42b872f4H/HIP-HOP-Streetwear-Patchwork-PUNK-d-contract-chemise-carreaux-hommes-manches-longues-de-haute-qualit-2020.jpg_640x640.jpg",
-        size: "M",
-        price: "100"
-      }
     ]
   },
   action: any
 ): commonState => {
   switch (action.type) {
-    default:
     case "REMOVE_ITEM": {
       state.itemsInCart.splice(action.payload, 1);
       return {
@@ -101,6 +79,7 @@ const commonState = (
         ...state,
       }
     }
+    default:
       return {
         ...state
       };

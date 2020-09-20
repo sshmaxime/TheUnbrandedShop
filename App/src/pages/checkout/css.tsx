@@ -143,14 +143,46 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
   },
   confirmationPrice: {
     fontFamily: "SourceCodePro",
-    fontSize: "1.4em",
+    fontSize: "1.2em",
     fontWeight: 900
   },
   itemConfirmation: {
+    paddingTop: "10px",
     fontFamily: "SourceCodePro",
     fontSize: "1.1em",
     lineHeight: "17px",
     fontWeight: "lighter",
+    [breakpoints.down("sm")]: {
+      fontSize: "0.9em"
+    }
+  },
+  itemConfirmationSize: {
+    paddingTop: "10px",
+    fontFamily: "SourceCodePro",
+    fontSize: "1.1em",
+    lineHeight: "17px",
+    color: "grey",
+    fontWeight: "lighter",
+    [breakpoints.down("sm")]: {
+      fontSize: "0.9em"
+    }
+  },
+  itemConfirmationPrices: {
+    paddingTop: "10px",
+    fontFamily: "SourceCodePro",
+    fontSize: "0.8em",
+    color: "grey",
+    lineHeight: "17px",
+    fontWeight: "lighter",
+    [breakpoints.down("sm")]: {
+      fontSize: "0.75em"
+    }
+  },
+  itemConfirmationPrice: {
+    paddingTop: "10px",
+    fontFamily: "SourceCodePro",
+    fontSize: "1em",
+    lineHeight: "17px",
     [breakpoints.down("sm")]: {
       fontSize: "0.9em"
     }

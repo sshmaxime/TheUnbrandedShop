@@ -8,7 +8,6 @@ import { connect } from "react-redux";
 // import ACTIONS from "../../redux/actions";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
-import { Redirect } from "react-router";
 import { Grid } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Collapse from "@material-ui/core/Collapse";
@@ -81,11 +80,9 @@ const defaultState = (): {
 }
 
 const defaultDisplayState = (): {
-  displayPayment: boolean,
   displayConfirmation: boolean,
 } => {
   return {
-    displayPayment: false,
     displayConfirmation: false,
   }
 }
@@ -170,14 +167,14 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
     if (ok === false) {
       setDisplayState({
         ...displayState,
-        displayPayment: false,
         displayConfirmation: false
       })
       return;
     }
+    console.log("chceck")
     setDisplayState({
       ...displayState,
-      displayPayment: true,
+      displayConfirmation: true
     })
   };
 
@@ -252,7 +249,6 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
             <Grid item xs={6} md={4}>
               <TextField
                 required
-                id="outlined-name"
                 label="Lastname"
                 style={{ width: "100%" }}
                 InputProps={{ style: { fontFamily: "SourceCodePro" } }}
@@ -270,7 +266,6 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
                 style={{ width: "100%" }}
                 InputProps={{ style: { fontFamily: "SourceCodePro" } }}
                 InputLabelProps={{ style: { fontFamily: "SourceCodePro" } }}
-                id="outlined-name"
                 label="Address"
                 value={state.address}
                 onChange={handleChange("address")}
@@ -282,7 +277,6 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
             <Grid item xs={12} md={5}>
               <TextField
                 required
-                id="outlined-name"
                 label="City"
                 style={{ width: "100%" }}
                 InputProps={{ style: { fontFamily: "SourceCodePro" } }}
@@ -297,7 +291,6 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
             <Grid item xs={5} md={4}>
               <TextField
                 required
-                id="standard-select-currency"
                 select
                 style={{ width: "100%" }}
                 InputProps={{ style: { fontFamily: "SourceCodePro" } }}
@@ -319,7 +312,6 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
             <Grid item xs={7} md={3}>
               <TextField
                 required
-                id="outlined-name"
                 style={{ width: "100%" }}
                 InputProps={{ style: { fontFamily: "SourceCodePro" } }}
                 InputLabelProps={{ style: { fontFamily: "SourceCodePro" } }}
@@ -334,7 +326,6 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
             <Grid item xs={12} md={8}>
               <TextField
                 required
-                id="outlined-name"
                 label="Email"
                 style={{ width: "100%" }}
                 InputProps={{ style: { fontFamily: "SourceCodePro" } }}
@@ -371,62 +362,10 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
     //   )
   };
 
-  const getStepPayment = () => {
-    var stepPayment = !displayState.displayPayment ? null : (
-      <div
-        style={{
-          marginTop: "15px",
-          marginBottom: "5px",
-          padding: "20px",
-          borderRadius: "3px",
-          boxShadow: "5px 4px 10px grey"
-        }}
-      >
-        <CardElement
-          onChange={obj => {
-            if (obj.complete === true) {
-              setDisplayState({
-                ...displayState,
-                displayConfirmation: true
-              })
-            } else {
-              setDisplayState({
-                ...displayState,
-                displayConfirmation: false
-              })
-            }
-          }}
-          options={{
-            style: {
-              base: {
-                fontFamily: "Source Code Pro",
-                fontSize: '16px',
-                color: '#424770',
-                '::placeholder': {
-                  color: '#aab7c4',
-                },
-              },
-              invalid: {
-                color: '#9e2146',
-              },
-            },
-          }}
-        />
-      </div>
-    );
-
-    return (
-      <div>
-        <Typography className={classes.titleStep}>Payment</Typography>
-        {stepPayment}
-      </div>
-    );
-  };
-
   const getStepConfirm = () => {
     const fullname = state.firstname + " " + state.lastname;
 
-    var stepConfirm = displayState.displayConfirmation ? null : (
+    var stepConfirm = !displayState.displayConfirmation ? null : (
       <div
         style={{
           marginTop: "15px",
@@ -458,13 +397,59 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
             marginBottom: "15px"
           }}
         />
+        {commonState.itemsInCart.map((item, index) => (
+          <Grid container spacing={2} key={index}>
+            <Grid item xs={4} md={2}>
+              <img src={item.imgUrl} style={{ height: "80px" }} />
+            </Grid>
+
+            <Grid container item xs={8} md={8}>
+              <Grid container item xs={8} md={6}>
+                <Grid item xs={12}>
+                  <div className={classes.itemConfirmation}>
+                    {item.title}
+                  </div>
+                </Grid>
+                <Grid item xs={6}>
+                  <div className={classes.itemConfirmationSize}>
+                    {item.size}
+                  </div>
+                </Grid>
+              </Grid>
+
+              <Grid container item xs={4} md={6}>
+                <Grid item xs={12} md={9}>
+                  <div className={classes.itemConfirmationPrices}>
+                    1 x €{item.price}
+                  </div>
+                </Grid>
+                <Grid item xs={12} md={3} >
+                  <div className={classes.itemConfirmationPrice}>
+                    €{item.price}
+                  </div>
+                </Grid>
+              </Grid>
+
+
+
+            </Grid>
+          </Grid>
+        ))
+        }
+        <Divider
+          style={{
+            height: "2px",
+            marginTop: "15px",
+            marginBottom: "15px"
+          }}
+        />
         <Typography className={classes.confirmationPrice}>
           Total: ${getTotalPrice()}
         </Typography>
         <Button
           style={{
             marginTop: "20px",
-            fontSize: "1.5em",
+            fontSize: "1.2em",
             backgroundColor: "black",
             fontFamily: "SourceCodePro",
             letterSpacing: "1px",
@@ -493,31 +478,17 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
       <Grid container spacing={2}>
         <Box clone order={{ xs: 2, sm: 2, md: 1 }}>
           <Grid item xs={12} md={7}>
-            {/* <Fade delay={100}> */}
             <div className={classes.step}>{getStepShipping()}</div>
-            {/* </Fade> */}
 
-            {/* <Fade delay={200}> */}
-            <Collapse in={displayState.displayPayment} collapsedHeight="80px">
-              <div
-                className={displayState.displayPayment ? classes.step2 : classes.step2Disabled}
-              >
-                {getStepPayment()}
-              </div>
-            </Collapse>
-            {/* </Fade> */}
-
-            {/* <Fade delay={300}> */}
-            <Collapse in={!displayState.displayConfirmation} collapsedHeight="80px">
+            <Collapse in={displayState.displayConfirmation} collapsedHeight="80px">
               <div
                 className={
-                  !displayState.displayConfirmation ? classes.step2 : classes.step2Disabled
+                  displayState.displayConfirmation ? classes.step2 : classes.step2Disabled
                 }
               >
                 {getStepConfirm()}
               </div>
             </Collapse>
-            {/* </Fade> */}
           </Grid>
         </Box>
 

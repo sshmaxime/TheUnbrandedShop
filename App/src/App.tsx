@@ -14,8 +14,8 @@ import Item from "./pages/item/item";
 import { LastLocationProvider } from 'react-router-last-location';
 import ScrollToTop from "./components/tools/scrollToTop";
 import ItemWrapper from "./pages/item/itemWrapper";
-// import { Elements } from '@stripe/react-stripe-js';
-// import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
 
 const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
   bindActionCreators(
@@ -32,7 +32,7 @@ const mapStateToProps = (state: IAppState): IAppState => {
 
 class App extends React.Component<ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>> {
   render() {
-    // const stripePromise = loadStripe('pk_test_JJ1eMdKN0Hp4UFJ6kWXWO4ix00jtXzq5XG');
+    const stripePromise = loadStripe('pk_test_JJ1eMdKN0Hp4UFJ6kWXWO4ix00jtXzq5XG');
     return (
       <div className="App">
         <Router>
@@ -55,19 +55,19 @@ class App extends React.Component<ReturnType<typeof mapStateToProps> & ReturnTyp
                 exact
                 component={Collections}
               />
-              {/* <Elements stripe={stripePromise} options={{
+              <Elements stripe={stripePromise} options={{
                 fonts: [
                   {
                     cssSrc: 'https://fonts.googleapis.com/css?family=Source+Code+Pro'
                   }
                 ]
               }}>
-              <Route
-                path={["/checkout"]}
-                exact
-                component={Checkout}
-              />
-              </Elements> */}
+                <Route
+                  path={["/checkout"]}
+                  exact
+                  component={Checkout}
+                />
+              </Elements>
             </div>
             <Footer />
           </LastLocationProvider>
