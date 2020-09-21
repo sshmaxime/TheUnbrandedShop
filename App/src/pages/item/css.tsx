@@ -126,7 +126,7 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     transition: "all 0.5s ease-in-out",
   },
   displayNoneDownMd: {
-    [breakpoints.down("md")]: {
+    [breakpoints.down("sm")]: {
       display: "none"
     },
   }

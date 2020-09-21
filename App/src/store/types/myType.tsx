@@ -49,6 +49,18 @@ export type size =
   | "XL"
 
 
+export type invoice = {
+  customerName: string,
+  shippingInfo: {
+    country: string,
+    city: string,
+    address: string,
+  },
+  items: {
+    item: any
+  }
+}
+
 export type type =
   "ACCESSORIES"
   | "SHIRTS"

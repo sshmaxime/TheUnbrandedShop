@@ -8,7 +8,7 @@ import { connect } from "react-redux";
 // import ACTIONS from "../../redux/actions";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
-import { Grid } from "@material-ui/core";
+import { CircularProgress, Grid } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
 import Collapse from "@material-ui/core/Collapse";
 import Divider from "@material-ui/core/Divider";
@@ -23,15 +23,18 @@ import { IAppState } from '../../store/reducers';
 import { useStripe } from '@stripe/react-stripe-js';
 import { useParams, RouteComponentProps } from 'react-router-dom';
 import { render } from "@testing-library/react";
+import ContentLoader from "react-content-loader"
+import { invoice } from "../../store/types/myType";
 
 interface props extends WithStyles<typeof Style> {
   session_id: string;
 }
 
 const defaultState = (): {
-
+  invoice: invoice | undefined
 } => {
   return {
+    invoice: undefined
   }
 }
 
@@ -43,22 +46,29 @@ const CheckoutSuccess: FunctionComponent<props> = ({ classes, session_id }) => {
 
   useEffect(() => {
     (async () => {
-      console.log("http://192.168.1.165:8000/session/" + session_id)
       const res = await fetch("http://192.168.1.165:8000/session/" + session_id, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
       })
-      console.log("test1")
-      const js = await res.json()
-      console.log(js)
+      const invoice = await res.json() as invoice
+      console.log(invoice)
+      setState({ ...state, invoice: invoice })
     })()
   }, [])
 
   return (
     <div className={classes.root}>
-    </div>
+      {state.invoice === undefined ?
+        <></>
+        :
+        <div className={classes.invoice}>
+          {state.invoice.customerName}
+        </div>
+      }
+
+    </div >
   )
 
 }

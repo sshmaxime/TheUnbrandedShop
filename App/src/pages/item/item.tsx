@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { IAppState } from '../../store/reducers';
 import Style from "./css"
 import Arrow from "@material-ui/icons/KeyboardBackspace";
-import { WithStyles, withStyles, Grid, Typography, Button } from "@material-ui/core";
+import { WithStyles, withStyles, Grid, Typography, Button, Box } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import { item, size, cartItem } from '../../store/types/myType';
@@ -93,7 +93,10 @@ const Item: FunctionComponent<props> = ({ classes, item, history }) => {
             </div>
           </div>
         </Grid>
-        <Grid item md={5} className={classes.displayNoneDownMd} />
+
+        {/*
+         // @ts-ignore */}
+        <Box component={Grid} item md={5} className={classes.displayNoneDownMd} />
 
         <Grid item xs={4} md={2}>
           <TextField

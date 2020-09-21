@@ -28,12 +28,19 @@ app.get('/session/:session_id', (req, res) => {
     if (!session_id) {
       return res.status(400)
     }
-    const session = await stripe.checkout.sessions.retrieve(session_id, { expand: ["line_items"] })
-    const b = await stripe.paymentIntents.retrieve(session.payment_intent.toString())
-    console.log(session.line_items)
+    const session = await stripe.checkout.sessions.retrieve(session_id, { expand: ["line_items", "shipping"] })
+    const paymentIntent = await stripe.paymentIntents.retrieve(session.payment_intent.toString())
+    console.log(paymentIntent)
     return res.send(JSON.stringify({
-      a: session,
-      b: b
+      customerName: paymentIntent.shipping.name,
+
+      shippingInfo: {
+        country: paymentIntent.shipping.address.country,
+        city: paymentIntent.shipping.address.city,
+        address: paymentIntent.shipping.address.line1,
+      },
+
+      items: session.line_items.data
     }))
   })()
 })

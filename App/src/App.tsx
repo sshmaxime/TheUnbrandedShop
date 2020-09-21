@@ -69,7 +69,8 @@ class App extends React.Component<ReturnType<typeof mapStateToProps> & ReturnTyp
                   component={Checkout}
                 />
                 <Route
-                  path={["/checkout/:type/:session_id", "/:type"]}
+                  path={["/checkout/:type/:session_id", "/checkout/:type"]}
+                  exact
                   component={CheckoutDone}
                 />
               </Elements>

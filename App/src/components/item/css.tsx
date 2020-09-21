@@ -1,4 +1,5 @@
 import { Theme, createStyles } from "@material-ui/core";
+import { Height } from "@material-ui/icons";
 
 const Style = ({ breakpoints, spacing }: Theme) => createStyles({
   root: {
@@ -16,6 +17,7 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
         padding: "10px"
       }
     },
+    height: "100%"
   },
   rootDisabled: {
     textDecoration: "none",
@@ -67,6 +69,12 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
   image: {
     height: "0",
     paddingTop: "100%",
+    backgroundSize: "contain",
+    transition: "all 0.5s ease-in-out"
+  },
+  image1: {
+    height: "0",
+    paddingBottom: "100%",
     backgroundSize: "contain",
     transition: "all 0.5s ease-in-out"
   },
