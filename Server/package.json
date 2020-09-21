@@ -8,7 +8,7 @@
     "@types/stripe": "^7.13.24",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "stripe": "^7.14.0"
+    "stripe": "8.96.0"
   },
   "main": "main.ts",
   "scripts": {

@@ -41,7 +41,7 @@
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-2.0.3.tgz#c893b73721db73699943bfc3653b1deb7faa4a3a"
   integrity sha512-Jus9s4CDbqwocc5pOAnh8ShfrnMcPHuJYzVcSUU7lrh8Ni5HuIqX3oilL86p3dlTrk0LzHRCgA/GQ7uNCw6l2Q==
 
-"@types/node@*", "@types/node@^14.11.1":
+"@types/node@*", "@types/node@>=8.1.0", "@types/node@^14.11.1":
   version "14.11.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.11.1.tgz#56af902ad157e763f9ba63d671c39cda3193c835"
   integrity sha512-oTQgnd0hblfLsJ6BvJzzSL+Inogp3lq9fGgqRkMB/ziKMgEUaFl801OncOzUmalfzt14N0oPHMK47ipl+wbTIw==
@@ -451,11 +451,12 @@ source-map@^0.6.0:
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.5.0.tgz#161c7dac177659fd9811f43771fa99381478628c"
   integrity sha1-Fhx9rBd2Wf2YEfQ3cfqZOBR4Yow=
 
-stripe@^7.14.0:
-  version "7.14.0"
-  resolved "https://registry.yarnpkg.com/stripe/-/stripe-7.14.0.tgz#72e65cad328726ba268321f65604f57a932fc511"
-  integrity sha512-2YSSuJ18jxue0xhW2gZIoz4asC8rITvsNxzh/KuYVKK3dELK6/4M8yoGfSjFcic0D1FtJBB0j6l8Ty26a2L08w==
+stripe@8.96.0:
+  version "8.96.0"
+  resolved "https://registry.yarnpkg.com/stripe/-/stripe-8.96.0.tgz#10c3f91406716dc7fdf1c92d54e1e8a4d205cc3f"
+  integrity sha512-9bfPq7UYt9+q1pLznyrqWKtyeN1OAdsTQ8X6rleZW0fUeT1jpOhQaEVxq0vnbeqncbiJ1i46JvZp0FUNrfKZ4g==
   dependencies:
+    "@types/node" ">=8.1.0"
     qs "^6.6.0"
 
 toidentifier@1.0.0:

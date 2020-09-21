@@ -4,7 +4,7 @@ import * as dotenv from "dotenv";
 import { cartItem, checkoutData } from './types';
 dotenv.config({ path: __dirname + '/.env' });
 
-const stripe = new Stripe(process.env.STRIPE_API_DEV, {
+const stripe = new Stripe.Stripe(process.env.STRIPE_API_DEV, {
   apiVersion: '2020-08-27',
 });
 const url = process.env.BASE_URL_DEV
@@ -28,9 +28,9 @@ app.get('/session/:session_id', (req, res) => {
     if (!session_id) {
       return res.status(400)
     }
-    const session = await stripe.checkout.sessions.retrieve(session_id)
+    const session = await stripe.checkout.sessions.retrieve(session_id, { expand: ["line_items"] })
     const b = await stripe.paymentIntents.retrieve(session.payment_intent.toString())
-    console.log(session.display_items)
+    console.log(session.line_items)
     return res.send(JSON.stringify({
       a: session,
       b: b
@@ -41,11 +41,12 @@ app.get('/session/:session_id', (req, res) => {
 app.post('/', (req, res) => {
   (async () => {
     const checkoutData = req.body as checkoutData
-
-    let checkoutLineItem: Stripe.checkouts.sessions.ICheckoutLineItems[] = []
     console.log(checkoutData)
+
+    let checkoutLineItem: Stripe.Stripe.Checkout.SessionCreateParams.LineItem[] = []
+
     for (let item of checkoutData.items) {
-      const tmpCheckoutLineItem: Stripe.checkouts.sessions.ICheckoutLineItems = {
+      const tmpCheckoutLineItem: Stripe.Stripe.Checkout.SessionCreateParams.LineItem = {
         amount: Number(item.price + "00"),
         currency: "eur",
         name: item.title,
