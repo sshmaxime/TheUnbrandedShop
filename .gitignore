@@ -3,3 +3,4 @@
 **/.env
 Database/var/
 .DS_Store
+.env

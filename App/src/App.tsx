@@ -10,6 +10,7 @@ import Footer from "./components/footer/footer";
 import Home from "./pages/home/home";
 import Collections from "./pages/collections/collections";
 import Checkout from "./pages/checkout/checkout";
+import CheckoutDone from "./pages/checkoutDone/checkoutDone";
 import Item from "./pages/item/item";
 import { LastLocationProvider } from 'react-router-last-location';
 import ScrollToTop from "./components/tools/scrollToTop";
@@ -32,7 +33,7 @@ const mapStateToProps = (state: IAppState): IAppState => {
 
 class App extends React.Component<ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>> {
   render() {
-    const stripePromise = loadStripe('pk_test_JJ1eMdKN0Hp4UFJ6kWXWO4ix00jtXzq5XG');
+    const stripePromise = loadStripe(String(process.env.REACT_APP_STRIPE_API_DEV));
     return (
       <div className="App">
         <Router>
@@ -66,6 +67,10 @@ class App extends React.Component<ReturnType<typeof mapStateToProps> & ReturnTyp
                   path={["/checkout"]}
                   exact
                   component={Checkout}
+                />
+                <Route
+                  path={["/checkout/:type/:session_id", "/:type"]}
+                  component={CheckoutDone}
                 />
               </Elements>
             </div>

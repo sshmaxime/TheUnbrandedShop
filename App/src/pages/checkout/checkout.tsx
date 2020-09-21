@@ -20,6 +20,7 @@ import { WithStyles, withStyles } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { IAppState } from '../../store/reducers';
+import { useStripe } from '@stripe/react-stripe-js';
 
 const countries = [
   {
@@ -115,6 +116,7 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
   const [state, setState] = useState(defaultState());
   const [displayState, setDisplayState] = useState(defaultDisplayState());
   const [errorState, setErrorState] = useState(defaultErrorState());
+  const stripe = useStripe();
 
   const checkReadyToPay = () => {
     var errorFirstname = false;
@@ -343,23 +345,28 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
   };
 
   const handleSubmit = () => {
-    console.log("pay");
-    // ev.preventDefault();
+    if (!stripe) {
+      console.log("error");
+      return
+    }
 
-    // fetch("http://localhost:8000", {
-    //   method: "GET",
-    //   headers: {
-    //     "Content-Type": "text/plain",
-    //   },
-    // }).then(response => response.json())
-    //   .then(jsondata =>
-    //     props.stripe.redirectToCheckout({
-    //       sessionId: jsondata.id
-    //     }).then(function (result) {
-    //       console.log(result)
-    //     })
-    //     // if (response.ok) console.log("Purchase Complete!");
-    //   )
+    fetch("http://192.168.1.165:8000", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        items: commonState.itemsInCart,
+        user: state
+      })
+    }).then(response => response.json())
+      .then(jsondata =>
+        stripe.redirectToCheckout({
+          sessionId: jsondata.id,
+        }).then(function (result: any) {
+          console.log(result)
+        })
+      )
   };
 
   const getStepConfirm = () => {

@@ -173,9 +173,8 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     fontSize: "0.8em",
     color: "grey",
     lineHeight: "17px",
-    fontWeight: "lighter",
     [breakpoints.down("sm")]: {
-      fontSize: "0.75em"
+      fontSize: "0.7em"
     }
   },
   itemConfirmationPrice: {
