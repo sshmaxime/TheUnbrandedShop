@@ -55,10 +55,9 @@ export type invoice = {
     country: string,
     city: string,
     address: string,
+    postalCode: string,
   },
-  items: {
-    item: any
-  }
+  items: any
 }
 
 export type type =

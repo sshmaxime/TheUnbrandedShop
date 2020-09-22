@@ -57,8 +57,8 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     },
   },
   TitleSoft: {
-    fontSize: "3.5em",
-    letterSpacing: "-10px",
+    fontSize: "2em",
+    letterSpacing: "-8px",
     fontFamily: "nobar",
     textAlign: "center",
     margin: "0 auto",

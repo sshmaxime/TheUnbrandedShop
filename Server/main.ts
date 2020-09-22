@@ -1,6 +1,7 @@
 import * as Stripe from 'stripe';
 import * as express from 'express';
 import * as dotenv from "dotenv";
+
 import { cartItem, checkoutData } from './types';
 dotenv.config({ path: __dirname + '/.env' });
 
@@ -30,16 +31,17 @@ app.get('/session/:session_id', (req, res) => {
     }
     const session = await stripe.checkout.sessions.retrieve(session_id, { expand: ["line_items", "shipping"] })
     const paymentIntent = await stripe.paymentIntents.retrieve(session.payment_intent.toString())
+    const c = await stripe.paymentIntents.retrieve(session.payment_intent.toString())
     console.log(paymentIntent)
     return res.send(JSON.stringify({
       customerName: paymentIntent.shipping.name,
 
       shippingInfo: {
+        postalColde: paymentIntent.shipping.address.postal_code,
         country: paymentIntent.shipping.address.country,
         city: paymentIntent.shipping.address.city,
         address: paymentIntent.shipping.address.line1,
       },
-
       items: session.line_items.data
     }))
   })()

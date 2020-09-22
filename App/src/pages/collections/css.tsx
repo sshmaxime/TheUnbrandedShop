@@ -11,9 +11,10 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     }
   },
   title: {
-    fontSize: "5em",
-    letterSpacing: "-10px",
+    fontSize: "2em",
+    letterSpacing: "-8px",
     marginBottom: "25px",
+    marginTop: "10px",
     fontFamily: "nobar",
     textAlign: "center",
     margin: "0 auto",
