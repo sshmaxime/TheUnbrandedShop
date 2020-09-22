@@ -4,13 +4,15 @@ import { Dispatch, AnyAction, bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { commonActions } from "./store/actions/common.actions";
 import { IAppState } from "./store/reducers";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/navbar/navbar";
 import Footer from "./components/footer/footer";
 import Home from "./pages/home/home";
 import Collections from "./pages/collections/collections";
+import CheckoutSuccess from "./pages/checkoutDone/checkoutSuccess";
+import CheckoutCancel from "./pages/checkoutDone/checkoutCancel";
+import Error404 from "./pages/Error404/error404";
 import Checkout from "./pages/checkout/checkout";
-import CheckoutDone from "./pages/checkoutDone/checkoutDone";
 import Item from "./pages/item/item";
 import { LastLocationProvider } from 'react-router-last-location';
 import ScrollToTop from "./components/tools/scrollToTop";
@@ -40,9 +42,9 @@ class App extends React.Component<ReturnType<typeof mapStateToProps> & ReturnTyp
           <ScrollToTop />
           <LastLocationProvider>
             <Navbar normalTitle="The Unbranded Shop" reducedTitle="UNBRDSHP" />
-            <div >
+            <Switch>
               <Route
-                path={["/"]}
+                path={"/"}
                 exact
                 component={Home}
               />
@@ -56,25 +58,26 @@ class App extends React.Component<ReturnType<typeof mapStateToProps> & ReturnTyp
                 exact
                 component={Collections}
               />
-              <Elements stripe={stripePromise} options={{
-                fonts: [
-                  {
-                    cssSrc: 'https://fonts.googleapis.com/css?family=Source+Code+Pro'
-                  }
-                ]
-              }}>
-                <Route
-                  path={["/checkout"]}
-                  exact
-                  component={Checkout}
-                />
-                <Route
-                  path={["/checkout/:type/:session_id", "/checkout/:type"]}
-                  exact
-                  component={CheckoutDone}
-                />
-              </Elements>
-            </div>
+
+              <Route
+                path="/checkout"
+                render={({ match: { url } }) => (
+                  <Elements stripe={stripePromise} options={{
+                    fonts: [
+                      {
+                        cssSrc: 'https://fonts.googleapis.com/css?family=Source+Code+Pro'
+                      }
+                    ]
+                  }}>
+                    <Route path={`${url}/`} component={Checkout} exact />
+                    <Route path={`${url}/success/:session_id`} component={CheckoutSuccess} />
+                    <Route path={`${url}/cancel`} component={CheckoutCancel} />
+                  </Elements>
+                )}
+              />
+
+              <Route component={Error404} />
+            </Switch>
             <Footer />
           </LastLocationProvider>
         </Router>

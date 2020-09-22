@@ -1,65 +1,52 @@
 import React, { FunctionComponent, useState, useEffect } from "react";
 import Style from "./css";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
 import EuroIcon from "@material-ui/icons/EuroSymbol";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { connect } from "react-redux";
 // import ACTIONS from "../../redux/actions";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
-import { Grid } from "@material-ui/core";
-import Box from "@material-ui/core/Box";
+import { CircularProgress, Card } from "@material-ui/core";
 import Collapse from "@material-ui/core/Collapse";
 import Divider from "@material-ui/core/Divider";
 import * as EmailValidator from 'email-validator';
 // import { injectStripe } from "react-stripe-elements";
 import { Elements, CardElement } from '@stripe/react-stripe-js';
 // import Fade from "react-reveal/Fade";
-import { WithStyles, withStyles } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { IAppState } from '../../store/reducers';
 import { useStripe } from '@stripe/react-stripe-js';
 import { useParams, RouteComponentProps } from 'react-router-dom';
-import CheckoutSuccess from "./checkoutSuccess";
+import { render } from "@testing-library/react";
+import ContentLoader from "react-content-loader"
+import { invoice } from "../../store/types/myType";
+import Arrow from "@material-ui/icons/KeyboardBackspace";
+import { WithStyles, withStyles, Grid, Typography, Button, Box } from "@material-ui/core";
 
-interface MatchParams {
-  session_id: string;
-  type: string;
-}
-
-interface props extends WithStyles<typeof Style>, RouteComponentProps<MatchParams> {
+interface props extends WithStyles<typeof Style> {
+  history: any;
 }
 
 const defaultState = (): {
-
 } => {
   return {
   }
 }
 
-const CheckoutDone: FunctionComponent<props> = ({ classes, match }) => {
-  const { commonState } = useSelector((state: IAppState) => state);
-  const dispatch = useDispatch();
-  const [state, setState] = useState(defaultState());
-  const stripe = useStripe();
-
-  if (match.params.type === "cancel") {
-    return (
-      <div className={classes.root}>
-        Cancelled
-      </div>
-    )
-  } else if (match.params.type === "success") {
-    return (
-      <CheckoutSuccess session_id={match.params.session_id} />
-    )
-  } else return (
+const Error404: FunctionComponent<props> = ({ classes, history }) => {
+  return (
     <div className={classes.root}>
-      Not Found
-    </div>
+      <Card className={classes.invoice}>
+        <Typography className={classes.hello}>404 Not Found</Typography>
+
+        <div className={classes.thanku}>
+          It seems like you are at the wrong place.
+        </div>
+      </Card>
+    </div >
   )
+
 }
 
-export default withStyles(Style)(CheckoutDone);
+export default withStyles(Style)(Error404);

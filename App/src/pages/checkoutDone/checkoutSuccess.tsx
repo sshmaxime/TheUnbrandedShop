@@ -76,12 +76,14 @@ const CheckoutSuccess: FunctionComponent<props> = ({ classes, session_id }) => {
           <Typography className={classes.hello}>THANK YOU !</Typography>
 
           <div className={classes.thanku}>
-            Your payment has been accepted. You will receive an order comfirmation email shortly.
+            Your payment has been accepted. You will receive an order confirmation email shortly.
           </div>
 
-          <div className={classes.thanku}>
-            Thank you very much for trusting<br /><span style={{ fontFamily: "nobar", letterSpacing: "-3px" }}>The Unbranded Shop</span>.
+          <div className={classes.thanku2}>
+            Thank you very much for trusting us.
           </div>
+
+          <div style={{ fontFamily: "nobar", letterSpacing: "-3px", textAlign: "center", marginBottom: "30px" }} > The Unbranded Shop</div>
 
           <div className={classes.detailOrder}>
             <div

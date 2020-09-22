@@ -29,14 +29,22 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
   },
   thanku: {
     fontFamily: "SourceCodePro",
-    paddingLeft: "20%",
+    paddingLeft: "10%",
     textAlign: "center",
-    paddingRight: "20%",
+    paddingRight: "10%",
+    fontSize: "1em",
+    marginBottom: "20px",
+  },
+  thanku2: {
+    fontFamily: "SourceCodePro",
+    paddingLeft: "10%",
+    marginBottom: "30px",
+    textAlign: "center",
+    paddingRight: "10%",
     fontSize: "1em",
   },
   invoice: {
     margin: "0 auto",
-    width: "100%",
     padding: "20px",
   },
   detailOrder: {
@@ -216,8 +224,20 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     [breakpoints.down("sm")]: {
       fontSize: "0.9em"
     }
-  }
-
+  },
+  returnButton: {
+    marginLeft: "5px",
+    color: "black",
+    paddingTop: "50px",
+    paddingBottom: "5px",
+    paddingRight: "5px",
+    paddingLeft: "5px",
+    float: "right",
+    fontSize: "1.3em",
+    letterSpacing: "-0.5px",
+    fontFamily: "monospace",
+    transition: "all 0.5s ease-in-out",
+  },
 });
 
 export default Style;

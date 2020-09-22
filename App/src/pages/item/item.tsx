@@ -32,7 +32,6 @@ const Item: FunctionComponent<props> = ({ classes, item, history }) => {
   const { commonState } = useSelector((state: IAppState) => state);
   const dispatch = useDispatch();
   const lastLocation = useLastLocation();
-
   const handleChange = (event: any) => {
     setState({
       ...state,
