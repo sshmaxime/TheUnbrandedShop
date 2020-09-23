@@ -1,13 +1,13 @@
 import * as Nano from "nano"
-import { checkoutSession, item } from "./types";
+import { cartCheckoutItem, cartItem, checkoutData, checkoutDataRequest, checkoutSession, item } from "./types";
 
 export class database {
   ready: Promise<any>
 
-  db: Nano.ServerScope
+  private db: Nano.ServerScope
 
-  itemDocument: Nano.DocumentScope<item>
-  checkoutSessionDocument: Nano.DocumentScope<checkoutSession>
+  private itemDocument: Nano.DocumentScope<item>
+  private checkoutSessionDocument: Nano.DocumentScope<checkoutSession>
 
 
 
@@ -29,10 +29,43 @@ export class database {
   }
 
   storeCheckoutSession = async (checkoutSession: checkoutSession) => {
-    return this.checkoutSessionDocument.insert(checkoutSession);
+    return await this.checkoutSessionDocument.insert(checkoutSession);
   }
 
   retrieveCheckoutSession = async (checkoutSessionId: string) => {
-    return this.checkoutSessionDocument.get(checkoutSessionId);
+    return await this.checkoutSessionDocument.get(checkoutSessionId);
+  }
+
+  createCheckoutData = async (checkoutDataRequest: checkoutDataRequest): Promise<checkoutData> => {
+    return new Promise<checkoutData>(async (resolve, reject) => {
+      const items: cartCheckoutItem[] = []
+      for (let item of checkoutDataRequest.items) {
+        const resp = await this.itemDocument.get(item.id);
+
+        const model = resp.models.get(item.model);
+
+        const tmpItem: cartCheckoutItem = {
+          id: item.id,
+          quantity: item.quantity,
+
+          name: resp.name,
+          description: resp.description,
+
+          price: model.price,
+          imgUrl: model.imgUrl[0],
+          model: model.name,
+          size: item.size
+        }
+        items.push(tmpItem);
+      }
+
+      const checkoutData: checkoutData = {
+        customer: checkoutDataRequest.customer,
+        shipping: checkoutDataRequest.shipping,
+        items: items
+      }
+
+      return resolve(checkoutData);
+    })
   }
 }

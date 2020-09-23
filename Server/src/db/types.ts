@@ -8,30 +8,47 @@ export type checkoutSession = {
 
   customer: customer,
   shipping: shipping,
-  cart: {
-    totalPrice: number,
-    items: cartItem[]
-  }
+  cartItems: cartItem[]
 }
 
 export type cartItem = {
   id: string,
+  model: string,
+
+  size: size,
+  quantity: number,
+}
+
+export type cartCheckoutItem = {
+  id: string,
+  model: string,
+  size: size,
+  quantity: number,
 
   name: string,
-  price: number,
   imgUrl: string,
+  price: number,
   description: string,
-  quantity: number,
 }
 
 export type item = {
   id: string,
 
   name: string,
+  description: string,
+
+  models: Map<string, model>
+}
+
+export type model = {
+  name: string,
+
   price: number,
   imgUrl: string[],
-  description: string,
+  sizes: sizes
 }
+
+export type sizes = Map<size, number> // number of items by size
 
 export type shipping = {
   country: string,
@@ -45,3 +62,21 @@ export type customer = {
   lastname: string,
   email: string
 }
+
+export type checkoutDataRequest = {
+  shipping: shipping,
+  customer: customer,
+  items: cartItem[]
+}
+
+export type checkoutData = {
+  shipping: shipping,
+  customer: customer,
+  items: cartCheckoutItem[]
+}
+
+export type size = "XS"
+  | "S"
+  | "M"
+  | "L"
+  | "XL"

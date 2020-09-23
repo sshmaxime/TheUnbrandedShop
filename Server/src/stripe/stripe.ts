@@ -1,6 +1,7 @@
 import * as Stripe from 'stripe';
 import config from '../config';
-import { checkoutData, sessionInfo } from './types';
+import { cartCheckoutItem, checkoutData } from '../db/types';
+import { sessionInfo } from './types';
 
 export class stripe {
   stripe: Stripe.Stripe
@@ -23,13 +24,13 @@ export class stripe {
     })
   }
 
-  createSession = async (checkoutData: checkoutData) => {
+  createCheckoutSession = async (checkoutData: checkoutData) => {
     const line_items: Stripe.Stripe.Checkout.SessionCreateParams.LineItem[] = []
 
     for (let item of checkoutData.items) {
       const tmp: Stripe.Stripe.Checkout.SessionCreateParams.LineItem = {
-        amount: Number(item.price + "00"),
-        currency: "eur",
+        amount: Number(item.price + "00"), // Adding 00 is needed for Stripe
+        currency: "eur",  // Hardcode every price is in euro
         name: item.name,
         images: [item.imgUrl],
         description: item.description,

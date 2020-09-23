@@ -6,9 +6,5 @@ export type sessionInfo = {
   paymentIntent: Stripe.Stripe.Response<Stripe.Stripe.PaymentIntent>
 }
 
-export type checkoutData = {
-  shipping: shipping,
-  customer: customer,
-  items: cartItem[]
-}
+
 
