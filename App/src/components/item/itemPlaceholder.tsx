@@ -1,20 +1,8 @@
 import React, { FunctionComponent, useState } from 'react'
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { IAppState } from '../../store/reducers';
 
-import {
-  AppBar,
-  Toolbar,
-  Typography,
-  IconButton,
-  Button,
-  SwipeableDrawer, withStyles, WithStyles
-} from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { withStyles, WithStyles } from "@material-ui/core";
 import Style from "./css"
-import { CardMedia, Card } from "@material-ui/core";
-import { item } from '../../store/types/myType';
+import { Card } from "@material-ui/core";
 import ContentLoader from "react-content-loader"
 
 interface props extends WithStyles<typeof Style> {

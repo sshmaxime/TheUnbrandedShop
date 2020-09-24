@@ -24,26 +24,17 @@ import { useStripe } from '@stripe/react-stripe-js';
 import { useParams, RouteComponentProps } from 'react-router-dom';
 import { render } from "@testing-library/react";
 import ContentLoader from "react-content-loader"
-import { invoice } from "../../store/types/myType";
+import { checkoutInfo } from "../../store/types/checkout";
 
 interface props extends WithStyles<typeof Style> {
   session_id: string;
 }
 
 const defaultState = (): {
-  invoice: invoice | undefined
+  checkoutInfo: checkoutInfo | undefined
 } => {
   return {
-    invoice: {
-      customerName: "Maxime Aubanel",
-      shippingInfo: {
-        address: "1000300 dede dede",
-        country: "France",
-        city: "Vice  City",
-        postalCode: "34000"
-      },
-      items: ""
-    },
+    checkoutInfo: undefined
   }
 }
 
@@ -69,7 +60,7 @@ const CheckoutSuccess: FunctionComponent<props> = ({ classes, session_id }) => {
 
   return (
     <div className={classes.root}>
-      {state.invoice === undefined ?
+      {state.checkoutInfo === undefined ?
         <></>
         :
         <Card className={classes.invoice}>
@@ -96,7 +87,7 @@ const CheckoutSuccess: FunctionComponent<props> = ({ classes, session_id }) => {
               }}
             >
               <div>
-                <Typography className={classes.contentBill}>{state.invoice.customerName}</Typography>
+                <Typography className={classes.contentBill}>{state.checkoutInfo.customer.firstname}</Typography>
                 <Divider
                   style={{
                     marginBottom: "20px",
@@ -104,11 +95,11 @@ const CheckoutSuccess: FunctionComponent<props> = ({ classes, session_id }) => {
                     backgroundColor: "black"
                   }}
                 />
-                <Typography className={classes.contentBill}>{state.invoice.shippingInfo.address}</Typography>
+                <Typography className={classes.contentBill}>{state.checkoutInfo.shipping.address}</Typography>
                 <Typography className={classes.contentBill}>
-                  {state.invoice.shippingInfo.city}, {state.invoice.shippingInfo.postalCode}
+                  {state.checkoutInfo.shipping.city}, {state.checkoutInfo.shipping.postalCode}
                 </Typography>
-                <Typography className={classes.contentBill}>{state.invoice.shippingInfo.country} </Typography>
+                <Typography className={classes.contentBill}>{state.checkoutInfo.shipping.country} </Typography>
               </div>
               <Divider
                 style={{
@@ -120,14 +111,14 @@ const CheckoutSuccess: FunctionComponent<props> = ({ classes, session_id }) => {
               {commonState.itemsInCart.map((item, index) => (
                 <Grid container spacing={2} key={index}>
                   <Grid item xs={4} md={2}>
-                    <img src={item.imgUrl} style={{ height: "80px" }} />
+                    <img src={item.model.imgUrl[0]} style={{ height: "80px" }} />
                   </Grid>
 
                   <Grid container item xs={8} md={8}>
                     <Grid container item xs={8} md={6}>
                       <Grid item xs={12}>
                         <div className={classes.itemConfirmation}>
-                          {item.title}
+                          {item.id}
                         </div>
                       </Grid>
                       <Grid item xs={6}>
@@ -140,12 +131,12 @@ const CheckoutSuccess: FunctionComponent<props> = ({ classes, session_id }) => {
                     <Grid container item xs={4} md={6}>
                       <Grid item xs={12} md={9}>
                         <div className={classes.itemConfirmationPrices}>
-                          1 x €{item.price}
+                          1 x €{item.model.price}
                         </div>
                       </Grid>
                       <Grid item xs={12} md={3} >
                         <div className={classes.itemConfirmationPrice}>
-                          €{item.price}
+                          €{item.model.price}
                         </div>
                       </Grid>
                     </Grid>

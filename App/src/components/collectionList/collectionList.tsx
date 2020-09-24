@@ -5,8 +5,7 @@ import { withStyles, Grid } from "@material-ui/core";
 
 import { WithStyles } from "@material-ui/core";
 import Style from "./css"
-import { item, type } from '../../store/types/myType';
-import Item from '../item/item';
+import { item } from '../../store/types/items';
 import Collection from '../../components/collection/collection';
 
 interface props extends WithStyles<typeof Style> {

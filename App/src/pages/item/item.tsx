@@ -7,7 +7,7 @@ import Arrow from "@material-ui/icons/KeyboardBackspace";
 import { WithStyles, withStyles, Grid, Typography, Button, Box } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
-import { item, size, cartItem } from '../../store/types/myType';
+import { item, size, cartItem, sizeType, model } from '../../store/types/items';
 import { useParams, RouteComponentProps } from 'react-router-dom';
 import { useLastLocation } from 'react-router-last-location';
 import AddShoppingCart from "@material-ui/icons/AddShoppingCart";
@@ -18,12 +18,14 @@ interface props extends WithStyles<typeof Style> {
 }
 
 const defaultState = (item: item): {
-  currentSize: size,
-  currentImg: string
+  currentSize: sizeType,
+  currentModel: model,
+  quantity: number
 } => {
   return {
     currentSize: "M",
-    currentImg: item.imgUrl[0]
+    currentModel: item.models[0],
+    quantity: 1
   }
 }
 
@@ -42,10 +44,9 @@ const Item: FunctionComponent<props> = ({ classes, item, history }) => {
   const storeItem = (item: item) => {
     const newItem: cartItem = {
       id: item.id,
-      title: item.title,
-      imgUrl: item.imgUrl[0],
+      model: state.currentModel,
       size: state.currentSize,
-      price: item.price
+      quantity: state.quantity
     }
     dispatch({ type: "ADD_ITEM", payload: newItem })
   };
@@ -58,9 +59,9 @@ const Item: FunctionComponent<props> = ({ classes, item, history }) => {
           <div className={classes.item}>
             <div style={{ borderRadius: "15px", boxShadow: "5px 4px 10px grey" }}>
               <div className={classes.itemImgContainer}>
-                <img className={classes.itemImg} alt={""} src={state.currentImg} />
+                <img className={classes.itemImg} alt={""} src={state.currentModel.imgUrl[0]} />
               </div>
-              <Typography className={classes.itemTitle}>{item.title}</Typography>
+              <Typography className={classes.itemTitle}>{item.id}</Typography>
             </div>
           </div>
         </Grid>
@@ -69,9 +70,9 @@ const Item: FunctionComponent<props> = ({ classes, item, history }) => {
           <div className={classes.item}>
             <div style={{ borderRadius: "15px", boxShadow: "5px 4px 10px grey" }}>
               <Grid container className={classes.itemImgContainerSmall}>
-                {item.imgUrl.map((imgUrl: string, index: number) => (
-                  <Grid onClick={() => { setState({ ...state, currentImg: imgUrl }) }} key={imgUrl} item xs={4} style={{ padding: "5px" }}>
-                    <img className={classes.itemImgSmall} alt={""} src={imgUrl} />
+                {item.models.map((model: model, index: number) => (
+                  <Grid onClick={() => { setState({ ...state, currentModel: model }) }} key={model.imgUrl[0]} item xs={4} style={{ padding: "5px" }}>
+                    <img className={classes.itemImgSmall} alt={""} src={model.imgUrl[0]} />
                   </Grid>
                 ))}
               </Grid>
@@ -85,8 +86,8 @@ const Item: FunctionComponent<props> = ({ classes, item, history }) => {
             <div style={{ boxShadow: "5px 4px 10px grey", padding: "10px" }}>
               {Array.from(item.info.entries()).map((info, index) => (
                 <div key={index}>
-                  <span className={classes.informationDataTitle}>{info[0] + ": "}</span>
-                  <span className={classes.informationDataContent}>{info[1]}</span>
+                  <span className={classes.informationDataTitle}>{info[1][0] + ": "}</span>
+                  <span className={classes.informationDataContent}>{info[1][1]}</span>
                 </div>
               ))}
             </div>
@@ -113,18 +114,20 @@ const Item: FunctionComponent<props> = ({ classes, item, history }) => {
             variant="outlined"
           >
             {
-              Array.from(item.size.entries()).map((entry: [size, number]) => (
-                < MenuItem key={entry[0]} value={entry[0]} >
-                  { entry[0]}
-                </MenuItem>
-              ))
+              Object.keys(state.currentModel.sizes).map((key: string, value: number) => {
+                return (
+                  <MenuItem key={key} value={key} >
+                    {key}
+                  </MenuItem>
+                )
+              })
             }
           </TextField>
         </Grid>
 
         <Grid item xs={8} md={6}>
           <Typography className={classes.numberItemLeft}>
-            {item.getNbItemForSize(state.currentSize)} item(s) left
+            {state.currentModel.sizes[state.currentSize]} item(s) left
           </Typography>
         </Grid>
 
@@ -132,7 +135,7 @@ const Item: FunctionComponent<props> = ({ classes, item, history }) => {
           <div>
             <Button
               className={classes.buyButton}
-              disabled={item.getNbItemForSize(state.currentSize) > 0 ? false : true}
+              disabled={Number(state.currentModel.sizes[state.currentSize]) > 0 ? false : true}
               onClick={() => { storeItem(item) }}
             >
               <AddShoppingCart style={{ fontSize: "1.2em" }} />
@@ -145,7 +148,6 @@ const Item: FunctionComponent<props> = ({ classes, item, history }) => {
 
             <Button
               className={classes.returnButton}
-              disabled={item.getNbItemForSize(state.currentSize) > 0 ? false : true}
               onClick={() => { history.push("/collections") }}
             >
               <div style={{

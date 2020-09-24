@@ -49,7 +49,7 @@ class App extends React.Component<ReturnType<typeof mapStateToProps> & ReturnTyp
                 component={Home}
               />
               <Route
-                path={["/item:id"]}
+                path={["/item/:id"]}
                 exact
                 component={ItemWrapper}
               />

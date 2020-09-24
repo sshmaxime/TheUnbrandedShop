@@ -14,7 +14,8 @@
     "rethinkdb-ts": "^2.4.5",
     "rxdb": "^9.6.0",
     "rxjs": "^6.6.3",
-    "stripe": "8.96.0"
+    "stripe": "8.96.0",
+    "typescript-map": "^0.0.7"
   },
   "main": "main.ts",
   "scripts": {

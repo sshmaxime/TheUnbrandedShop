@@ -1,6 +1,6 @@
 import * as Stripe from 'stripe';
 import config from '../config';
-import { cartCheckoutItem, checkoutData } from '../db/types';
+import { checkoutData } from '../types/checkout';
 import { sessionInfo } from './types';
 
 export class stripe {
@@ -31,7 +31,7 @@ export class stripe {
       const tmp: Stripe.Stripe.Checkout.SessionCreateParams.LineItem = {
         amount: Number(item.price + "00"), // Adding 00 is needed for Stripe
         currency: "eur",  // Hardcode every price is in euro
-        name: item.name,
+        name: item.id,
         images: [item.imgUrl],
         description: item.description,
         quantity: item.quantity

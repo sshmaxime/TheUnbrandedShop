@@ -1,8 +1,7 @@
 import * as express from 'express';
 import { database } from '../db/db';
-import { checkoutSession } from '../db/types';
 import { stripe } from '../stripe/stripe';
-import { checkoutData, checkoutDataRequest } from './../db/types';
+import { checkoutSession, checkoutDataRequest } from './../types/checkout';
 
 export class server {
   private db: database;
@@ -31,6 +30,7 @@ export class server {
   }
 
   private initRoutes = () => {
+
     this.app.get("/session/:session_id", (req, res) => {
       (async () => {
         const session_id = req.params.session_id;
@@ -41,7 +41,7 @@ export class server {
 
         try {
           const checkoutSession = await this.db.retrieveCheckoutSession(session_id);
-          res.send(checkoutSession);
+          res.send(checkoutSession.checkoutInfo);
         } catch (err) {
           console.log(err);
         }
@@ -65,10 +65,12 @@ export class server {
               paymentIntentId: stripeCheckoutSession.payment_intent.toString(),
             },
 
-            customer: checkoutData.customer,
-            shipping: checkoutData.shipping,
+            checkoutInfo: {
+              customer: checkoutData.customer,
+              shipping: checkoutData.shipping,
 
-            cartItems: checkoutData.items
+              cartItems: checkoutData.items
+            }
           };
 
           await this.db.storeCheckoutSession(dbCheckoutSession);
@@ -77,6 +79,18 @@ export class server {
           console.log(err);
           res.status(500);
         }
+      })();
+    })
+
+    this.app.get('/items', ({ body }, res) => {
+      (async () => {
+        res.send(await this.db.getAllItems())
+      })();
+    })
+
+    this.app.get('/item/:id', (req, res) => {
+      (async () => {
+        res.send(await this.db.getItem(req.params.id))
       })();
     })
   }

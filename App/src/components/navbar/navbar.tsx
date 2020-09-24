@@ -17,7 +17,7 @@ import Style from "./css"
 import EuroIcon from "@material-ui/icons/EuroSymbol";
 import DeleteIcon from "@material-ui/icons/RemoveShoppingCart";
 import CloseIcon from "@material-ui/icons/CloseOutlined";
-import { cartItem } from '../../store/types/myType';
+import { cartItem } from '../../store/types/items';
 import { store } from '../../store';
 
 interface props extends WithStyles<typeof Style> {
@@ -102,12 +102,12 @@ const Navbar: FunctionComponent<props> = ({ normalTitle, reducedTitle, classes }
           <div className={classes.cartTitle}>CART</div>
           {commonState.itemsInCart.map((item, index) => (
             <div key={index} className={classes.cartItem}>
-              <img className={classes.cartItemImg} alt="" src={item.imgUrl} />
+              <img className={classes.cartItemImg} alt="" src={item.model.imgUrl[0]} />
               <div className={classes.cartItemContent}>
-                <Typography className={classes.cartItemTitle}>{item.title}</Typography>
+                <Typography className={classes.cartItemTitle}>{item.id}</Typography>
                 <Typography className={classes.cartItemSize}>Size: {item.size}</Typography>
                 <div className={classes.cartItemPrice}>
-                  <Typography className={classes.cartItemPricePrice}>{item.price}</Typography>
+                  <Typography className={classes.cartItemPricePrice}>{item.model.price}</Typography>
                   <EuroIcon />
                 </div>
                 <div className={classes.cartItemDelete}>

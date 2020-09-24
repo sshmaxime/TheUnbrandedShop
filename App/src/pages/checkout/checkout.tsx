@@ -183,7 +183,7 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
   const getTotalPrice = () => {
     var totalPrice = 0.0;
     for (var i = 0; i < commonState.itemsInCart.length; i++) {
-      totalPrice += Number(commonState.itemsInCart[i].price);
+      totalPrice += Number(commonState.itemsInCart[i].model.price);
     }
     return totalPrice;
   };
@@ -208,7 +208,7 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
   const getDivPrice = () => {
     var totalPrice = 0.0;
     for (var i = 0; i < commonState.itemsInCart.length; i++) {
-      totalPrice += Number(commonState.itemsInCart[i].price);
+      totalPrice += Number(commonState.itemsInCart[i].model.price);
     }
     return (
       <div>
@@ -407,14 +407,14 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
         {commonState.itemsInCart.map((item, index) => (
           <Grid container spacing={2} key={index}>
             <Grid item xs={4} md={2}>
-              <img src={item.imgUrl} style={{ height: "80px" }} />
+              <img src={item.model.imgUrl[0]} style={{ height: "80px" }} />
             </Grid>
 
             <Grid container item xs={8} md={8}>
               <Grid container item xs={8} md={6}>
                 <Grid item xs={12}>
                   <div className={classes.itemConfirmation}>
-                    {item.title}
+                    {item.id}
                   </div>
                 </Grid>
                 <Grid item xs={6}>
@@ -427,12 +427,12 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
               <Grid container item xs={4} md={6}>
                 <Grid item xs={12} md={9}>
                   <div className={classes.itemConfirmationPrices}>
-                    1 x €{item.price}
+                    1 x €{item.model.price}
                   </div>
                 </Grid>
                 <Grid item xs={12} md={3} >
                   <div className={classes.itemConfirmationPrice}>
-                    €{item.price}
+                    €{item.model.price}
                   </div>
                 </Grid>
               </Grid>
@@ -505,13 +505,13 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
               <Typography className={classes.titleStep}>Cart</Typography>
               {commonState.itemsInCart.map((item, index) => (
                 <div key={index} className={classes.cartItem}>
-                  <img className={classes.cartItemImg} alt="" src={item.imgUrl} />
+                  <img className={classes.cartItemImg} alt="" src={item.model.imgUrl[0]} />
                   <div className={classes.cartItemContent}>
-                    <Typography className={classes.cartItemTitle}>{item.title}</Typography>
+                    <Typography className={classes.cartItemTitle}>{item.id}</Typography>
                     <Typography className={classes.cartItemSize}>Size: {item.size}</Typography>
                     <div className={classes.cartItemPrice}>
                       <Typography className={classes.cartItemPricePrice}>
-                        {item.price}
+                        {item.model.price}
                       </Typography>
                           &nbsp;
                           <EuroIcon style={{ fontSize: "2em" }} />

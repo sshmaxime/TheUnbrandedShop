@@ -2818,6 +2818,11 @@ type-is@~1.6.17, type-is@~1.6.18:
     media-typer "0.3.0"
     mime-types "~2.1.24"
 
+typescript-map@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/typescript-map/-/typescript-map-0.0.7.tgz#69d1937af203d1c9a32fc20ee3d8813e8f1a745f"
+  integrity sha512-qLGAeshAnryHN1ycLS4nk+7195MYXbrCzI62bXl8TEqigD5otgHUGIdWsdn5MsbAX3ba5ZtkKEAM0LgaVUAdnQ==
+
 typescript@^4.0.3:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.0.3.tgz#153bbd468ef07725c1df9c77e8b453f8d36abba5"

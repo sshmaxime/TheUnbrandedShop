@@ -5,7 +5,7 @@ import { withStyles, Grid } from "@material-ui/core";
 
 import { WithStyles } from "@material-ui/core";
 import Style from "./css"
-import { item, type } from '../../store/types/myType';
+import { item, type } from '../../store/types/items';
 import Item from '../item/item';
 import ContentLoader from "react-content-loader"
 import ItemPlaceholder from '../item/itemPlaceholder';
