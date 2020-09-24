@@ -84,6 +84,7 @@ export class server {
 
     this.app.get('/items', ({ body }, res) => {
       (async () => {
+
         res.send(await this.db.getAllItems())
       })();
     })

@@ -36,8 +36,8 @@ const Item: FunctionComponent<props> = ({ item, classes }) => {
   }
 
   return (
-    <div className={classes.root}>
-      <Link to={isAvailable ? "/item/" + item.id : ""}>
+    <div className={isAvailable ? classes.root : classes.rootDisabled}>
+      <Link to={isAvailable ? "/item/" + item.id : "#"}>
         <Card
           className={isAvailable ? classes.root : classes.rootDisabled}
           meta-index={item.id}

@@ -53,7 +53,6 @@ export class database {
                     "M": 0
                   }
                 }
-
               ]
             });
           } catch (err) { reject(err); }

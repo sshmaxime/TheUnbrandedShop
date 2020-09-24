@@ -6,6 +6,7 @@ import { IAppState } from '../../store/reducers';
 import Style from "./css"
 import { WithStyles, withStyles } from "@material-ui/core";
 import { item } from '../../store/types/items';
+import ItemListPlaceholder from '../../components/itemList/itemListPlaceholder';
 
 interface props extends WithStyles<typeof Style> {
 }
@@ -32,7 +33,14 @@ const Collection: FunctionComponent<props> = ({ classes }) => {
     }).then(response => { return response.json() }).then((json: item[]) => { setState({ ...state, items: json }) })
   }, [])
 
-  if (!state.items) return <div>cannot fetch</div>; // TODO
+  if (!state.items) return (
+    <div className={classes.root}>
+      <div className={classes.title}>
+
+      </div>
+      <ItemListPlaceholder />
+    </div>
+  );
   return (
     <div className={classes.root}>
       <div className={classes.title}>
