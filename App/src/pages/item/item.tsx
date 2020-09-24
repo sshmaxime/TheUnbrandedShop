@@ -23,7 +23,7 @@ const defaultState = (item: item): {
   quantity: number
 } => {
   return {
-    currentSize: "M",
+    currentSize: Object.keys(item.models[0].sizes)[0] as sizeType,
     currentModel: item.models[0],
     quantity: 1
   }
@@ -71,7 +71,7 @@ const Item: FunctionComponent<props> = ({ classes, item, history }) => {
             <div style={{ borderRadius: "15px", boxShadow: "5px 4px 10px grey" }}>
               <Grid container className={classes.itemImgContainerSmall}>
                 {item.models.map((model: model, index: number) => (
-                  <Grid onClick={() => { setState({ ...state, currentModel: model }) }} key={model.imgUrl[0]} item xs={4} style={{ padding: "5px" }}>
+                  <Grid onClick={() => { setState({ ...state, currentModel: model, currentSize: Object.keys(model.sizes)[0] as sizeType }) }} key={model.imgUrl[0]} item xs={4} style={{ padding: "5px" }}>
                     <img className={classes.itemImgSmall} alt={""} src={model.imgUrl[0]} />
                   </Grid>
                 ))}

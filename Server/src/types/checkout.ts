@@ -1,5 +1,5 @@
 import { customer, shipping } from "../types/info"
-import { cartItem, model } from "../types/item"
+import { cartItem, model, size } from "../types/item"
 
 export type checkoutSession = {
   _id: string,
@@ -21,7 +21,7 @@ export type checkoutInfo = {
 export type cartCheckoutItem = {
   id: string,
   model: model,
-  size: {},
+  size: size,
   quantity: number,
 
   imgUrl: string,

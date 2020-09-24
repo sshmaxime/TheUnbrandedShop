@@ -42,7 +42,7 @@ export class database {
                   price: 19.99,
                   imgUrl: ["https://ae01.alicdn.com/kf/H2c7811541fc049248233860aa96dfb58G/Japon-Anime-Prison-cole-yeux-triste-impression-Panama-seau-chapeaux-mode-adulte-cr-me-solaire-p.jpg_640x640.jpg"],
                   sizes: {
-                    "L": 1
+                    "L": 0
                   }
                 },
                 {
@@ -50,7 +50,7 @@ export class database {
                   price: 19.99,
                   imgUrl: ["https://ae01.alicdn.com/kf/H2a6069f97e7f4301bbf75941bb99d4dfy/Japon-Anime-Prison-cole-yeux-triste-impression-Panama-seau-chapeaux-mode-adulte-cr-me-solaire-p.jpg_640x640.jpg"],
                   sizes: {
-                    "M": 1
+                    "M": 0
                   }
                 }
 

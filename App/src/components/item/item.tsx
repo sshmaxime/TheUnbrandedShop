@@ -14,7 +14,7 @@ import {
 import { Link } from "react-router-dom";
 import Style from "./css"
 import { CardMedia, Card } from "@material-ui/core";
-import { item } from '../../store/types/items';
+import { item, sizeType } from '../../store/types/items';
 
 interface props extends WithStyles<typeof Style> {
   item: item
@@ -24,7 +24,17 @@ const Item: FunctionComponent<props> = ({ item, classes }) => {
   const { commonState } = useSelector((state: IAppState) => state);
   const dispatch = useDispatch();
 
-  const isAvailable = true;
+  let isAvailable = false;
+
+  for (let model of item.models) {
+    for (let size of Object.keys(model.sizes)) {
+      if (Number(model.sizes[size as sizeType]) > 0) {
+        isAvailable = true;
+        break;
+      }
+    }
+  }
+
   return (
     <div className={classes.root}>
       <Link to={isAvailable ? "/item/" + item.id : ""}>

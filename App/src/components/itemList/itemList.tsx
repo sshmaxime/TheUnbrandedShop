@@ -12,9 +12,10 @@ import ItemPlaceholder from '../item/itemPlaceholder';
 
 interface props extends WithStyles<typeof Style> {
   type: type | "ALL",
+  items: item[]
 }
 
-const ItemList: FunctionComponent<props> = ({ classes, type }) => {
+const ItemList: FunctionComponent<props> = ({ classes, type, items }) => {
   const { commonState } = useSelector((state: IAppState) => state);
 
   // return (
@@ -37,7 +38,7 @@ const ItemList: FunctionComponent<props> = ({ classes, type }) => {
   return (
     <div className={classes.root}>
       <Grid className={classes.root} container direction="row" alignItems="center" spacing={3}>
-        {Array.from(commonState.items.entries()).map((entry: [number, item]) => {
+        {Array.from(items.entries()).map((entry: [number, item]) => {
           return type === "ALL" || entry[1].type === type ? (
             <Grid key={entry[0]} item xs={12} sm={6} md={3}  >
               <Item
