@@ -16,7 +16,9 @@ RUN bash -c "yarn build"
 
 FROM node:lts
 
+ENV PORT 80
+
 RUN bash -c "yarn global add serve"
 COPY --from=base /home/workspace/build ./build
 
-CMD ["bash", "-c", "serve -l 3000 -s build"]
+CMD ["bash", "-c", "serve -l ${PORT} -s build"]
