@@ -1,8 +1,4 @@
 import React, { FunctionComponent } from 'react'
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import ItemList from '../../components/itemList/itemList';
-import { IAppState } from '../../store/reducers';
 import Style from "./css"
 import { WithStyles, withStyles } from "@material-ui/core";
 import AC from "@material-ui/icons/ArrowDownward";
@@ -17,8 +13,6 @@ interface props extends WithStyles<typeof Style> {
 }
 
 const Home: FunctionComponent<props> = ({ classes }) => {
-  const { commonState } = useSelector((state: IAppState) => state);
-  const dispatch = useDispatch();
   const history = useHistory();
 
   return (
@@ -35,7 +29,7 @@ const Home: FunctionComponent<props> = ({ classes }) => {
           <AC className={classes.arrowDown} />
         </motion.div>
 
-        <img src={imageCover} style={{}} />
+        <img src={imageCover} alt={"homeimg"} style={{}} />
       </div>
 
       <Grid container className={classes.firstContainer}>
@@ -48,7 +42,7 @@ const Home: FunctionComponent<props> = ({ classes }) => {
 
       <Grid container className={classes.container}>
         <Grid item md={6}>
-          <img src={imageAbout1} style={{ width: "100%", borderRadius: "5px", }} />
+          <img src={imageAbout1} alt={"homeimg1"} style={{ width: "100%", borderRadius: "5px", }} />
         </Grid>
         <Grid item md={1} />
         <Grid item md={5}>
@@ -72,7 +66,7 @@ const Home: FunctionComponent<props> = ({ classes }) => {
         </Grid>
         <Grid item md={1} />
         <Grid item md={6}>
-          <img src={imageAbout} style={{ width: "100%", borderRadius: "5px", }} />
+          <img src={imageAbout} alt={"homeimg2"} style={{ width: "100%", borderRadius: "5px", }} />
         </Grid>
       </Grid>
 

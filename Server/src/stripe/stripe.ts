@@ -1,9 +1,9 @@
 import * as Stripe from 'stripe';
 import config from '../config';
-import { checkoutData } from '../types/checkout';
+import { checkoutData } from '../models/checkoutData';
 import { sessionInfo } from './types';
 
-export class stripe {
+class stripe {
   stripe: Stripe.Stripe
 
   constructor(apiKey: string, version: Stripe.Stripe.LatestApiVersion) {
@@ -59,3 +59,5 @@ export class stripe {
     });
   }
 }
+
+export const strp = new stripe(config.STRIPE_API, "2020-08-27");

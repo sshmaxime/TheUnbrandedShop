@@ -17,7 +17,6 @@ import Style from "./css"
 import EuroIcon from "@material-ui/icons/EuroSymbol";
 import DeleteIcon from "@material-ui/icons/RemoveShoppingCart";
 import CloseIcon from "@material-ui/icons/CloseOutlined";
-import { cartItem } from '../../store/types/items';
 import { store } from '../../store';
 
 interface props extends WithStyles<typeof Style> {
@@ -35,7 +34,7 @@ const defaultState = (): {
 
 const Navbar: FunctionComponent<props> = ({ normalTitle, reducedTitle, classes }) => {
   const [state, setState] = useState(defaultState())
-  const { commonState } = useSelector((state: IAppState) => state);
+  const { storeState } = useSelector((state: IAppState) => state);
   const dispatch = useDispatch();
 
   const toggleDrawer = () => {
@@ -45,21 +44,21 @@ const Navbar: FunctionComponent<props> = ({ normalTitle, reducedTitle, classes }
     })
   }
 
-  var oldNb: Number = commonState.itemsInCart.length;
+  var oldNb: Number = storeState.itemsInCart.length;
   useEffect(() => {
     store.subscribe(() => {
-      if (commonState.itemsInCart.length > oldNb) {
+      if (storeState.itemsInCart.length > oldNb) {
         setState({
           ...state,
           openDrawer: true
         })
       }
-      oldNb = commonState.itemsInCart.length
+      oldNb = storeState.itemsInCart.length
     })
   }, [])
 
   const removeItem = (event: any) => {
-    if (commonState.itemsInCart.length == 1) {
+    if (storeState.itemsInCart.length == 1) {
       setState({
         ...state,
         openDrawer: false
@@ -100,7 +99,7 @@ const Navbar: FunctionComponent<props> = ({ normalTitle, reducedTitle, classes }
             <CloseIcon />
           </Button>
           <div className={classes.cartTitle}>CART</div>
-          {commonState.itemsInCart.map((item, index) => (
+          {storeState.itemsInCart.map((item, index) => (
             <div key={index} className={classes.cartItem}>
               <img className={classes.cartItemImg} alt="" src={item.model.imgUrl[0]} />
               <div className={classes.cartItemContent}>
@@ -122,7 +121,7 @@ const Navbar: FunctionComponent<props> = ({ normalTitle, reducedTitle, classes }
               </div>
             </div>
           ))}
-          {commonState.itemsInCart.length === 0 ? null : (
+          {storeState.itemsInCart.length === 0 ? null : (
             <div className={classes.checkout}>
               <Link to="/checkout">
                 <Button

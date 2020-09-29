@@ -12,12 +12,12 @@ interface props extends WithStyles<typeof Style> {
 }
 
 const CollectionList: FunctionComponent<props> = ({ classes }) => {
-  const { commonState } = useSelector((state: IAppState) => state);
+  const { storeState } = useSelector((state: IAppState) => state);
 
   return (
     <div className={classes.root}>
       <Grid className={classes.root} container direction="row" alignItems="center" spacing={3}>
-        {Array.from(commonState.items.entries()).map((entry: [number, item]) => {
+        {Array.from(storeState.items.entries()).map((entry: [string, item]) => {
           return (
             <Grid key={entry[0]} item xs={6} sm={6} md={6} >
               <Collection />

@@ -1,16 +1,10 @@
-import React, { FunctionComponent, useState, useEffect } from "react";
+import React, { FunctionComponent } from "react";
 import Style from "./css";
 import Arrow from "@material-ui/icons/KeyboardBackspace";
-import { WithStyles, Card, withStyles, Grid, Typography, Button, Box } from "@material-ui/core";
+import { WithStyles, Card, withStyles, Typography, Button } from "@material-ui/core";
 
 interface props extends WithStyles<typeof Style> {
   history: any;
-}
-
-const defaultState = (): {
-} => {
-  return {
-  }
 }
 
 const CheckoutCancel: FunctionComponent<props> = ({ classes, history }) => {

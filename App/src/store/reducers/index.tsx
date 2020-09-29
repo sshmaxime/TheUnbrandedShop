@@ -1,11 +1,11 @@
 import { combineReducers, Reducer } from "redux";
 
-import { commonState } from "./common.reducer";
+import { storeState, storeStateReducer } from "./store.reducer";
 
 export interface IAppState {
-  commonState: commonState;
+  storeState: storeState;
 }
 
 export const reducers: Reducer<IAppState> = combineReducers<IAppState>({
-  commonState
+  storeState: storeStateReducer,
 });

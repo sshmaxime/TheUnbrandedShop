@@ -4,8 +4,6 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import EuroIcon from "@material-ui/icons/EuroSymbol";
 import DeleteIcon from "@material-ui/icons/Delete";
-import { connect } from "react-redux";
-// import ACTIONS from "../../redux/actions";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import { Grid } from "@material-ui/core";
@@ -13,9 +11,6 @@ import Box from "@material-ui/core/Box";
 import Collapse from "@material-ui/core/Collapse";
 import Divider from "@material-ui/core/Divider";
 import * as EmailValidator from 'email-validator';
-// import { injectStripe } from "react-stripe-elements";
-import { Elements, CardElement } from '@stripe/react-stripe-js';
-// import Fade from "react-reveal/Fade";
 import { WithStyles, withStyles } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -111,7 +106,7 @@ const defaultErrorState = (): {
 }
 
 const Checkout: FunctionComponent<props> = ({ classes }) => {
-  const { commonState } = useSelector((state: IAppState) => state);
+  const { storeState } = useSelector((state: IAppState) => state);
   const dispatch = useDispatch();
   const [state, setState] = useState(defaultState());
   const [displayState, setDisplayState] = useState(defaultDisplayState());
@@ -182,8 +177,8 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
 
   const getTotalPrice = () => {
     var totalPrice = 0.0;
-    for (var i = 0; i < commonState.itemsInCart.length; i++) {
-      totalPrice += Number(commonState.itemsInCart[i].model.price);
+    for (var i = 0; i < storeState.itemsInCart.length; i++) {
+      totalPrice += Number(storeState.itemsInCart[i].model.price);
     }
     return totalPrice;
   };
@@ -207,8 +202,8 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
 
   const getDivPrice = () => {
     var totalPrice = 0.0;
-    for (var i = 0; i < commonState.itemsInCart.length; i++) {
-      totalPrice += Number(commonState.itemsInCart[i].model.price);
+    for (var i = 0; i < storeState.itemsInCart.length; i++) {
+      totalPrice += Number(storeState.itemsInCart[i].model.price);
     }
     return (
       <div>
@@ -356,7 +351,7 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        items: commonState.itemsInCart,
+        items: storeState.itemsInCart,
         user: state
       })
     }).then(response => response.json())
@@ -404,7 +399,7 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
             marginBottom: "15px"
           }}
         />
-        {commonState.itemsInCart.map((item, index) => (
+        {storeState.itemsInCart.map((item, index) => (
           <Grid container spacing={2} key={index}>
             <Grid item xs={4} md={2}>
               <img src={item.model.imgUrl[0]} style={{ height: "80px" }} />
@@ -503,7 +498,7 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
           <Grid item xs={12} md={5}>
             <div className={classes.step}>
               <Typography className={classes.titleStep}>Cart</Typography>
-              {commonState.itemsInCart.map((item, index) => (
+              {storeState.itemsInCart.map((item, index) => (
                 <div key={index} className={classes.cartItem}>
                   <img className={classes.cartItemImg} alt="" src={item.model.imgUrl[0]} />
                   <div className={classes.cartItemContent}>

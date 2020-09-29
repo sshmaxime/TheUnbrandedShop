@@ -1,52 +1,25 @@
 import React, { FunctionComponent, useState, useEffect } from 'react'
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
 import ItemList from '../../components/itemList/itemList';
-import { IAppState } from '../../store/reducers';
 import Style from "./css"
 import { WithStyles, withStyles } from "@material-ui/core";
 import { item } from '../../store/types/items';
 import ItemListPlaceholder from '../../components/itemList/itemListPlaceholder';
+import config from '../../config';
+import { useSelector } from 'react-redux';
+import { IAppState } from '../../store/reducers';
 
 interface props extends WithStyles<typeof Style> {
 }
 
-const defaultState = (): {
-  items: item[] | undefined
-} => {
-  return {
-    items: undefined
-  }
-}
-
 const Collection: FunctionComponent<props> = ({ classes }) => {
-  const { commonState } = useSelector((state: IAppState) => state);
-  const dispatch = useDispatch();
-  const [state, setState] = useState(defaultState());
+  const { storeState } = useSelector((state: IAppState) => state);
 
-  useEffect(() => {
-    fetch("http://192.168.1.165:8000/items", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(response => { return response.json() }).then((json: item[]) => { setState({ ...state, items: json }) })
-  }, [])
-
-  if (!state.items) return (
-    <div className={classes.root}>
-      <div className={classes.title}>
-
-      </div>
-      <ItemListPlaceholder />
-    </div>
-  );
   return (
     <div className={classes.root}>
       <div className={classes.title}>
         AUTUMN 2020
         </div>
-      <ItemList type="ALL" items={state.items} />
+      <ItemList type="ALL" items={storeState.items} />
     </div>
   )
 }

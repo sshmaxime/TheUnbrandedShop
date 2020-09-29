@@ -1,5 +1,4 @@
 import { Theme, createStyles } from "@material-ui/core";
-import { Height } from "@material-ui/icons";
 
 const Style = ({ breakpoints, spacing }: Theme) => createStyles({
   root: {

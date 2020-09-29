@@ -1,13 +1,10 @@
 FROM couchdb:3.1.1
 
-ARG ARG_COUCHDB_USER=admin
-ARG ARG_COUCHDB_PASSWORD=admin
-
-ENV COUCHDB_USER=${ARG_COUCHDB_USER}
-ENV COUCHDB_PASSWORD=${ARG_COUCHDB_PASSWORD}
+ENV COUCHDB_USER=admin
+ENV COUCHDB_PASSWORD=admin
 
 EXPOSE 5984
 
 ADD config/*.ini /opt/couchdb/etc/default.d/
 
-ADD db_data /opt/couchdb/data
+ADD data /opt/couchdb/data

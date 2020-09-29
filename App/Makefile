@@ -1,0 +1,2 @@
+all: 
+	yarn dev

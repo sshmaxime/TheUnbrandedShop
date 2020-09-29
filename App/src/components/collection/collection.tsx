@@ -13,7 +13,7 @@ interface props extends WithStyles<typeof Style> {
 }
 
 const Collection: FunctionComponent<props> = ({ classes }) => {
-  const { commonState } = useSelector((state: IAppState) => state);
+  const { storeState } = useSelector((state: IAppState) => state);
   const dispatch = useDispatch();
 
   return (

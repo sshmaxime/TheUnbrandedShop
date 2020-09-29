@@ -1,18 +1,21 @@
 import * as Nano from "nano"
-import { TSMap } from "typescript-map"
-import { item } from "../types/item";
-import { cartCheckoutItem, checkoutData, checkoutDataRequest, checkoutSession } from "./../types/checkout";
+import config from '../config';
+import { checkout } from "../models/checkout";
+import { checkoutData } from "../models/checkoutData";
+import { checkoutDataRequest } from "../models/checkoutDataRequest";
+import { checkoutFinalItem } from "../models/checkoutFinalItem";
+import { item } from "../models/item";
 
-export class database {
+class database {
   ready: Promise<any>
 
   private db: Nano.ServerScope
 
   private itemDocument: Nano.DocumentScope<item>
-  private checkoutSessionDocument: Nano.DocumentScope<checkoutSession>
-
+  private checkoutSessionDocument: Nano.DocumentScope<checkout>
 
   constructor(url: string, username: string, password: string, create: boolean) {
+    console.log(url)
     this.db = Nano({ url: url, requestDefaults: { jar: true } });
 
     this.ready = new Promise(async (resolve, reject) => {
@@ -29,82 +32,116 @@ export class database {
             await this.db.db.create("items");
             await this.db.db.create("checkout_sessions");
 
-            this.db.db.use<item>("items").insert({
-              _id: "Wallah",
+            await this.db.db.use<item>("items").insert(
+              {
+                _id: "Wallah",
 
-              id: "Wallah",
-              description: "Hello",
-              type: "ACCESSORIES",
-              info: [["Material", "100% Cotton"]],
-              models: [
-                {
-                  name: "black",
-                  price: 19.99,
-                  imgUrl: ["https://ae01.alicdn.com/kf/H2c7811541fc049248233860aa96dfb58G/Japon-Anime-Prison-cole-yeux-triste-impression-Panama-seau-chapeaux-mode-adulte-cr-me-solaire-p.jpg_640x640.jpg"],
-                  sizes: {
-                    "L": 0
+                id: "Wallah",
+                description: "Hello",
+                type: "ACCESSORIES",
+                info: [["Material", "100% Cotton"]],
+                models: [
+                  {
+                    name: "black",
+                    price: 19.99,
+                    imgUrl: ["https://ae01.alicdn.com/kf/H2c7811541fc049248233860aa96dfb58G/Japon-Anime-Prison-cole-yeux-triste-impression-Panama-seau-chapeaux-mode-adulte-cr-me-solaire-p.jpg_640x640.jpg"],
+                    sizes: {
+                      "L": 1
+                    }
+                  },
+                  {
+                    name: "yellow",
+                    price: 19.99,
+                    imgUrl: ["https://ae01.alicdn.com/kf/H2a6069f97e7f4301bbf75941bb99d4dfy/Japon-Anime-Prison-cole-yeux-triste-impression-Panama-seau-chapeaux-mode-adulte-cr-me-solaire-p.jpg_640x640.jpg"],
+                    sizes: {
+                      "M": 0
+                    }
                   }
-                },
-                {
-                  name: "yellow",
-                  price: 19.99,
-                  imgUrl: ["https://ae01.alicdn.com/kf/H2a6069f97e7f4301bbf75941bb99d4dfy/Japon-Anime-Prison-cole-yeux-triste-impression-Panama-seau-chapeaux-mode-adulte-cr-me-solaire-p.jpg_640x640.jpg"],
-                  sizes: {
-                    "M": 0
+                ]
+              },
+            );
+            await this.db.db.use<item>("items").insert(
+              {
+                _id: "mdr",
+
+                id: "mdr",
+                description: "Hello",
+                type: "ACCESSORIES",
+                info: [["Material", "100% Cotton"]],
+                models: [
+                  {
+                    name: "black",
+                    price: 19.99,
+                    imgUrl: ["https://ae01.alicdn.com/kf/H823341559b914004b188229d10a78e8cX/GONTHWID-Harajuku-Broderie-Papillon-Manches-Longues-T-shirts-Pour-Hommes-D-contract-T-Shirts-Streetwear-Chemises.jpg_Q90.jpg_.webp"],
+                    sizes: {
+                      "L": 1
+                    }
+                  },
+                  {
+                    name: "white",
+                    price: 19.99,
+                    imgUrl: ["https://ae01.alicdn.com/kf/H3c4fb18625df48a9ae6b50b90ff828d4G/GONTHWID-Harajuku-Broderie-Papillon-Manches-Longues-T-shirts-Pour-Hommes-D-contract-T-Shirts-Streetwear-Chemises.jpg_Q90.jpg_.webp"],
+                    sizes: {
+                      "M": 0
+                    }
                   }
-                }
-              ]
-            });
+                ]
+              },
+            );
           } catch (err) { reject(err); }
         }
 
         // Init db endpoints
-        this.itemDocument = this.db.db.use<item>("items")
-        this.checkoutSessionDocument = this.db.db.use<checkoutSession>("checkout_sessions")
+        this.itemDocument = this.db.db.use<item>("items");
+        this.checkoutSessionDocument = this.db.db.use<checkout>("checkout_sessions");
 
         return resolve();
       } catch (err) { return reject(err); }
     })
   }
 
-  storeCheckoutSession = async (checkoutSession: checkoutSession) => {
-    return await this.checkoutSessionDocument.insert(checkoutSession);
+  subscribeChangesItems = async (callback: (item: item) => any) => {
+    const listener = this.itemDocument.follow({ since: "now", include_docs: true })
+    listener.on("change", (change) => {
+      // remove not proper item info
+      delete change.doc._id
+      delete change.doc._rev
+      const item = change.doc as item
+      callback(item);
+    })
+    listener.follow();
   }
 
-  retrieveCheckoutSession = async (checkoutSessionId: string) => {
+  storeCheckout = async (checkoutSession: checkout) => {
+    return await this.checkoutSessionDocument.insert(checkoutSession);
+  }
+  getCheckout = async (checkoutSessionId: string) => {
     return await this.checkoutSessionDocument.get(checkoutSessionId);
   }
 
-  getAllItems = async (): Promise<item[]> => {
-    const items: item[] = [];
-    const listItemAsDocuments = await this.itemDocument.list();
-
-    for (let row of listItemAsDocuments.rows) {
-      let tmpItem = await this.itemDocument.get(row.id);
-      items.push(tmpItem);
-    }
-    return new Promise<item[]>((resolve, reject) => {
+  getItems = async (): Promise<item[]> => {
+    return new Promise<item[]>(async (resolve) => {
+      const items: item[] = [];
+      const listDocuments = await this.itemDocument.list({ include_docs: true });
+      listDocuments.rows.forEach((row) => {
+        delete row.doc._id;
+        delete row.doc._rev;
+        const item = row.doc as item;
+        items.push(item);
+      });
       resolve(items);
-    })
-  }
-
-  getItem = async (id: string): Promise<item> => {
-    const item = await this.itemDocument.get(id);
-
-    return new Promise<item>((resolve, reject) => {
-      resolve(item);
     })
   }
 
   createCheckoutData = async (checkoutDataRequest: checkoutDataRequest): Promise<checkoutData> => {
     return new Promise<checkoutData>(async (resolve, reject) => {
-      const items: cartCheckoutItem[] = []
+      const items: checkoutFinalItem[] = [];
       for (let item of checkoutDataRequest.items) {
         const resp = await this.itemDocument.get(item.id);
 
         const model = resp.models[item.model.name];
 
-        const tmpItem: cartCheckoutItem = {
+        const tmpItem: checkoutFinalItem = {
           id: item.id,
           quantity: item.quantity,
 
@@ -128,3 +165,5 @@ export class database {
     })
   }
 }
+
+export const db = new database(config.DB_URL, "admin", "admin", true);

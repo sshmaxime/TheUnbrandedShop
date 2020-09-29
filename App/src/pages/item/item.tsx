@@ -1,15 +1,11 @@
 import React, { FunctionComponent, useEffect, useState } from 'react'
-import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { IAppState } from '../../store/reducers';
 import Style from "./css"
 import Arrow from "@material-ui/icons/KeyboardBackspace";
 import { WithStyles, withStyles, Grid, Typography, Button, Box } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
-import { item, size, cartItem, sizeType, model } from '../../store/types/items';
-import { useParams, RouteComponentProps } from 'react-router-dom';
-import { useLastLocation } from 'react-router-last-location';
+import { item, cartItem, sizeType, model } from '../../store/types/items';
 import AddShoppingCart from "@material-ui/icons/AddShoppingCart";
 
 interface props extends WithStyles<typeof Style> {
@@ -20,9 +16,11 @@ interface props extends WithStyles<typeof Style> {
 const defaultState = (item: item): {
   currentSize: sizeType,
   currentModel: model,
+  currentModelPointer: number,
   quantity: number
 } => {
   return {
+    currentModelPointer: 0,
     currentSize: Object.keys(item.models[0].sizes)[0] as sizeType,
     currentModel: item.models[0],
     quantity: 1
@@ -31,9 +29,19 @@ const defaultState = (item: item): {
 
 const Item: FunctionComponent<props> = ({ classes, item, history }) => {
   const [state, setState] = useState(defaultState(item))
-  const { commonState } = useSelector((state: IAppState) => state);
   const dispatch = useDispatch();
-  const lastLocation = useLastLocation();
+
+  useEffect(() => {
+    const model = item.models[state.currentModelPointer]
+    if (model && model.sizes[state.currentSize] === 0 || model.sizes[state.currentSize]) {
+      setState({
+        ...state,
+        currentModel: model,
+        currentSize: state.currentSize
+      })
+    }
+  }, [item])
+
   const handleChange = (event: any) => {
     setState({
       ...state,
@@ -71,7 +79,7 @@ const Item: FunctionComponent<props> = ({ classes, item, history }) => {
             <div style={{ borderRadius: "15px", boxShadow: "5px 4px 10px grey" }}>
               <Grid container className={classes.itemImgContainerSmall}>
                 {item.models.map((model: model, index: number) => (
-                  <Grid onClick={() => { setState({ ...state, currentModel: model, currentSize: Object.keys(model.sizes)[0] as sizeType }) }} key={model.imgUrl[0]} item xs={4} style={{ padding: "5px" }}>
+                  <Grid onClick={() => { setState({ ...state, currentModelPointer: index, currentModel: model, currentSize: Object.keys(model.sizes)[0] as sizeType }) }} key={model.imgUrl[0]} item xs={4} style={{ padding: "5px" }}>
                     <img className={classes.itemImgSmall} alt={""} src={model.imgUrl[0]} />
                   </Grid>
                 ))}
@@ -135,7 +143,7 @@ const Item: FunctionComponent<props> = ({ classes, item, history }) => {
           <div>
             <Button
               className={classes.buyButton}
-              disabled={Number(state.currentModel.sizes[state.currentSize]) > 0 ? false : true}
+              disabled={state.currentModel.sizes[state.currentSize] as Number > 0 ? false : true}
               onClick={() => { storeItem(item) }}
             >
               <AddShoppingCart style={{ fontSize: "1.2em" }} />

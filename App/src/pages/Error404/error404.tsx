@@ -1,6 +1,6 @@
-import React, { FunctionComponent, useState, useEffect } from "react";
+import React, { FunctionComponent } from "react";
 import Style from "./css";
-import { Card, WithStyles, withStyles, Grid, Typography, Button, Box } from "@material-ui/core";
+import { Card, WithStyles, withStyles, Typography } from "@material-ui/core";
 
 interface props extends WithStyles<typeof Style> {
   history: any;
