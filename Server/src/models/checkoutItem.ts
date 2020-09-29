@@ -1,7 +1,7 @@
 import { model } from "./itemModel";
 import { size } from "./itemSize";
 
-export type checkoutFinalItem = {
+export type checkoutItem = {
   id: string,
   model: model,
   size: size,

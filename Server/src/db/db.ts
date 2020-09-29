@@ -3,8 +3,9 @@ import config from '../config';
 import { checkout } from "../models/checkout";
 import { checkoutData } from "../models/checkoutData";
 import { checkoutDataRequest } from "../models/checkoutDataRequest";
-import { checkoutFinalItem } from "../models/checkoutFinalItem";
+import { checkoutItem } from "../models/checkoutItem";
 import { item } from "../models/item";
+import { model } from "../models/itemModel";
 
 class database {
   ready: Promise<any>
@@ -43,7 +44,7 @@ class database {
                 models: [
                   {
                     name: "black",
-                    price: 19.99,
+                    price: 100.99,
                     imgUrl: ["https://ae01.alicdn.com/kf/H2c7811541fc049248233860aa96dfb58G/Japon-Anime-Prison-cole-yeux-triste-impression-Panama-seau-chapeaux-mode-adulte-cr-me-solaire-p.jpg_640x640.jpg"],
                     sizes: {
                       "L": 1
@@ -51,7 +52,7 @@ class database {
                   },
                   {
                     name: "yellow",
-                    price: 19.99,
+                    price: 100.99,
                     imgUrl: ["https://ae01.alicdn.com/kf/H2a6069f97e7f4301bbf75941bb99d4dfy/Japon-Anime-Prison-cole-yeux-triste-impression-Panama-seau-chapeaux-mode-adulte-cr-me-solaire-p.jpg_640x640.jpg"],
                     sizes: {
                       "M": 0
@@ -71,7 +72,7 @@ class database {
                 models: [
                   {
                     name: "black",
-                    price: 19.99,
+                    price: 100.99,
                     imgUrl: ["https://ae01.alicdn.com/kf/H823341559b914004b188229d10a78e8cX/GONTHWID-Harajuku-Broderie-Papillon-Manches-Longues-T-shirts-Pour-Hommes-D-contract-T-Shirts-Streetwear-Chemises.jpg_Q90.jpg_.webp"],
                     sizes: {
                       "L": 1
@@ -79,7 +80,7 @@ class database {
                   },
                   {
                     name: "white",
-                    price: 19.99,
+                    price: 100.99,
                     imgUrl: ["https://ae01.alicdn.com/kf/H3c4fb18625df48a9ae6b50b90ff828d4G/GONTHWID-Harajuku-Broderie-Papillon-Manches-Longues-T-shirts-Pour-Hommes-D-contract-T-Shirts-Streetwear-Chemises.jpg_Q90.jpg_.webp"],
                     sizes: {
                       "M": 0
@@ -134,25 +135,29 @@ class database {
   }
 
   createCheckoutData = async (checkoutDataRequest: checkoutDataRequest): Promise<checkoutData> => {
+    console.log(checkoutDataRequest);
+
     return new Promise<checkoutData>(async (resolve, reject) => {
-      const items: checkoutFinalItem[] = [];
+      const items: checkoutItem[] = [];
       for (let item of checkoutDataRequest.items) {
         const resp = await this.itemDocument.get(item.id);
 
-        const model = resp.models[item.model.name];
+        resp.models.forEach((model: model) => {
+          if (item.model.name == model.name) {
+            const tmpItem: checkoutItem = {
+              id: item.id,
+              quantity: item.quantity,
 
-        const tmpItem: checkoutFinalItem = {
-          id: item.id,
-          quantity: item.quantity,
+              description: resp.description,
 
-          description: resp.description,
-
-          price: model.price,
-          imgUrl: model.imgUrl[0],
-          model: model,
-          size: item.size
-        }
-        items.push(tmpItem);
+              price: model.price,
+              imgUrl: model.imgUrl[0],
+              model: model,
+              size: item.size
+            }
+            items.push(tmpItem);
+          }
+        })
       }
 
       const checkoutData: checkoutData = {
@@ -160,7 +165,7 @@ class database {
         shipping: checkoutDataRequest.shipping,
         items: items
       }
-
+      console.log(checkoutData)
       return resolve(checkoutData);
     })
   }

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
 import Style from "./css";
 import Typography from "@material-ui/core/Typography";
 import { Grid, Card } from "@material-ui/core";
@@ -8,9 +8,13 @@ import { WithStyles, withStyles } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import { IAppState } from '../../store/reducers';
 import { checkoutInfo } from "../../store/types/checkout";
+import { RouteComponentProps } from "react-router-dom";
 
-interface props extends WithStyles<typeof Style> {
-  session_id: string;
+interface MatchParams {
+  checkout_id: string;
+}
+
+interface props extends WithStyles<typeof Style>, RouteComponentProps<MatchParams> {
 }
 
 const defaultState = (): {
@@ -21,23 +25,23 @@ const defaultState = (): {
   }
 }
 
-const CheckoutSuccess: FunctionComponent<props> = ({ classes, session_id }) => {
+const CheckoutSuccess: FunctionComponent<props> = ({ classes, match }) => {
   const { storeState } = useSelector((state: IAppState) => state);
   const [state, setState] = useState(defaultState());
 
-  // useEffect(() => {
-  //   (async () => {
-  //     const res = await fetch(process.env.REACT_APP_URL_SERVER_DEV + "/session/" + session_id, {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //     })
-  //     const invoice = await res.json() as invoice
-  //     console.log(invoice)
-  //     setState({ ...state, invoice: invoice })
-  //   })()
-  // }, [])
+
+  useEffect(() => {
+    (async () => {
+      const res = await fetch(process.env.REACT_APP_SERVER_URL_DEV + "/checkout/" + match.params.checkout_id, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      const checkoutInfo = await res.json() as checkoutInfo
+      setState({ ...state, checkoutInfo: checkoutInfo })
+    })()
+  }, [])
 
   return (
     <div className={classes.root}>
@@ -68,7 +72,7 @@ const CheckoutSuccess: FunctionComponent<props> = ({ classes, session_id }) => {
               }}
             >
               <div>
-                <Typography className={classes.contentBill}>{state.checkoutInfo.customer.firstname}</Typography>
+                <Typography className={classes.contentBill}>{state.checkoutInfo.customer.firstname} {state.checkoutInfo.customer.lastname}</Typography>
                 <Divider
                   style={{
                     marginBottom: "20px",
@@ -89,8 +93,9 @@ const CheckoutSuccess: FunctionComponent<props> = ({ classes, session_id }) => {
                   marginBottom: "15px"
                 }}
               />
-              {storeState.itemsInCart.map((item, index) => (
+              {state.checkoutInfo.cartItems.map((item, index) => (
                 <Grid container spacing={2} key={index}>
+
                   <Grid item xs={4} md={2}>
                     <img src={item.model.imgUrl[0]} alt={"img" + index} style={{ height: "80px" }} />
                   </Grid>
@@ -122,8 +127,6 @@ const CheckoutSuccess: FunctionComponent<props> = ({ classes, session_id }) => {
                       </Grid>
                     </Grid>
 
-
-
                   </Grid>
                 </Grid>
               ))
@@ -136,6 +139,7 @@ const CheckoutSuccess: FunctionComponent<props> = ({ classes, session_id }) => {
                 }}
               />
               <Typography className={classes.confirmationPrice}>
+                {/* TODO */}
                 {/* Total: ${getTotalPrice()} */}
               </Typography>
 

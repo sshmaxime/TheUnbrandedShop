@@ -1,7 +1,6 @@
 import * as Stripe from 'stripe';
 import config from '../config';
 import { checkoutData } from '../models/checkoutData';
-import { sessionInfo } from './types';
 
 class stripe {
   stripe: Stripe.Stripe
@@ -12,24 +11,19 @@ class stripe {
     });
   }
 
-  retrieveSessionInfo = async (sessionId: string): Promise<sessionInfo> => {
-    const session = await this.stripe.checkout.sessions.retrieve(sessionId, { expand: ["line_items"] });
-    const paymentIntent = await this.stripe.paymentIntents.retrieve(session.payment_intent.toString());
-
-    return new Promise<sessionInfo>((resolve, reject) => {
-      return resolve({
-        session: session,
-        paymentIntent: paymentIntent
-      });
-    })
-  }
-
   createCheckoutSession = async (checkoutData: checkoutData) => {
     const line_items: Stripe.Stripe.Checkout.SessionCreateParams.LineItem[] = []
 
     for (let item of checkoutData.items) {
+
+      let amount = 0;
+      if (String(item.price).search(".") != -1) {
+        amount = Number(String(item.price).replace('.', ''))
+      } else {
+        amount = Number(String(item.price) + "00")
+      }
       const tmp: Stripe.Stripe.Checkout.SessionCreateParams.LineItem = {
-        amount: Number(item.price + "00"), // Adding 00 is needed for Stripe
+        amount: amount, // Adding 00 is needed for Stripe
         currency: "eur",  // Hardcode every price is in euro
         name: item.id,
         images: [item.imgUrl],
@@ -38,7 +32,7 @@ class stripe {
       }
       line_items.push(tmp)
     }
-
+    console.log(line_items)
     return await this.stripe.checkout.sessions.create({
       payment_intent_data: {
         shipping: {

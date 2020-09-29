@@ -16,8 +16,7 @@ import { loadStripe } from '@stripe/stripe-js';
 
 
 const App: FunctionComponent<any> = () => {
-  const stripePromise = loadStripe(String(process.env.REACT_APP_STRIPE_API_DEV));
-
+  const stripePromise = loadStripe(String(process.env.REACT_APP_STRIPE_API_KEY_DEV));
   return (
     <div className="App">
       <Router>
@@ -52,7 +51,7 @@ const App: FunctionComponent<any> = () => {
                   ]
                 }}>
                   <Route path={`${url}/`} component={Checkout} exact />
-                  <Route path={`${url}/success/:session_id`} component={CheckoutSuccess} />
+                  <Route path={`${url}/success/:checkout_id`} component={CheckoutSuccess} />
                   <Route path={`${url}/cancel`} component={CheckoutCancel} />
                 </Elements>
               )}

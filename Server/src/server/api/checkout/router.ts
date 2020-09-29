@@ -12,7 +12,8 @@ router.route('/:checkout_id').get((req: express.Request, res: express.Response) 
 
     try {
       return res.send(await getCheckout(checkout_id));
-    } catch {
+    } catch (err) {
+      console.log(err);
       return res.sendStatus(500);
     }
   })();
@@ -22,7 +23,8 @@ router.route('/').post(({ body }, res: express.Response) => {
   (async () => {
     try {
       return res.send(await postCheckout(body));
-    } catch {
+    } catch (err) {
+      console.log(err);
       return res.sendStatus(500);
     }
   })();

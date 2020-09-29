@@ -345,14 +345,24 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
       return
     }
 
-    fetch("http://192.168.1.165:8000", {
+    fetch("http://192.168.1.165:3001/checkout", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         items: storeState.itemsInCart,
-        user: state
+        customer: {
+          firstname: state.firstname,
+          lastname: state.lastname,
+          email: state.email
+        },
+        shipping: {
+          country: state.country,
+          city: state.city,
+          address: state.address,
+          postalCode: state.postalCode
+        }
       })
     }).then(response => response.json())
       .then(jsondata =>

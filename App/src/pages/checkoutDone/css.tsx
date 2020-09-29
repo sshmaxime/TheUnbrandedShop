@@ -46,6 +46,9 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
   invoice: {
     margin: "0 auto",
     padding: "20px",
+    [breakpoints.down("xs")]: {
+      padding: "10px",
+    }
   },
   detailOrder: {
 
@@ -175,9 +178,8 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     fontFamily: "SourceCodePro",
     fontSize: "1em",
     paddingBottom: "7px",
-    lineHeight: "15px",
     [breakpoints.down("sm")]: {
-      fontSize: "1em"
+      fontSize: "0.8em"
     }
   },
   confirmationPrice: {
@@ -189,17 +191,15 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     paddingTop: "10px",
     fontFamily: "SourceCodePro",
     fontSize: "1.1em",
-    lineHeight: "17px",
     fontWeight: "lighter",
     [breakpoints.down("sm")]: {
-      fontSize: "0.9em"
+      fontSize: "0.8em"
     }
   },
   itemConfirmationSize: {
     paddingTop: "10px",
     fontFamily: "SourceCodePro",
     fontSize: "1.1em",
-    lineHeight: "17px",
     color: "grey",
     fontWeight: "lighter",
     [breakpoints.down("sm")]: {
@@ -211,16 +211,14 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     fontFamily: "SourceCodePro",
     fontSize: "0.8em",
     color: "grey",
-    lineHeight: "17px",
     [breakpoints.down("sm")]: {
-      fontSize: "0.7em"
+      fontSize: "0.6em"
     }
   },
   itemConfirmationPrice: {
     paddingTop: "10px",
     fontFamily: "SourceCodePro",
     fontSize: "1em",
-    lineHeight: "17px",
     [breakpoints.down("sm")]: {
       fontSize: "0.9em"
     }

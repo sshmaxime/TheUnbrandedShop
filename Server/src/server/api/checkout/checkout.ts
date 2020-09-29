@@ -3,10 +3,11 @@ import * as Stripe from 'stripe';
 import { db } from "../../../db/db"
 import { checkout } from '../../../models/checkout';
 import { checkoutDataRequest } from '../../../models/checkoutDataRequest';
+import { checkoutInfo } from '../../../models/checkoutInfo';
 import { strp } from "../../../stripe/stripe";
 
-export const getCheckout = async (checkout_id: string): Promise<checkout> => {
-  return await db.getCheckout(checkout_id);
+export const getCheckout = async (checkout_id: string): Promise<checkoutInfo> => {
+  return (await db.getCheckout(checkout_id)).checkoutInfo
 }
 
 export const postCheckout = async (checkoutDataRequest: checkoutDataRequest): Promise<Promise<Stripe.Stripe.Response<Stripe.Stripe.Checkout.Session>>> => {
