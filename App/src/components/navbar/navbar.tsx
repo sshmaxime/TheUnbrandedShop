@@ -104,10 +104,9 @@ const Navbar: FunctionComponent<props> = ({ normalTitle, reducedTitle, classes }
               <img className={classes.cartItemImg} alt="" src={item.model.imgUrl[0]} />
               <div className={classes.cartItemContent}>
                 <Typography className={classes.cartItemTitle}>{item.id}</Typography>
-                <Typography className={classes.cartItemSize}>Size: {item.size}</Typography>
+                <Typography className={classes.cartItemSize}>{item.size}</Typography>
                 <div className={classes.cartItemPrice}>
-                  <Typography className={classes.cartItemPricePrice}>{item.model.price}</Typography>
-                  <EuroIcon />
+                  <Typography className={classes.cartItemPricePrice}>{item.model.price}€</Typography>
                 </div>
                 <div className={classes.cartItemDelete}>
                   <Button style={{ minWidth: 0, padding: 0 }}>

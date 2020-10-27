@@ -35,53 +35,25 @@ class database {
 
             await this.db.db.use<item>("items").insert(
               {
-                _id: "Wallah",
+                _id: "eyes",
 
-                id: "Wallah",
-                description: "Hello",
+                id: "eyes",
+                description: "eyes",
                 type: "ACCESSORIES",
                 info: [["Material", "100% Cotton"]],
                 models: [
                   {
-                    name: "black",
-                    price: 100.99,
+                    name: "Black",
+                    price: 99.99,
                     imgUrl: ["https://ae01.alicdn.com/kf/H2c7811541fc049248233860aa96dfb58G/Japon-Anime-Prison-cole-yeux-triste-impression-Panama-seau-chapeaux-mode-adulte-cr-me-solaire-p.jpg_640x640.jpg"],
                     sizes: {
                       "L": 1
                     }
                   },
                   {
-                    name: "yellow",
-                    price: 100.99,
+                    name: "Yello",
+                    price: 99.99,
                     imgUrl: ["https://ae01.alicdn.com/kf/H2a6069f97e7f4301bbf75941bb99d4dfy/Japon-Anime-Prison-cole-yeux-triste-impression-Panama-seau-chapeaux-mode-adulte-cr-me-solaire-p.jpg_640x640.jpg"],
-                    sizes: {
-                      "M": 0
-                    }
-                  }
-                ]
-              },
-            );
-            await this.db.db.use<item>("items").insert(
-              {
-                _id: "mdr",
-
-                id: "mdr",
-                description: "Hello",
-                type: "ACCESSORIES",
-                info: [["Material", "100% Cotton"]],
-                models: [
-                  {
-                    name: "black",
-                    price: 100.99,
-                    imgUrl: ["https://ae01.alicdn.com/kf/H823341559b914004b188229d10a78e8cX/GONTHWID-Harajuku-Broderie-Papillon-Manches-Longues-T-shirts-Pour-Hommes-D-contract-T-Shirts-Streetwear-Chemises.jpg_Q90.jpg_.webp"],
-                    sizes: {
-                      "L": 1
-                    }
-                  },
-                  {
-                    name: "white",
-                    price: 100.99,
-                    imgUrl: ["https://ae01.alicdn.com/kf/H3c4fb18625df48a9ae6b50b90ff828d4G/GONTHWID-Harajuku-Broderie-Papillon-Manches-Longues-T-shirts-Pour-Hommes-D-contract-T-Shirts-Streetwear-Chemises.jpg_Q90.jpg_.webp"],
                     sizes: {
                       "M": 0
                     }

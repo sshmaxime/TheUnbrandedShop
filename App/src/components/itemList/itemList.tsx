@@ -17,7 +17,7 @@ const ItemList: FunctionComponent<props> = ({ classes, type, items }) => {
       <Grid className={classes.root} container direction="row" alignItems="center" spacing={3}>
         {Array.from(items.entries()).map((entry: [string, item]) => {
           return type === "ALL" || entry[1].type === type ? (
-            <Grid key={entry[0]} item xs={12} sm={6} md={3}  >
+            <Grid key={entry[0]} item xs={12} sm={4} md={3}  >
               <Item
                 key={entry[1].id}
                 item={entry[1]}

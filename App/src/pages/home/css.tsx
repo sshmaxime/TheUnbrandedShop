@@ -66,18 +66,20 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
       width: "80%",
     },
   },
+  textTitle: {
+    fontSize: "4em",
+    letterSpacing: "-1px",
+    textAlign: "center",
+    fontFamily: "bar",
+    borderRadius: "5px",
+    padding: "10px",
+  },
   text: {
     fontSize: "1em",
     lineHeight: "1.5em",
     letterSpacing: "-1px",
     textAlign: "center",
     fontFamily: "SourceCodePro",
-    paddingRight: "5%",
-    paddingLeft: "5%",
-    [breakpoints.down("sm")]: {
-      paddingLeft: "1%",
-      paddingRight: "1%"
-    },
   },
   arrowDownDiv: {
     position: "absolute",

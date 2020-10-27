@@ -1,5 +1,6 @@
 import { server } from './src/server/server';
 import { db } from "./src/db/db"
+import config from './src/config';
 
 (async () => {
   try {
@@ -11,6 +12,6 @@ import { db } from "./src/db/db"
   const serv = new server();
 
   serv.init();
-  serv.start(3001);
+  serv.start(config.PORT);
 })();
 

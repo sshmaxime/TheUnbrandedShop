@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+
+  app:
+    container_name: app
+    working_dir: /workspace
+    image: node:lts
+    volumes: 
+      - ./app:/workspace
+    ports:
+      - "3000:80"
+    command: "yarn start"
+
+  # dashboard:
+  #   build: ./dashboard
+  #   image: dashboard:latest_dev
+  #   ports:
+  #     - "3000:80"
+
+  server:
+    container_name: server
+    working_dir: /workspace
+    image: node:lts
+    volumes: 
+      - ./server:/workspace
+    ports:
+      - "3002:80"
+    command: "yarn start"
+
+  database:
+    container_name: db
+    image: couchdb:3.1.1
+    environment: 
+      - COUCHDB_USER=admin
+        COUCHDB_PASSWORD=admin
+    volumes:
+      - ./database/config/:/opt/couchdb/etc/default.d/
+      - ./database/data:/opt/couchdb/data
+    ports:
+      - "3003:8000"

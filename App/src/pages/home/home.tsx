@@ -22,53 +22,62 @@ const Home: FunctionComponent<props> = ({ classes }) => {
         <div onClick={() => { history.push("/collections"); }} className={classes.shopButton}>
           Shop Now
         </div>
-
+        {/* 
         <motion.div className={classes.arrowDownDiv} animate={{
           y: [10, 0, 10],
         }} transition={{ repeat: Infinity, repeatDelay: 1, duration: 0.4 }}>
           <AC className={classes.arrowDown} />
-        </motion.div>
+        </motion.div> */}
 
         <img src={imageCover} alt={"homeimg"} style={{}} />
       </div>
 
-      <Grid container className={classes.firstContainer}>
+      {/* <Grid container className={classes.firstContainer}>
         <Grid item xs={12}>
           <div className={classes.TitleSoft}>
             THE UNBRANDED SHOP
           </div>
         </Grid>
-      </Grid>
+      </Grid> */}
 
-      <Grid container className={classes.container}>
+      {/* <Grid container className={classes.container}>
+        <Grid item md={6} style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div>
+            <div className={classes.textTitle}>
+              SHINE
+            </div>
+          </div>
+        </Grid>
         <Grid item md={6}>
           <img src={imageAbout1} alt={"homeimg1"} style={{ width: "100%", borderRadius: "5px", }} />
         </Grid>
-        <Grid item md={1} />
-        <Grid item md={5}>
-          <div className={classes.Title}>
-            ABOUT US
-          </div>
-          <div className={classes.text}>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+      </Grid>
+
+      <Grid container className={classes.container}>
+        <Grid item xs={12} md={6}>
+          <img src={imageAbout} alt={"homeimg2"} style={{ width: "100%", borderRadius: "5px", }} />
+        </Grid>
+        <Grid item xs={12} md={6} style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div>
+            <div className={classes.textTitle}>
+              LOVE
+            </div>
           </div>
         </Grid>
       </Grid>
 
       <Grid container className={classes.container}>
-        <Grid item md={5}>
-          <div className={classes.Title}>
-            POLICY
-          </div>
-          <div className={classes.text}>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+        <Grid item md={6} style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div>
+            <div className={classes.textTitle}>
+              HAPPY
+            </div>
           </div>
         </Grid>
-        <Grid item md={1} />
         <Grid item md={6}>
-          <img src={imageAbout} alt={"homeimg2"} style={{ width: "100%", borderRadius: "5px", }} />
+          <img src={imageAbout1} alt={"homeimg1"} style={{ width: "100%", borderRadius: "5px", }} />
         </Grid>
-      </Grid>
+      </Grid> */}
 
     </div >
   )

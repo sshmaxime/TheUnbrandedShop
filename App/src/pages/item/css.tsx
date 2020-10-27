@@ -27,12 +27,12 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
   },
   itemTitle: {
     fontFamily: "fullpack",
-    borderRadius: "10px",
+    borderRadius: "5px",
     textAlign: "center",
     fontSize: "1.3em",
     marginTop: "20px",
     padding: "5px",
-    letterSpacing: "3px",
+    letterSpacing: "5px",
     backgroundColor: "black",
     color: "white",
     [breakpoints.down("md")]: {
@@ -56,6 +56,7 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
   },
   itemImg: {
     height: "400px",
+    transitionDuration: "2s",
     [breakpoints.down("xs")]: {
       height: "300px"
     }
@@ -72,13 +73,13 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
   },
   informationTitle: {
     fontFamily: "blader",
-    fontSize: "1.7em",
+    fontSize: "1.5em",
     borderBottom: "2px solid black",
     marginBottom: "15px"
   },
   informationDataTitle: {
     fontFamily: "SourceCodePro",
-    fontSize: "1.1em",
+    fontSize: "1em",
     fontWeight: 900
   },
   informationDataContent: {

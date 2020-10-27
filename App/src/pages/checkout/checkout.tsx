@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { IAppState } from '../../store/reducers';
 import { useStripe } from '@stripe/react-stripe-js';
+import config from "../../config"
 
 const countries = [
   {
@@ -205,12 +206,19 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
     for (var i = 0; i < storeState.itemsInCart.length; i++) {
       totalPrice += Number(storeState.itemsInCart[i].model.price);
     }
+    if (storeState.itemsInCart.length === 0) {
+      return (
+        <div>
+          <div className={classes.totalPrice}>
+            <Typography className={classes.cartItemPricePrice3}>Your cart is empty :(</Typography>
+          </div>
+        </div>
+      )
+    }
     return (
       <div>
         <div className={classes.totalPrice}>
-          <Typography className={classes.cartItemPricePrice}>{totalPrice}</Typography>
-          &nbsp;
-          <EuroIcon style={{ fontSize: "2em" }} />
+          <Typography className={classes.cartItemPricePrice}>{totalPrice}€</Typography>
         </div>
       </div>
     );
@@ -345,7 +353,7 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
       return
     }
 
-    fetch("http://192.168.1.165:3001/checkout", {
+    fetch(config.SERVER_URL + "/checkout", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -432,12 +440,12 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
               <Grid container item xs={4} md={6}>
                 <Grid item xs={12} md={9}>
                   <div className={classes.itemConfirmationPrices}>
-                    1 x €{item.model.price}
+                    1 x {item.model.price}€
                   </div>
                 </Grid>
                 <Grid item xs={12} md={3} >
                   <div className={classes.itemConfirmationPrice}>
-                    €{item.model.price}
+                    {item.model.price}€
                   </div>
                 </Grid>
               </Grid>
@@ -456,7 +464,7 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
           }}
         />
         <Typography className={classes.confirmationPrice}>
-          Total: ${getTotalPrice()}
+          Total: {getTotalPrice()}€
         </Typography>
         <Button
           style={{
@@ -513,13 +521,11 @@ const Checkout: FunctionComponent<props> = ({ classes }) => {
                   <img className={classes.cartItemImg} alt="" src={item.model.imgUrl[0]} />
                   <div className={classes.cartItemContent}>
                     <Typography className={classes.cartItemTitle}>{item.id}</Typography>
-                    <Typography className={classes.cartItemSize}>Size: {item.size}</Typography>
+                    <Typography className={classes.cartItemSize}>{item.size}</Typography>
                     <div className={classes.cartItemPrice}>
-                      <Typography className={classes.cartItemPricePrice}>
-                        {item.model.price}
+                      <Typography className={classes.cartItemPricePrice2}>
+                        {item.model.price}€
                       </Typography>
-                          &nbsp;
-                          <EuroIcon style={{ fontSize: "2em" }} />
                     </div>
                     <div
                       data-index={index}

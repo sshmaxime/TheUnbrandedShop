@@ -7,4 +7,3 @@ export type checkoutData = {
   customer: customer,
   items: checkoutItem[]
 }
-

@@ -69,7 +69,7 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
   cartItemTitle: {
     position: "absolute",
     left: 0,
-    fontFamily: "fullpack",
+    fontFamily: "SourceCodePro",
     fontSize: "1em",
     textAlign: "left",
     padding: "10px"
@@ -77,9 +77,10 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
   cartItemSize: {
     position: "absolute",
     left: 0,
-    top: "35px",
+    top: "30px",
+    color: "grey",
     fontFamily: "SourceCodePro",
-    fontSize: "1.1em",
+    fontSize: "1.5em",
     textAlign: "left",
     padding: "10px"
   },
@@ -111,12 +112,26 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     minWidth: 0,
     padding: 0
   },
-  cartItemPricePrice: {
-    fontSize: "1.5em",
+  cartItemPricePrice2: {
+    fontSize: "1.7em",
     fontWeight: 900,
     paddingTop: "3px",
     letterSpacing: "3px",
-    fontFamily: "fullpack"
+    fontFamily: "SourceCodePro"
+  },
+  cartItemPricePrice3: {
+    fontSize: "0.9em",
+    fontWeight: 900,
+    paddingTop: "3px",
+    letterSpacing: "1px",
+    fontFamily: "SourceCodePro"
+  },
+  cartItemPricePrice: {
+    fontSize: "1.3em",
+    fontWeight: 900,
+    paddingTop: "3px",
+    letterSpacing: "3px",
+    fontFamily: "SourceCodePro"
   },
   totalPrice: {
     display: "flex",
