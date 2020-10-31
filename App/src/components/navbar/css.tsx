@@ -3,26 +3,35 @@ import { Theme, createStyles } from "@material-ui/core";
 const Style = ({ breakpoints, spacing }: Theme) => createStyles({
   root: {
     flexGrow: 1,
-    height: "100px"
   },
   navbar: {
     backgroundColor: "white",
     boxShadow: "none",
     position: "relative",
-    paddingTop: "15px",
-    paddingBottom: "20px",
+    paddingTop: "5px",
+    paddingBottom: "5px",
 
-    paddingRight: "10vw",
-    paddingLeft: "10vw",
+    [breakpoints.up("lg")]: {
+      paddingLeft: "18vw",
+      paddingRight: "18vw"
+    },
+    [breakpoints.down("lg")]: {
+      paddingLeft: "15vw",
+      paddingRight: "15vw"
+    },
+    [breakpoints.down("md")]: {
+      paddingLeft: "10vw",
+      paddingRight: "10vw"
+    },
     [breakpoints.down("sm")]: {
       paddingLeft: "5vw",
       paddingRight: "5vw"
-    }
+    },
   },
   title: {
     position: "absolute",
     fontFamily: "bar",
-    letterSpacing: "5px",
+    letterSpacing: "-5px",
     fontSize: "4em",
     "& > a": {
       textDecoration: "none",
@@ -38,6 +47,7 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     }
   },
   reducedTitle: {
+    fontFamily: "barnotext",
     [breakpoints.up("md")]: {
       display: "None"
     }

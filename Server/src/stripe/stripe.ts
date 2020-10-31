@@ -48,8 +48,8 @@ class stripe {
       customer_email: checkoutData.customer.email,
       payment_method_types: ['card'],
       line_items: line_items,
-      success_url: config.BASE_URL + "/checkout/success/{CHECKOUT_SESSION_ID}",
-      cancel_url: config.BASE_URL + "/checkout/cancel",
+      success_url: config.APP_URL + "/checkout/success/{CHECKOUT_SESSION_ID}",
+      cancel_url: config.APP_URL + "/checkout/cancel",
     });
   }
 }

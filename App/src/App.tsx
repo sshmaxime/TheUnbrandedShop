@@ -13,16 +13,30 @@ import ScrollToTop from "./components/tools/scrollToTop";
 import ItemWrapper from "./pages/item/itemWrapper";
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import Style from "./css"
+import { WithStyles, withStyles } from "@material-ui/core";
 
+// @ts-ignore
+import Ticker from 'react-ticker'
 
-const App: FunctionComponent<any> = () => {
+interface props extends WithStyles<typeof Style> {
+}
+
+const App: FunctionComponent<props> = ({ classes }) => {
   const stripePromise = loadStripe(String(process.env.REACT_APP_STRIPE_API_KEY_DEV));
   return (
     <div className="App">
       <Router>
         <ScrollToTop />
         <LastLocationProvider>
-          <Navbar normalTitle="The Unbranded Shop" reducedTitle="UNBRDSHP" />
+          <Ticker>
+            {({ }) => (
+              <div className={classes.marquee}>
+                📦 FREE SHIPPING WORLDWIDE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </div>
+            )}
+          </Ticker>
+          <Navbar normalTitle="THE UNBRANDED SHOP" reducedTitle="!!!!!!" />
           <Switch>
             <Route
               path={"/"}
@@ -65,7 +79,7 @@ const App: FunctionComponent<any> = () => {
   );
 }
 
-export default App;
+export default withStyles(Style)(App);
 
 
 

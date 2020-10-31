@@ -26,7 +26,7 @@ services:
       - ./server:/workspace
     ports:
       - "3002:80"
-    command: "yarn start"
+    command: "yarn dev"
 
   database:
     container_name: db

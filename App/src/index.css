@@ -24,6 +24,10 @@
   src: url(fonts/nobartest.ttf);
 }
 @font-face {
+  font-family: barnotext;
+  src: url(fonts/bar-notext-1.ttf);
+}
+@font-face {
   font-family: SourceCodePro;
   src: url(fonts/SourceCodePro-Regular.ttf);
 }
@@ -34,6 +38,10 @@
 @font-face {
   font-family: bwn;
   src: url(fonts/bwm.ttf);
+}
+@font-face {
+  font-family: headbd;
+  src: url(fonts/headbd.ttf);
 }
 
 /* http://meyerweb.com/eric/tools/css/reset/

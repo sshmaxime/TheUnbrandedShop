@@ -8,19 +8,21 @@ export type storeState = {
 export const storeStateReducer = (
   state: storeState = {
     items: new Map<string, item>(),
-    itemsInCart: []
+    itemsInCart: localStorage.getItem("cart") ? JSON.parse(String(localStorage.getItem("cart"))) as cartItem[] : []
   },
   action: any
 ): storeState => {
   switch (action.type) {
     case "REMOVE_ITEM": {
       state.itemsInCart.splice(action.payload, 1);
+      localStorage.setItem("cart", JSON.stringify(state.itemsInCart));
       return {
         ...state,
       }
     }
     case "ADD_ITEM": {
-      state.itemsInCart.push(action.payload)
+      state.itemsInCart.push(action.payload);
+      localStorage.setItem("cart", JSON.stringify(state.itemsInCart));
       return {
         ...state,
       }

@@ -41,6 +41,7 @@ class database {
                 description: "eyes",
                 type: "ACCESSORIES",
                 info: [["Material", "100% Cotton"]],
+                exclusive: true,
                 models: [
                   {
                     name: "Black",
@@ -58,6 +59,69 @@ class database {
                       "M": 0
                     }
                   }
+                ]
+              },
+            );
+            await this.db.db.use<item>("items").insert(
+              {
+                _id: "Vegor",
+
+                id: "Vegor",
+                description: "Vegor",
+                type: "PARKAS",
+                info: [["Material", "100% Cotton"]],
+                exclusive: true,
+                models: [
+                  {
+                    name: "Black",
+                    price: 69.99,
+                    imgUrl: ["https://ae01.alicdn.com/kf/H77bc64765b76464f89d132546f93e5a6n/GONTHWID-pais-chaud-polaire-vestes-Streetwear-Hip-Hop-Bandana-motif-Paisley-Patchwork-pleine-fermeture-clair-manteaux.jpg_Q90.jpg_.webp"],
+                    sizes: {
+                      "L": 1
+                    }
+                  },
+                ]
+              },
+            );
+            await this.db.db.use<item>("items").insert(
+              {
+                _id: "Vegor1",
+
+                id: "Vegor1",
+                description: "Vegor1",
+                type: "PARKAS",
+                info: [["Material", "100% Cotton"]],
+                exclusive: true,
+                models: [
+                  {
+                    name: "Pink",
+                    price: 69.99,
+                    imgUrl: ["https://ae01.alicdn.com/kf/H4aa1688a497c4140bf50207ed3e9ca27b/GONTHWID-polaire-coton-rembourr-Parkas-vestes-Streetwear-Hip-Hop-avant-poches-vache-tache-motif-couleur-bloc.jpg_Q90.jpg_.webp"],
+                    sizes: {
+                      "L": 1
+                    }
+                  },
+                ]
+              },
+            );
+            await this.db.db.use<item>("items").insert(
+              {
+                _id: "Vegor2",
+
+                id: "Vegor2",
+                description: "Vegor2",
+                type: "PARKAS",
+                info: [["Material", "100% Cotton"]],
+                exclusive: true,
+                models: [
+                  {
+                    name: "Beige",
+                    price: 69.99,
+                    imgUrl: ["https://ae01.alicdn.com/kf/Hed5f6200d2d24b0f93910e1183d839cec/GONTHWID-pais-chaud-polaire-vestes-Streetwear-Hip-Hop-ours-imprimer-poches-veste-manteaux-hommes-Harajuku-d.jpg_Q90.jpg_.webp"],
+                    sizes: {
+                      "L": 1
+                    }
+                  },
                 ]
               },
             );

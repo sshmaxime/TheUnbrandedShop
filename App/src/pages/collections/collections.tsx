@@ -18,7 +18,7 @@ const Collection: FunctionComponent<props> = ({ classes }) => {
     <div className={classes.root}>
       <div className={classes.title}>
         AUTUMN 2020
-        </div>
+      </div>
       <ItemList type="ALL" items={storeState.items} />
     </div>
   )

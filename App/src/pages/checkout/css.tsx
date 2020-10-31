@@ -70,7 +70,7 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     position: "absolute",
     left: 0,
     fontFamily: "SourceCodePro",
-    fontSize: "1em",
+    fontSize: "1.4em",
     textAlign: "left",
     padding: "10px"
   },
@@ -80,7 +80,7 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     top: "30px",
     color: "grey",
     fontFamily: "SourceCodePro",
-    fontSize: "1.5em",
+    fontSize: "1.2em",
     textAlign: "left",
     padding: "10px"
   },

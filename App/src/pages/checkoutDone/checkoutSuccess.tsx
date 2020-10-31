@@ -52,7 +52,7 @@ const CheckoutSuccess: FunctionComponent<props> = ({ classes, match }) => {
           <Typography className={classes.hello}>THANK YOU !</Typography>
 
           <div className={classes.thanku}>
-            Your payment has been accepted. You will receive an order confirmation email shortly.
+            {state.checkoutInfo.customer.firstname}, your payment has been accepted. You will receive an order confirmation email shortly.
           </div>
 
           <div className={classes.thanku2}>

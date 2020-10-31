@@ -8,4 +8,5 @@ export type item = {
 
   info: [string, string][],
   models: model[],
+  exclusive: boolean,
 }

@@ -1,11 +1,22 @@
 import { Theme, createStyles } from "@material-ui/core";
+import imageCover from '../../assets/cover.jpg';
 
 const Style = ({ breakpoints, spacing }: Theme) => createStyles({
   root: {
-    paddingRight: "10vw",
-    paddingLeft: "10vw",
     marginTop: "20px",
     marginBottom: "20px",
+    [breakpoints.up("lg")]: {
+      paddingLeft: "18vw",
+      paddingRight: "18vw"
+    },
+    [breakpoints.down("lg")]: {
+      paddingLeft: "15vw",
+      paddingRight: "15vw"
+    },
+    [breakpoints.down("md")]: {
+      paddingLeft: "10vw",
+      paddingRight: "10vw"
+    },
     [breakpoints.down("sm")]: {
       paddingLeft: "5vw",
       paddingRight: "5vw"
@@ -14,10 +25,13 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
   imgDiv: {
     borderRadius: "5px",
     position: "relative",
-    height: "calc(100vh - 20px - 100px - 20px)",
-    overflow: "hidden",
+    height: "calc(60vh - 20px - 100px - 20px)",
+    backgroundImage: `url(${imageCover})`,
+    backgroundPosition: "65% 35%",
+    backgroundSize: "cover",
     marginBottom: "20px",
-    [breakpoints.down("md")]: {
+    [breakpoints.down("sm")]: {
+      backgroundPosition: "70% 35%",
     },
   },
   shopButton: {
@@ -27,14 +41,15 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     left: "50%",
     transform: "translate(-50%, -50%)",
     msTransform: "translate(-50%, -50%)",
-    fontFamily: "blader",
+    fontFamily: "nobar",
+    letterSpacing: "-5px",
     backgroundColor: "black",
     color: "white",
     padding: "10px",
     cursor: "pointer",
     textAlign: "center",
     transition: "all 0.5s ease-in-out",
-    borderRadius: "5px",
+    borderRadius: "4px",
     [breakpoints.up("md")]: {
       "&:hover": {
         transform: "translate(-50%, -50%) scale(1.05)",
@@ -42,7 +57,8 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
       },
     },
     [breakpoints.down("xs")]: {
-      width: "50%",
+      width: "40%",
+      fontSize: "1.2em",
     },
   },
   Title: {
@@ -57,9 +73,9 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     },
   },
   TitleSoft: {
-    fontSize: "2em",
+    fontSize: "4em",
     letterSpacing: "-8px",
-    fontFamily: "nobar",
+    fontFamily: "bar",
     textAlign: "center",
     margin: "0 auto",
     [breakpoints.down("md")]: {
@@ -67,10 +83,10 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     },
   },
   textTitle: {
-    fontSize: "4em",
-    letterSpacing: "-1px",
+    fontSize: "2em",
+    letterSpacing: "-10px",
     textAlign: "center",
-    fontFamily: "bar",
+    fontFamily: "nobar",
     borderRadius: "5px",
     padding: "10px",
   },
@@ -87,16 +103,20 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
     left: "50%",
   },
   arrowDown: {
-    fontSize: "2.5em",
+    fontSize: "2em",
     color: "white",
     transform: "translate(-50%, 0)",
     msTransform: "translate(-50%, 0)",
-  },
-  firstContainer: {
-    marginTop: "10px",
+    [breakpoints.down("sm")]: {
+      color: "white",
+    },
+    [breakpoints.down("xs")]: {
+      color: "black",
+    },
   },
   container: {
-    marginTop: "50px",
+    marginTop: "15px",
+    marginBottom: "30px",
   },
 });
 

@@ -14,6 +14,7 @@ export type item = {
 
   info: [string, string][],
   models: model[],
+  exclusive: boolean,
 }
 export type model = {
   name: string,
