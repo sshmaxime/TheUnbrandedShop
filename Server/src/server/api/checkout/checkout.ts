@@ -26,6 +26,8 @@ export const postCheckout = async (checkoutDataRequest: checkoutDataRequest): Pr
       cartItems: checkoutData.items
     }
   };
+  // paid
+
   await db.storeCheckout(checkout);
   return stripeCheckoutSession;
 }

@@ -46,7 +46,7 @@ const Style = ({ breakpoints, spacing }: Theme) => createStyles({
   },
   invoice: {
     margin: "0 auto",
-    padding: "20px",
+    padding: "50px",
     [breakpoints.down("xs")]: {
       padding: "10px",
     }

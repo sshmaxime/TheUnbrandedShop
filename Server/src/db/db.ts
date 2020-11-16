@@ -7,168 +7,137 @@ import { checkoutItem } from "../models/checkoutItem";
 import { item } from "../models/item";
 import { model } from "../models/itemModel";
 
-class database {
+class myDb {
   ready: Promise<any>
 
-  private db: Nano.ServerScope
+  // Database Handler
+  private dbHandler: Nano.ServerScope
 
-  private itemDocument: Nano.DocumentScope<item>
-  private checkoutSessionDocument: Nano.DocumentScope<checkout>
+  // Database Documents
+  private dbDoc_items: Nano.DocumentScope<item>
+  private dbDoc_checkouts: Nano.DocumentScope<checkout>
 
-  constructor(url: string, username: string, password: string, create: boolean) {
-    console.log(url)
-    this.db = Nano({ url: url, requestDefaults: { jar: true } });
+  // RealTime Listeners
+  private dbDoc_items_listener: Nano.FollowEmitter
+  private dbDoc_checkouts_listeners: Nano.FollowEmitter
 
+  constructor(dbUrl: string, username: string, password: string) {
+    // Init databse handler
+    this.dbHandler = Nano({ url: dbUrl, requestDefaults: { jar: true } });
+
+    // Check if the database is properly set up
     this.ready = new Promise(async (resolve, reject) => {
+      // Checks to do in order to check that the database is properly configured.
       try {
-        await this.db.auth(username, password);
+        await this.dbHandler.auth(username, password);
 
-        if (create) {
-          try {
-            try { await this.db.db.destroy("_users"); } catch { }
-            try { await this.db.db.destroy("items"); } catch { }
-            try { await this.db.db.destroy("checkout_sessions"); } catch { }
+        this.dbDoc_items = this.dbHandler.db.use<item>("items")
+        this.dbDoc_items_listener = this.dbDoc_items.follow({ since: "now", include_docs: true })
+        this.dbDoc_items_listener.follow();
 
-            await this.db.db.create("_users");
-            await this.db.db.create("items");
-            await this.db.db.create("checkout_sessions");
+        this.dbDoc_checkouts = this.dbHandler.db.use<checkout>("checkouts")
+        this.dbDoc_checkouts_listeners = this.dbDoc_checkouts.follow({ since: "now", include_docs: true })
+        this.dbDoc_checkouts_listeners.follow();
 
-            await this.db.db.use<item>("items").insert(
-              {
-                _id: "eyes",
-
-                id: "eyes",
-                description: "eyes",
-                type: "ACCESSORIES",
-                info: [["Material", "100% Cotton"]],
-                exclusive: true,
-                models: [
-                  {
-                    name: "Black",
-                    price: 99.99,
-                    imgUrl: ["https://ae01.alicdn.com/kf/H2c7811541fc049248233860aa96dfb58G/Japon-Anime-Prison-cole-yeux-triste-impression-Panama-seau-chapeaux-mode-adulte-cr-me-solaire-p.jpg_640x640.jpg"],
-                    sizes: {
-                      "L": 1
-                    }
-                  },
-                  {
-                    name: "Yello",
-                    price: 99.99,
-                    imgUrl: ["https://ae01.alicdn.com/kf/H2a6069f97e7f4301bbf75941bb99d4dfy/Japon-Anime-Prison-cole-yeux-triste-impression-Panama-seau-chapeaux-mode-adulte-cr-me-solaire-p.jpg_640x640.jpg"],
-                    sizes: {
-                      "M": 0
-                    }
-                  }
-                ]
-              },
-            );
-            await this.db.db.use<item>("items").insert(
-              {
-                _id: "Vegor",
-
-                id: "Vegor",
-                description: "Vegor",
-                type: "PARKAS",
-                info: [["Material", "100% Cotton"]],
-                exclusive: true,
-                models: [
-                  {
-                    name: "Black",
-                    price: 69.99,
-                    imgUrl: ["https://ae01.alicdn.com/kf/H77bc64765b76464f89d132546f93e5a6n/GONTHWID-pais-chaud-polaire-vestes-Streetwear-Hip-Hop-Bandana-motif-Paisley-Patchwork-pleine-fermeture-clair-manteaux.jpg_Q90.jpg_.webp"],
-                    sizes: {
-                      "L": 1
-                    }
-                  },
-                ]
-              },
-            );
-            await this.db.db.use<item>("items").insert(
-              {
-                _id: "Vegor1",
-
-                id: "Vegor1",
-                description: "Vegor1",
-                type: "PARKAS",
-                info: [["Material", "100% Cotton"]],
-                exclusive: true,
-                models: [
-                  {
-                    name: "Pink",
-                    price: 69.99,
-                    imgUrl: ["https://ae01.alicdn.com/kf/H4aa1688a497c4140bf50207ed3e9ca27b/GONTHWID-polaire-coton-rembourr-Parkas-vestes-Streetwear-Hip-Hop-avant-poches-vache-tache-motif-couleur-bloc.jpg_Q90.jpg_.webp"],
-                    sizes: {
-                      "L": 1
-                    }
-                  },
-                ]
-              },
-            );
-            await this.db.db.use<item>("items").insert(
-              {
-                _id: "Vegor2",
-
-                id: "Vegor2",
-                description: "Vegor2",
-                type: "PARKAS",
-                info: [["Material", "100% Cotton"]],
-                exclusive: true,
-                models: [
-                  {
-                    name: "Beige",
-                    price: 69.99,
-                    imgUrl: ["https://ae01.alicdn.com/kf/Hed5f6200d2d24b0f93910e1183d839cec/GONTHWID-pais-chaud-polaire-vestes-Streetwear-Hip-Hop-ours-imprimer-poches-veste-manteaux-hommes-Harajuku-d.jpg_Q90.jpg_.webp"],
-                    sizes: {
-                      "L": 1
-                    }
-                  },
-                ]
-              },
-            );
-          } catch (err) { reject(err); }
-        }
-
-        // Init db endpoints
-        this.itemDocument = this.db.db.use<item>("items");
-        this.checkoutSessionDocument = this.db.db.use<checkout>("checkout_sessions");
-
+        // Add checks ...
         return resolve();
-      } catch (err) { return reject(err); }
+      } catch (err) {
+        // Checks failed
+        return reject(err);
+      }
     })
   }
 
+  ///////////////
+  ///// Init ////
+  ///////////////
+
+  initDatabse = async () => {
+    // Do it otherwise CouchDb will complain
+    await this.dbHandler.db.create("_users");
+
+    await this.dbHandler.db.create("items");
+    await this.dbHandler.db.create("checkouts");
+  }
+
+  ///////////////
+  // Checkouts //
+  ///////////////
+
+  storeCheckout = async (checkoutSession: checkout) => {
+    return await this.dbDoc_checkouts.insert(checkoutSession);
+  }
+  getCheckout = async (checkoutSessionId: string) => {
+    return await this.dbDoc_checkouts.get(checkoutSessionId);
+  }
+
+  getAllCheckouts = async (): Promise<checkout[]> => {
+    return new Promise<checkout[]>(async (resolve) => {
+      const checkouts: checkout[] = [];
+      const listDocuments = await this.dbDoc_checkouts.list({ include_docs: true });
+      listDocuments.rows.forEach((row) => {
+        // Remove db informations
+        delete row.doc._id;
+        delete row.doc._rev;
+        checkouts.push(row.doc as checkout);
+      });
+      resolve(checkouts);
+    })
+  }
+
+  ///////////////
+  //// Items ////
+  ///////////////
+
+  storeItem = async (item: item) => {
+    return await this.dbDoc_items.insert(item);
+  }
+
+  getItem = async (itemId: string): Promise<item> => {
+    return await this.dbDoc_items.get(itemId);
+  }
+
+  getAllItems = async (): Promise<item[]> => {
+    return new Promise<item[]>(async (resolve) => {
+      const items: item[] = [];
+      const listDocuments = await this.dbDoc_items.list({ include_docs: true });
+      listDocuments.rows.forEach((row) => {
+        // Remove db informations
+        delete row.doc._id;
+        delete row.doc._rev;
+        items.push(row.doc as item);
+      });
+      resolve(items);
+    })
+  }
+
+  /////////////////
+  // Subscribers //
+  /////////////////
+
   subscribeChangesItems = async (callback: (item: item) => any) => {
-    const listener = this.itemDocument.follow({ since: "now", include_docs: true })
-    listener.on("change", (change) => {
-      // remove not proper item info
+    this.dbDoc_items_listener.on("change", (change) => {
+      // remove database properties
       delete change.doc._id
       delete change.doc._rev
       const item = change.doc as item
       callback(item);
     })
-    listener.follow();
   }
 
-  storeCheckout = async (checkoutSession: checkout) => {
-    return await this.checkoutSessionDocument.insert(checkoutSession);
-  }
-  getCheckout = async (checkoutSessionId: string) => {
-    return await this.checkoutSessionDocument.get(checkoutSessionId);
-  }
-
-  getItems = async (): Promise<item[]> => {
-    return new Promise<item[]>(async (resolve) => {
-      const items: item[] = [];
-      const listDocuments = await this.itemDocument.list({ include_docs: true });
-      listDocuments.rows.forEach((row) => {
-        delete row.doc._id;
-        delete row.doc._rev;
-        const item = row.doc as item;
-        items.push(item);
-      });
-      resolve(items);
+  subscribeChangesCheckouts = async (callback: (checkout: checkout) => any) => {
+    this.dbDoc_checkouts_listeners.on("change", (change) => {
+      // remove database properties
+      delete change.doc._id
+      delete change.doc._rev
+      const checkout = change.doc as checkout
+      callback(checkout);
     })
   }
+
+  ///////////////
+  ///////////////
+  ///////////////
 
   createCheckoutData = async (checkoutDataRequest: checkoutDataRequest): Promise<checkoutData> => {
     console.log(checkoutDataRequest);
@@ -176,22 +145,33 @@ class database {
     return new Promise<checkoutData>(async (resolve, reject) => {
       const items: checkoutItem[] = [];
       for (let item of checkoutDataRequest.items) {
-        const resp = await this.itemDocument.get(item.id);
+        let invalid = false;
 
-        resp.models.forEach((model: model) => {
+        const dbitem = await this.dbDoc_items.get(item.id);
+
+        dbitem.models.forEach((model: model) => {
+
           if (item.model.name == model.name) {
-            const tmpItem: checkoutItem = {
-              id: item.id,
-              quantity: item.quantity,
+            Object.keys(model.sizes).forEach((size: string) => {
+              if (model.sizes[size] < item.size[size] * item.quantity) {
+                reject("error in the cart")
+              }
+            })
 
-              description: resp.description,
+            if (!invalid) {
+              const tmpItem: checkoutItem = {
+                id: item.id,
+                quantity: item.quantity,
 
-              price: model.price,
-              imgUrl: model.imgUrl[0],
-              model: model,
-              size: item.size
+                description: dbitem.description,
+
+                price: model.price,
+                imgUrl: model.imgUrl[0],
+                model: model,
+                size: item.size
+              }
+              items.push(tmpItem);
             }
-            items.push(tmpItem);
           }
         })
       }
@@ -202,9 +182,11 @@ class database {
         items: items
       }
       console.log(checkoutData)
-      return resolve(checkoutData);
+      resolve(checkoutData);
     })
   }
 }
 
-export const db = new database(config.DB_URL, "admin", "admin", true);
+
+
+export const db = new myDb(config.DB_URL, "admin", "admin");

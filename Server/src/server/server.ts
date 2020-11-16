@@ -4,8 +4,11 @@ import * as socketio from "socket.io";
 import { Server } from "http";
 import handlerStateItems from './api/state/item';
 import * as Cors from "cors";
+import config from '../config';
 
-export class server {
+export class myServer {
+  ready: Promise<any>
+
   private app: express.Express;
   private server: Server
   private state: socketio.Server
@@ -31,9 +34,11 @@ export class server {
     handlerStateItems(this.state);
   }
 
-  start = (port: number) => {
-    this.server.listen(port, () => {
+  start = () => {
+    this.server.listen(config.PORT, () => {
       console.log("starting server");
     });
   }
 }
+
+export const server = new myServer()

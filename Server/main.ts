@@ -5,13 +5,12 @@ import config from './src/config';
 (async () => {
   try {
     await db.ready
+    await server.ready
   } catch (err) {
     return console.log("Error while initializing the application: ", err)
   }
 
-  const serv = new server();
-
-  serv.init();
-  serv.start(config.PORT);
+  server.init();
+  server.start();
 })();
 

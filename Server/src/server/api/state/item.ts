@@ -9,7 +9,7 @@ const handlerStateItems = (socketio: socketio.Server) => {
 }
 
 const handlerItems = (socketio: socketio.Server) => {
-  socketio.on("connect", async (socket: socketio.Socket) => { socket.emit("ITEMS", await db.getItems()) })
+  socketio.on("connect", async (socket: socketio.Socket) => { socket.emit("ITEMS", await db.getAllItems()) })
   socketio.on("disconnect", async (socket: socketio.Socket) => { })
 }
 
